@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
+
+class AuthServiceProvider extends ServiceProvider
+{
+    /**
+     * The policy mappings for the application.
+     *
+     * @var array
+     */
+    protected $policies = [
+        // 'App\Model' => 'App\Policies\ModelPolicy',
+    ];
+
+    /**
+     * Register any authentication / authorization services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->registerPolicies();
+
+        //GAtes
+        Gate::define('isAdmin',function($user){
+            return $user->user_type === 'admin';
+        });
+
+        Gate::define('isRegistrar',function($user){
+            return $user->user_type === 'registrar';
+        });
+
+        Gate::define('isStudent',function($user){
+            return $user->user_type === 'student';
+        });
+
+        Gate::define('isProspectiveStudent',function($user){
+            return $user->user_type === 'prospective student';
+        });
+    }
+}
