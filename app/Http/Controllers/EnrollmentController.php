@@ -16,20 +16,21 @@ class EnrollmentController extends Controller
         $SY = DB::table('school_year')->where('current',1)->first();
         $year = $SY->SY;
 
-        $enrolled = DB::table('enrollment')
+        $enrollment = DB::table('enrollment')
             ->where('student_id', $student_id)
             ->where('SY',$year)
             ->first();
 
         //dd($enrolled);
 
-        if($enrolled == null)
+        if($enrollment == null)
         {
             return redirect()->route('enroll_create');
         }
         else
         {
-            return view('enrollment.index');
+
+            return view('enrollment.index', compact('enrollment'));
         }
         
     }
