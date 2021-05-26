@@ -64,7 +64,7 @@ class EnrollmentController extends Controller
             'SY' => $request['SY']
         ]);
         
-        return view('enrollment.index')->with('success', 'Record saved successfully!');        
+        return redirect()->route('enroll_index');        
     }
 
     public function create_enrollForm()
