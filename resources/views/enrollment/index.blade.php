@@ -13,7 +13,14 @@
     </div>
     <br>
     
-
+    @if($enrollment===null)
+    <div class="row">
+        <div class="col-md-6">
+            <p class="text-red"><strong> You cannot enroll yet because you dont have student record! 
+            <br> Please go to Profile and submit details!</strong></p>
+        </div>
+    </div>
+    @else
     <div class="row ">
         <div class="col-md-6">   
             <div class="card card-primary">
@@ -68,7 +75,7 @@
           
         </div>
     </div>
-    
+    @endif
         
 </div>
 @endsection

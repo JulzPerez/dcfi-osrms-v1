@@ -12,26 +12,36 @@ class EnrollmentController extends Controller
     public function index()
     {
         $userid = \Auth::user()->id;
-        $student_id = Student::where('user_id', $userid)->first()->id;
+        $student = Student::where('user_id',$userid)->first();
+        
         $SY = DB::table('school_year')->where('current',1)->first();
         $year = $SY->SY;
 
-        $enrollment = DB::table('enrollment')
-            ->where('student_id', $student_id)
-            ->where('SY',$year)
-            ->first();
 
-        //dd($enrolled);
-
-        if($enrollment == null)
+        if($student != null)
         {
-            return redirect()->route('enroll_create');
-        }
+            $student_id = $student->id;
+            //dd($student_id);
+            $enrollment = DB::table('enrollment')
+                ->where('student_id', $student_id)
+                ->where('SY',$year)
+                ->first();
+
+            if($enrollment == null)
+            {
+                return redirect()->route('enroll_create');
+            }
+            else
+            {
+
+                return view('enrollment.index', compact('enrollment'));
+            }
+        }    
         else
         {
-
+            $enrollment = null;
             return view('enrollment.index', compact('enrollment'));
-        }
+        }        
         
     }
 
