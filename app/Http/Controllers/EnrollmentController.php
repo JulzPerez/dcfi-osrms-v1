@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class EnrollmentController extends Controller
 {
+    public function index()
+    {
+        
+    }
+
     public function enroll(Request $request)
     {
 
@@ -31,8 +36,8 @@ class EnrollmentController extends Controller
             'student_id' => $student_id,           
 
         ]);
-
         
+        return view('enrollment.index')->with('success', 'Record saved successfully!');        
     }
 
     public function create_enrollForm()

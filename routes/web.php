@@ -22,5 +22,6 @@ Auth::routes();
 Route::Resource('users', 'UserController');
 Route::Resource('student', 'StudentController');
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/enrollment', 'EnrollmentController@create_enrollForm')->name('enroll_create');
+Route::get('/enrollment/create', 'EnrollmentController@create_enrollForm')->name('enroll_create');
 Route::post('/enrollment', 'EnrollmentController@enroll')->name('enroll_store');
+Route::get('/enrollment', 'EnrollmentController@index')->name('enroll_index');

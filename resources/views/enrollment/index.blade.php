@@ -12,13 +12,29 @@
         </div>
     </div>
     <br>
-    <h5> <strong class="text-blue"> Student Information </strong></h5>
+    
 
     <div class="row ">
         <div class="col-md-6">
+            
+            
+
             <div class="card card-primary">
-                
+                <div class="card-header">
+                    Enrollment Details
+                </div>
+            
+            <form method="POST" action="{{ route('enroll_store') }} ">
+            @csrf
+                <div class="card-body">
+                    <div class="row">
+                        <p class="text-green text-center"><strong  >Your data has been submitted successfully for validation.</strong></p>
+                    </div>
+                </div> <!--end card-body -->
+               
+            </form>
             </div>
+          
         </div>
     </div>
         
