@@ -4,12 +4,33 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Student;
+use App\Enrollment;
 use Illuminate\Support\Facades\DB;
 
 class EnrollmentController extends Controller
 {
     public function index()
     {
+        $userid = \Auth::user()->id;
+        $student_id = Student::where('user_id', $userid)->first()->id;
+        $SY = DB::table('school_year')->where('current',1)->first();
+        $year = $SY->SY;
+
+        $enrolled = DB::table('enrollment')
+            ->where('student_id', $student_id)
+            ->where('SY',$year)
+            ->first();
+
+        //dd($enrolled);
+
+        if($enrolled == null)
+        {
+            return redirect()->route('enroll_create');
+        }
+        else
+        {
+            return view('enrollment.index');
+        }
         
     }
 
@@ -17,7 +38,7 @@ class EnrollmentController extends Controller
     {
 
         $this->validate($request, [
-
+            'SY' => 'required',
         ]);
 
         DB::table('class_section')->insert([
@@ -32,9 +53,14 @@ class EnrollmentController extends Controller
         $userid = \Auth::user()->id;
         $student_id = Student::where('user_id', $userid)->first()->id;
 
-        DB::table('enrollment')->insert([
-            'student_id' => $student_id,           
-
+        /* DB::table('enrollment')->insert([
+            'student_id' => $student_id,  
+            'SY' => $request['school_year']     
+        ]); */
+        //dd($request['SY']);
+        Enrollment::create([
+            'student_id' => $student_id,  
+            'SY' => $request['SY']
         ]);
         
         return view('enrollment.index')->with('success', 'Record saved successfully!');        

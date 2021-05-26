@@ -91,7 +91,8 @@
                             <div class="form-group">
                                 <label>School Year</label>
                                 <input  type="text" class="form-control"  name="school_year" value="{{$SY->SY}}" disabled>
-                                <input  type="hidden"   name="school_year_id" value="{{$SY->id}}" >
+                                <input  type="hidden"  name="school_year_id" value="{{$SY->id}}" >
+                                <input  type="hidden"  name="SY" value="{{$SY->SY}}" >
                             
                             </div>                        
                         </div>

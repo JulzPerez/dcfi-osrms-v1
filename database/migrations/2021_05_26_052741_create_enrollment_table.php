@@ -16,6 +16,7 @@ class CreateEnrollmentTable extends Migration
         Schema::create('enrollment', function (Blueprint $table) {
             $table->id();
             $table->string('student_id');
+            $table->string('SY');
             $table->string('status')->default('pending');
             $table->decimal('writtenOrOnlineExamRating',8,2)->nullable();
             $table->decimal('oralExamOrInterviewRating',8,2)->nullable();
