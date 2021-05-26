@@ -28,7 +28,7 @@
             @csrf
                 <div class="card-body">
                     <div class="row">
-                        <p class="text-green text-center"><strong  >Your data has been submitted successfully for validation.</strong></p>
+                        <p class="text-green text-center"><strong >Your data has been submitted successfully for validation.</strong></p>
                     </div>
                 </div> <!--end card-body -->
                
