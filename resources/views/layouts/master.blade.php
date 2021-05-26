@@ -161,6 +161,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+         
+          <li class="nav-item">
+            <a href="{{route('enroll_create')}}" class="nav-link">
+              <i class="nav-icon fas fa-user-circle"></i>
+              <p>
+                Enrollment          
+              </p>
+            </a>
+          </li>
           @endcan
 
 

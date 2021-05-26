@@ -43,7 +43,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -90,7 +90,7 @@ class StudentController extends Controller
         );
 
         $userid = \Auth::user()->id; 
-        $studentID = date('Y').'-'.mt_rand(10000,50000);
+        $studentID = date('Y').'-'.mt_rand(100000,500000);
     
         Student::create([
             'id' => $studentID,
