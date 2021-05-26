@@ -31,7 +31,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Department</label>
-                                <select class="form-control select2bs4" name="dept_id"  style="width: 100%;">
+                                <select class="form-control" name="dept_id"  style="width: 100%;">
                                     
                                     @foreach($departments as $department)
                                         <option value="{{$department->id}}"> {{$department->department_name}} </option>
@@ -42,7 +42,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Year Level</label>
-                                <select class="form-control select2bs4" name="level_id" style="width: 100%;">
+                                <select class="form-control " name="level_id" style="width: 100%;">
                                     
                                     @foreach($levels as $level)
                                         <option value="{{$level->id}}"> {{$level->level_name}} </option>
@@ -55,7 +55,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Track</label>
-                                <select class="form-control select2bs4" name="track_id"  style="width: 100%;">
+                                <select class="form-control " name="track_id"  style="width: 100%;">
                                     
                                     @foreach($tracks as $track)
                                         <option value="{{$track->id}}"> {{$track->track_name}} </option>
@@ -68,7 +68,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Strand</label>
-                                <select class="form-control select2bs4" name="strand_id" style="width: 100%;">
+                                <select class="form-control " name="strand_id" style="width: 100%;">
                                     
                                     @foreach($strands as $strand)
                                         <option value="{{$strand->id}}"> {{$strand->strand_name}} </option>
@@ -81,7 +81,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Semester</label>
-                                <select class="form-control select2bs4" name="semester" id="selectDocument" style="width: 100%;">
+                                <select class="form-control " name="semester" id="selectDocument" style="width: 100%;">
                                    <option>1st</option>
                                    <option>2nd</option>                                    
                                 </select>
