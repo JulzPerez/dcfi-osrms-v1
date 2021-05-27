@@ -11,8 +11,8 @@ class UploadRequirements extends Model
     protected $fillable = [
         
         'student_id',
-        'payment_for',
-        'notes',
+        'name',
+        'description',
         'attachment',
     ];
 }
