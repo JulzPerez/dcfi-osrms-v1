@@ -79,7 +79,10 @@
             
                 <div class="card-body">
                 <table class="table table-bordered table-condensed">
-
+                
+                @if(count($payments) === 0)
+                        <p>There are no current submissions<p>
+                @else
                     <thead>
                         <tr>
                             <th style="width:30%"> File Name</th>
@@ -89,10 +92,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if(count($payments) === 0)
-                        <p>There are no current submissions<p>
+                        
 
-                        @else
+                
                             @foreach($payments as $payment)
                             <tr>
                                     <td>

@@ -77,7 +77,10 @@
             
                 <div class="card-body">
                 <table class="table table-bordered table-condensed">
+                @if(count($requirements) === 0)
+                        <p>There are no current submissions<p>
 
+                @else
                     <thead>
                         <tr>
                             <th style="width:30%"> File Name</th>
@@ -86,10 +89,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if(count($requirements) === 0)
-                        <p>There are no current submissions<p>
-
-                        @else
+                        
                             @foreach($requirements as $requirement)
                             <tr>
                                     <td>
