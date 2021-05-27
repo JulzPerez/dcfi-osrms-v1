@@ -38,7 +38,7 @@
                                         @endif 
                                 </div>  
                                 <div class="form-group">
-                                    <label>Amount</label>
+                                    <label>Amount <strong class="text-red">  *Note: Should be only numeric value.</strong></label>
                                     <input type="text" name="amount" class="form-control" >
                                         @if ($errors->has('amount'))
                                         <span class="text-danger">{{ $errors->first('amount') }}</span>
