@@ -170,6 +170,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+
+          <li class="nav-item">
+            <a href="/upload" class="nav-link">
+              <i class="nav-icon fas fa-user-circle"></i>
+              <p>
+                Upload Requirements          
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="/payment" class="nav-link">
+              <i class="nav-icon fas fa-user-circle"></i>
+              <p>
+                Upload Proof of Payment          
+              </p>
+            </a>
+          </li>
+
           @endcan
 
 

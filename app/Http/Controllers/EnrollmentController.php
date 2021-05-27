@@ -14,14 +14,13 @@ class EnrollmentController extends Controller
         $userid = \Auth::user()->id;
         $student = Student::where('user_id',$userid)->first();
         
-        $SY = DB::table('school_year')->where('current',1)->first();
-        $year = $SY->SY;
-
 
         if($student != null)
         {
+            $SY = DB::table('school_year')->where('current',1)->first();
+            $year = $SY->SY;
+
             $student_id = $student->id;
-            //dd($student_id);
             $enrollment = DB::table('enrollment')
                 ->where('student_id', $student_id)
                 ->where('SY',$year)

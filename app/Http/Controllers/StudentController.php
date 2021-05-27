@@ -29,7 +29,7 @@ class StudentController extends Controller
                     $student = DB::table('student')
                     ->where('user_id', '=', $userid)
                     ->first();  
-                    
+
                     return view('student.index', compact('student'));
                 }
                   
