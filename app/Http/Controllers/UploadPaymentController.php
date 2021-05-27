@@ -58,7 +58,7 @@ class UploadPaymentController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'amount' => 'required',
+            'amount' => 'required|numeric',
             'payment_for' => 'required|max:191',
             'file' => 'required|file|mimes:zip,pdf,jpg,jpeg,bmp,png,doc,docx,csv,rtf,xlsx,xls,txt',
         ]);
