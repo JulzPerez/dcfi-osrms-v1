@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateClassSectionTable extends Migration
+class CreateFeesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateClassSectionTable extends Migration
      */
     public function up()
     {
-        Schema::create('class_section', function (Blueprint $table) {
+        Schema::create('fees', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('level_id');
-            $table->unsignedBigInteger('department_id');
-            $table->unsignedBigInteger('strand_id');
-            $table->unsignedBigInteger('school_year_id');
-            $table->string('semester');
+            $table->string('fee_name');
+            $table->string('description')->nullable();
+            $table->string('amount');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateClassSectionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('class_section');
+        Schema::dropIfExists('fees');
     }
 }

@@ -51,26 +51,47 @@ class EnrollmentController extends Controller
             'SY' => 'required',
         ]);
 
-        DB::table('class_section')->insert([
+        
+        $department = DB::table('department')
+                    ->select('department_name')
+                    ->where('id', $request['dept_id'])->first();
+
+                    
+
+        $classSection_id = mt_rand(10000,50000);
+
+        if($department->department_name == 'Senior High School')
+        {            
+            DB::table('class_section')->insert([
+            'id' => $classSection_id,
             'level_id' => $request['level_id'],
             'department_id' => $request['dept_id'],
             'strand_id' => $request['strand_id'],
             'school_year_id' => $request['school_year_id'],
             'semester' => $request['semester'],
 
-        ]);
-
+            ]);  
+        }
+        else
+        {
+            DB::table('class_section')->insert([
+                'id' => $classSection_id,
+                'level_id' => $request['level_id'],
+                'department_id' => $request['dept_id'],
+                'strand_id' => null,
+                'school_year_id' => $request['school_year_id'],
+                'semester' => $request['semester'],
+    
+                ]);
+        }
+        
         $userid = \Auth::user()->id;
         $student_id = Student::where('user_id', $userid)->first()->id;
 
-        /* DB::table('enrollment')->insert([
-            'student_id' => $student_id,  
-            'SY' => $request['school_year']     
-        ]); */
-        //dd($request['SY']);
         Enrollment::create([
             'student_id' => $student_id,  
-            'SY' => $request['SY']
+            'SY' => $request['SY'],
+            'class_section_id' => $classSection_id
         ]);
         
         return redirect()->route('enroll_index');        

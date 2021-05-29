@@ -48,11 +48,9 @@
                             <label>First Name</label>
                             <input  type="text" class="form-control" name="first_name" value="{{ $student->first_name }}"> 
 
-                            @error('first_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                            @enderror                          
+                              @if ($errors->has('first_name'))
+                                <span class="text-danger">{{ $errors->first('first_name') }}</span>
+                              @endif                         
 
                           </div>
                         </div>
@@ -61,11 +59,9 @@
                             <label>Middle Name</label>
                             <input  type="text" class="form-control" name="middle_name" value="{{ $student->middle_name }}">
                           
-                            @error('middle_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                            @enderror 
+                              @if ($errors->has('middle_name'))
+                                <span class="text-danger">{{ $errors->first('middle_name') }}</span>
+                              @endif
 
                           </div>
                         </div>
@@ -74,11 +70,9 @@
                             <label>Last Name</label>
                             <input  type="text" class="form-control"  name="last_name" value="{{ $student->last_name }}">
                             
-                            @error('last_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                            @enderror                             
+                            @if ($errors->has('last_name'))
+                                <span class="text-danger">{{ $errors->first('last_name') }}</span>
+                              @endif                            
                           </div>
                         </div>
                         <div class="col-md-3">
@@ -86,11 +80,9 @@
                             <label>Suffix/Extension Name</label>
                             <input  type="text" class="form-control"  name="name_extension" value="{{ $student->name_extension }}">
                             
-                            @error('name_extension')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                            @enderror 
+                            @if ($errors->has('name_extension'))
+                                <span class="text-danger">{{ $errors->first('name_extension') }}</span>
+                              @endif
                             
                           </div>
                         </div>
@@ -99,16 +91,14 @@
                         <div class="col-md-3">
                           <div class="form-group">
                               <label class="col-form-label">Sex</label>
-                              <select class="form-control select2bs4" name="sex" value="{{ $student->sex }}" data-placeholder="Select from options below" style="width: 100%;">
+                              <select class="form-control" name="sex" value="{{ $student->sex }}" data-placeholder="Select from options below" style="width: 100%;">
                                 <option {{ ($student->sex) == 'Male' ? 'selected' : '' }}  value="Male">Male</option>
                                 <option {{ ($student->sex) == 'Female' ? 'selected' : '' }}  value="Female">Female</option>                                 
                               </select>
                               
-                              @error('sex')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                              @enderror 
+                              @if ($errors->has('sex'))
+                                <span class="text-danger">{{ $errors->first('sex') }}</span>
+                              @endif 
                             
                           </div>
                         </div>
@@ -117,11 +107,9 @@
                               <label>Date of Birth</label>                             
                               <input type="date" class="date form-control" name="birthdate" value="{{ $student->birthdate }}">
                             
-                              @error('birthdate')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                              @enderror                            
+                              @if ($errors->has('birthdate'))
+                                <span class="text-danger">{{ $errors->first('birthdate') }}</span>
+                              @endif                            
                           </div>  
                         </div>
                         <div class="col-md-3">
@@ -129,11 +117,9 @@
                             <label>Place of Birth</label>
                             <input  type="text" class="form-control" name="birth_place" value="{{ $student->birthplace }}">
                             
-                              @error('birth_place')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                              @enderror                             
+                              @if ($errors->has('birth_place'))
+                                <span class="text-danger">{{ $errors->first('birth_place') }}</span>
+                              @endif                             
                           </div>
                         </div> 
 
@@ -142,11 +128,9 @@
                             <label>Citizenship</label>
                             <input  type="text" class="form-control" name="citizenship" value="{{ $student->citizenship }}">
                             
-                              @error('citizenship')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                              @enderror 
+                              @if ($errors->has('citizenship'))
+                                <span class="text-danger">{{ $errors->first('citizenship') }}</span>
+                              @endif  
                             
                           </div>
                         </div> 
@@ -154,91 +138,88 @@
                       <div class="row">
                         <div class="col-md-3">
                           <div class="form-group">
-                              <label>Number of siblings</label>
-                              <input  type="text" class="form-control"  name="no_siblings" value="{{ $student->no_siblings }}">
+                              <label>Contact Number</label>
+                              <input  type="text" class="form-control"  name="contact_no" value="{{ $student->contact_no }}">
                               
-                              @error('no_siblings')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                              @enderror
+                              @if ($errors->has('contact_no'))
+                                <span class="text-danger">{{ $errors->first('contact_no') }}</span>
+                              @endif
 
                           </div>
                         </div>
                         <div class="col-md-3">
                           <div class="form-group">
-                            <label>Religion</label>
-                            <input  type="text" class="form-control"  name="religion" value="{{ $student->religion }}">
+                              <label>Number of siblings</label>
+                              <input  type="text" class="form-control"  name="no_siblings" value="{{ $student->no_siblings }}">
                               
-                              @error('religion')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                              @enderror                            
+                              @if ($errors->has('no_siblings'))
+                                <span class="text-danger">{{ $errors->first('no_siblings') }}</span>
+                              @endif
+
                           </div>
                         </div>
+                        
                         <div class="col-md-3">
                           <div class="form-group">
                             <label>Birth Order</label>
                             <input  type="text" class="form-control"  name="birth_order" value="{{ $student->birth_order }}">
                             
-                              @error('birth_order')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                              @enderror
+                              @if ($errors->has('birth_order'))
+                                <span class="text-danger">{{ $errors->first('birth_order') }}</span>
+                              @endif
                             
+                          </div>
+                        </div>
+
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label>Religion</label>
+                            <input  type="text" class="form-control"  name="religion" value="{{ $student->religion }}">
+                              
+                            @if ($errors->has('religion'))
+                                <span class="text-danger">{{ $errors->first('religion') }}</span>
+                              @endif                            
                           </div>
                         </div>
                         
                       </div> 
-                    
+        
                       <div class="row">
-                 
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                           <div class="form-group">
-                            <label>Name of Father</label>
-                            <input  type="text" class="form-control" name="father_fullname" value="{{ $student->father_fullname }}">
-                            
-                              @error('father_fullname')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                              @enderror 
-                            
-                          </div>
-                        </div>  
-                        <div class="col-md-4">
-                          <div class="form-group">
-                            <label>Name of Mother</label>
-                            <input  type="text" class="form-control" name="mother_fullname" value="{{ $student->mother_fullname }}">
-                            
-                              @error('mother_fullname')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                              @enderror 
-                            
-                          </div>
-                        </div>   
-                        <div class="col-md-4">
-                          <div class="form-group">
-                            <label>Home Address</label>
-                            <input  type="text" class="form-control"  name="home_address" value="{{ $student->home_address }}">
-                            
-                              @error('home_address')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                              @enderror
-                            
-                          </div>
-                        </div>                     
-                      </div>
+                              <label>Purok/Street</label>
+                              <input  type="text" class="form-control"  name="purok" value="{{$student->purok}}">
+                              
+                              @if ($errors->has('purok'))
+                                <span class="text-danger">{{ $errors->first('purok') }}</span>
+                              @endif
 
-                      
-                    
-                    
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                              <label>Municipality/City <strong class="text-red">*</strong></label>
+                              <input  type="text" id="municipality" class="form-control"  name="municipality" value="{{$student->municipality}}">
+                              
+                              @if ($errors->has('municipality'))
+                                <span class="text-danger">{{ $errors->first('municipality') }}</span>
+                              @endif
+
+                          </div>
+                        </div>
+                        
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label>Province <strong class="text-red">*</strong></label>
+                            <input  type="text" class="form-control"  name="province" value="{{$student->province}}">
+                            
+                            @if ($errors->has('province'))
+                                <span class="text-danger">{{ $errors->first('province') }}</span>
+                              @endif
+                            
+                          </div>
+                        </div>                   
+                        
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">

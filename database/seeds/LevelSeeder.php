@@ -34,5 +34,29 @@ class LevelSeeder extends Seeder
         DB::table('level')->insert([
             'level_name' => 'Grade 6'
         ]);
+
+        DB::table('level')->insert([
+            'level_name' => 'Grade 7'
+        ]);
+
+        DB::table('level')->insert([
+            'level_name' => 'Grade 8'
+        ]);
+
+        DB::table('level')->insert([
+            'level_name' => 'Grade 9'
+        ]);
+
+        DB::table('level')->insert([
+            'level_name' => 'Grade 10'
+        ]);
+
+        DB::table('level')->insert([
+            'level_name' => 'Grade 11'
+        ]);
+
+        DB::table('level')->insert([
+            'level_name' => 'Grade 12'
+        ]);
     }
 }

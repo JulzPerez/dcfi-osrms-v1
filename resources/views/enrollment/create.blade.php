@@ -41,7 +41,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Year Level</label>
+                                <label>Grade Level</label>
                                 <select class="form-control " name="level_id" style="width: 100%;">
                                     
                                     @foreach($levels as $level)
@@ -54,7 +54,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Track</label>
+                                <label>Track <span class="text-red">*For Senior High School Only</span></label>
                                 <select class="form-control " name="track_id"  style="width: 100%;">
                                     
                                     @foreach($tracks as $track)
@@ -67,7 +67,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Strand</label>
+                                <label>Strand <span class="text-red">*For Senior High School Only</span></label>
                                 <select class="form-control " name="strand_id" style="width: 100%;">
                                     
                                     @foreach($strands as $strand)

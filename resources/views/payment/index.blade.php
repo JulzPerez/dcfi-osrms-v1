@@ -31,14 +31,14 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Upload Payment Proof</label>
+                                    <label>Upload Proof of Payment</label>
                                     <input type="file" name="file" class="form-control" >
                                         @if ($errors->has('file'))
                                         <span class="text-danger">{{ $errors->first('file') }}</span>
                                         @endif 
                                 </div>  
                                 <div class="form-group">
-                                    <label>Amount <strong class="text-red">  *Note: Should be only numeric value.</strong></label>
+                                    <label>Amount <strong class="text-red">  *Note: Numeric value only.</strong></label>
                                     <input type="text" name="amount" class="form-control" >
                                         @if ($errors->has('amount'))
                                         <span class="text-danger">{{ $errors->first('amount') }}</span>

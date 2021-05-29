@@ -58,8 +58,7 @@ class StudentController extends Controller
             'first_name' => 'required|string|max:191',
             'middle_name' => 'required|string|max:191',
             'last_name' => 'required|string|max:191',
-            'name_extension' => 'required|string|max:191',
-            'home_address' => 'required|string|max:191',
+            'contact_no' => 'required|string',
             'sex' => 'required|string|max:191',
             'birthdate' => 'required',
             'birth_place' => 'required|string|max:191',
@@ -67,16 +66,17 @@ class StudentController extends Controller
             'no_siblings' => 'required|string|max:191',
             'religion' => 'required|string|max:191',
             'birth_order' => 'required|string|max:191',
-            'father_fullname' => 'required|string|max:191',
-            'mother_fullname' => 'required|string|max:191',
+            //'purok' => 'required|string|max:191',
+          
+            'municipality' => 'required|string|max:191',  
+            'province' => 'required|string|max:191',         
             
         ], 
             [
             'first_name.required' => 'Required field',
             'middle_name.required' => 'Required field',
             'last_name.required' => 'Required field',
-            'name_extension.required' => 'Required field',
-            'home_address.required' => 'Required field',
+            'contact_no.required' => 'Required field',
             'sex.required' => 'Required field',
             'birthdate.required' => 'Required field',
             'birth_place.required' => 'Required field',
@@ -84,8 +84,11 @@ class StudentController extends Controller
             'no_siblings.required' => 'Required field',
             'religion.required' => 'Required field',
             'birth_order.required' => 'Required field',
-            'father_fullname.required' => 'Required field',
-            'mother_fullname.required' => 'Required field',
+            //'purok.required' => 'Required field',
+           
+            'municipality.required' => 'Required field', 
+            'province.required' => 'Required field',
+            
             ]
         );
 
@@ -95,11 +98,12 @@ class StudentController extends Controller
         Student::create([
             'id' => $studentID,
             'user_id' => $userid, 
+            'LRN' => $request['lrn'],
             'first_name' => $request['first_name'],
             'middle_name' => $request['middle_name'],
             'last_name' => $request['last_name'],
             'name_extension' => $request['name_extension'],
-            'home_address' => $request['home_address'],
+            'contact_no' => $request['contact_no'],
             'sex' => $request['sex'],
             'birthdate' => $request['birthdate'],
             'birthplace' => $request['birth_place'],
@@ -107,8 +111,10 @@ class StudentController extends Controller
             'religion' => $request['religion'],
             'no_siblings' => $request['no_siblings'],
             'birth_order' => $request['birth_order'],
-            'father_fullname' => $request['father_fullname'],
-            'mother_fullname' => $request['mother_fullname']
+            'purok' => $request['purok'],
+           
+            'municipality' => $request['municipality'], 
+            'province' => $request['province'],
         ]);
 
         return redirect('/student')->with('success', 'Record saved successfully!');
@@ -157,8 +163,8 @@ class StudentController extends Controller
             'first_name' => 'required|string|max:191',
             'middle_name' => 'required|string|max:191',
             'last_name' => 'required|string|max:191',
-            'name_extension' => 'required|string|max:191',
-            'home_address' => 'required|string|max:191',
+           
+            'contact_no' => 'required|string',
             'sex' => 'required|string|max:191',
             'birthdate' => 'required',
             'birth_place' => 'required|string|max:191',
@@ -166,16 +172,17 @@ class StudentController extends Controller
             'no_siblings' => 'required|string|max:191',
             'religion' => 'required|string|max:191',
             'birth_order' => 'required|string|max:191',
-            'father_fullname' => 'required|string|max:191',
-            'mother_fullname' => 'required|string|max:191',
+            //'purok.required' => 'Required field',
+            'municipality' => 'required|string|max:191', 
+            'province' => 'required|string|max:191',           
             
         ], 
             [
             'first_name.required' => 'Required field',
             'middle_name.required' => 'Required field',
             'last_name.required' => 'Required field',
-            'name_extension.required' => 'Required field',
-            'home_address.required' => 'Required field',
+          
+            'contact_no.required' => 'Required field',
             'sex.required' => 'Required field',
             'birthdate.required' => 'Required field',
             'birth_place.required' => 'Required field',
@@ -183,27 +190,32 @@ class StudentController extends Controller
             'no_siblings.required' => 'Required field',
             'religion.required' => 'Required field',
             'birth_order.required' => 'Required field',
-            'father_fullname.required' => 'Required field',
-            'mother_fullname.required' => 'Required field',
+            //'purok.required' => 'Required field',
+            
+            'municipality.required' => 'Required field', 
+            'province.required' => 'Required field',
+            
             ]
         );
 
         $stud = Student::find($id);
-
+        $stud->lrn = $request['lrn'];
         $stud->first_name = $request['first_name'];
         $stud->middle_name = $request['middle_name'];
         $stud->last_name = $request['last_name'];
         $stud->name_extension = $request['name_extension'];
-        $stud->home_address = $request['home_address'];
+        $stud->contact_no = $request['contact_no'];
         $stud->sex = $request['sex'];
         $stud->birthdate = $request['birthdate'];
         $stud->birthplace = $request['birth_place'];
         $stud->citizenship = $request['citizenship'];
         $stud->no_siblings = $request['no_siblings'];
         $stud->religion = $request['religion'];
-        $stud->birth_order = $request['birth_order'];
-        $stud->father_fullname = $request['father_fullname'];
-        $stud->mother_fullname = $request['mother_fullname'];     
+        $stud->birth_order = $request['birth_order']; 
+        $stud->purok = $request['purok']; 
+       
+        $stud->municipality = $request['municipality']; 
+        $stud->province = $request['province']; 
         
         $stud->save();
 

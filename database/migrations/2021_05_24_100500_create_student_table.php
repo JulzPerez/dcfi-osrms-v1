@@ -14,29 +14,34 @@ class CreateStudentTable extends Migration
     public function up()
     {
         Schema::create('student', function (Blueprint $table) {
-                $table->string('id',15)->unique()->primary();
+                $table->string('id',15)->primary();
+                $table->string('LRN',50)->nullable();
                 $table->unsignedBigInteger('user_id');    
                 $table->string('first_name');
                 $table->string('middle_name');
                 $table->string('last_name');
-                $table->string('name_extension')->nullable();
-                $table->string('home_address');      
+                $table->string('name_extension')->nullable();     
                 $table->string('sex');
+                //$table->smallInteger('age')->nullable();
                 $table->date('birthdate');
+                $table->string('contact_no');
                 $table->string('birthplace');
                 $table->string('citizenship');
                 $table->string('religion');
                 $table->string('no_siblings');
                 $table->string('birth_order');
-                $table->string('father_fullname');
-                $table->string('mother_fullname');    
                 $table->string('student_type')->default('prospective student');  
-                $table->string('student_status')->default('pending');      
-    
+                $table->string('student_status')->default('pending');    
+                $table->string('picture')->default('profile.png'); 
+                $table->string('purok')->nullable(); 
+                $table->string('municipality')->nullable(); 
+                $table->string('province')->nullable();
+                $table->string('ethnicity')->nullable();
+                $table->string('modality')->nullable();
+                $table->string('mother_tounge')->nullable();
+
                 $table->timestamps();
-    
-                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-    
+        
         });
     }
 

@@ -15,16 +15,19 @@ class CreateEnrollmentTable extends Migration
     {
         Schema::create('enrollment', function (Blueprint $table) {
             $table->id();
-            $table->string('student_id');
+            $table->string('student_id',15);
             $table->string('SY');
             $table->string('status')->default('pending');
             $table->decimal('writtenOrOnlineExamRating',8,2)->nullable();
             $table->decimal('oralExamOrInterviewRating',8,2)->nullable();
-            $table->string('payment_proof_filename')->nullable();
-            /* $table->unsignedBigInteger('modality_id');
-            $table->unsignedBigInteger('payment_id');            
-            $table->unsignedBigInteger('class_section_id');*/
+            $table->unsignedBigInteger('modality_id')->nullable();
+                        
+            $table->unsignedBigInteger('class_section_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('student_id')->references('id')->on('student')->onDelete('cascade');
+            $table->foreign('class_section_id')->references('id')->on('class_section')->onDelete('cascade');
+            
         });
     }
 

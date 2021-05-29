@@ -20,11 +20,11 @@ class DepartmentSeeder extends Seeder
         ]);
 
         DB::table('department')->insert([
-            'department_name' => 'Senior High School'
+            'department_name' => 'Junior High School'
         ]);
 
         DB::table('department')->insert([
-            'department_name' => 'Junior High School'
+            'department_name' => 'Senior High School'
         ]);
     }
 }

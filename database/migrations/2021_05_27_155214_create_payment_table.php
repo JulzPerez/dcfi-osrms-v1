@@ -15,7 +15,7 @@ class CreatePaymentTable extends Migration
     {
         Schema::create('upload_payment', function (Blueprint $table) {
             $table->id();
-            $table->string('student_id');
+            $table->string('student_id',15);
             $table->string('proof');
             $table->string('payment_for');
             $table->decimal('amount',8,2);
@@ -24,6 +24,8 @@ class CreatePaymentTable extends Migration
             $table->string('status')->default('pending');
 
             $table->timestamps();
+
+            $table->foreign('student_id')->references('id')->on('student')->onDelete('cascade');
         });
     }
 

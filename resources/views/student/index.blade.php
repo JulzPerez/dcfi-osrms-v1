@@ -60,6 +60,10 @@
                             <td class="text-olive"> {{ ucfirst($student->id)}}</td>
                         </tr>
                         <tr>
+                            <td class="text-muted" width="30%">LRN</td>
+                            <td class="text-olive"> {{ ucfirst($student->LRN)}}</td>
+                        </tr>
+                        <tr>
                             <td class="text-muted">First Name</td>
                             <td class="text-olive"> {{ucfirst($student->first_name)}} </td>
                         </tr>
@@ -81,6 +85,11 @@
                         <tr>
                             <td class="text-muted">Sex</td>
                             <td class="text-olive">{{ ucfirst($student->sex)}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="text-muted">Contact Number</td>
+                            <td class="text-olive">{{ ucfirst($student->contact_no)}}</td>
                         </tr>
                         
                         <tr>
@@ -108,15 +117,7 @@
                             <td class="text-muted">Birth Order</td>
                             <td class="text-olive"> {{ ucfirst($student->birth_order)}}</td>
                         </tr>
-                        <tr>
-                            <td class="text-muted">Name of Mother </td>
-                            <td class="text-olive"> {{ ucfirst($student->mother_fullname)}}</td>
-                        </tr>
                         
-                        <tr>
-                            <td class="text-muted">Name of Father</td>
-                            <td class="text-olive"> {{ ucfirst($student->father_fullname)}}</td>
-                        </tr>
                     </tbody>                          
                 </table>
                 

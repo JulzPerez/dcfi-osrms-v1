@@ -16,12 +16,13 @@ class StudentSeeder extends Seeder
 
         DB::table('student')->insert([
             'id' => $studentID,
+            
             'user_id' => '2', 
             'first_name' => 'julieto',
             'middle_name' => 'ebasco',
             'last_name' => 'perez',
             'name_extension' => 'none',
-            'home_address' => 'ebro SFADS',
+            'contact_no' => '+639171729431',
             'sex' => 'Male',
             'birthdate' => '1987-05-28',
             'birthplace' => 'ebro SFADS',
@@ -29,8 +30,7 @@ class StudentSeeder extends Seeder
             'religion' => 'Roman catholic',
             'no_siblings' => '2',
             'birth_order' => 'youngest',
-            'father_fullname' => 'deceased',
-            'mother_fullname' => 'deceased'
+           
         ]);
 
     }
