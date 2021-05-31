@@ -18,6 +18,8 @@ class CreateBillTable extends Migration
             $table->string('name');
             $table->string('status');
             $table->timestamps();
+
+        
         });
     }
 

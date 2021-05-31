@@ -225,9 +225,107 @@
                               @endif 
                             
                           </div>
+                        </div>    
+                      </div>  
+                      <div class="row">
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label>Father <strong class="text-red">*</strong></label>
+                            <input  type="text" class="form-control"  name="father" value="{{ old('father') }}">
+                            
+                              @if ($errors->has('father'))
+                                <span class="text-danger">{{ $errors->first('father') }}</span>
+                              @endif 
+                            
+                          </div>
                         </div>
- 
-                      </div>                      
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label>Occupation of Father <strong class="text-red">*</strong></label>
+                            <input  type="text" class="form-control"  name="father_occupation" value="{{ old('father_occupation') }}">
+                            
+                              @if ($errors->has('father_occupation'))
+                                <span class="text-danger">{{ $errors->first('father_occupation') }}</span>
+                              @endif 
+                            
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label>Mother <strong class="text-red">*</strong></label>
+                            <input  type="text" class="form-control"  name="mother" value="{{ old('mother') }}">
+                            
+                              @if ($errors->has('mother'))
+                                <span class="text-danger">{{ $errors->first('mother') }}</span>
+                              @endif 
+                            
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label>Occupation of Mother <strong class="text-red">*</strong></label>
+                            <input  type="text" class="form-control"  name="mother_occupation" value="{{ old('mother_occupation') }}">
+                            
+                              @if ($errors->has('mother_occupation'))
+                                <span class="text-danger">{{ $errors->first('mother_occupation') }}</span>
+                              @endif 
+                            
+                          </div>
+                        </div>                        
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label>Ethnicity <strong class="text-red">*</strong></label>
+                              <select class="form-control " name="ethnicity"  style="width: 100%;">
+                                    
+                                    @foreach($ethnicities as $ethnicity)
+                                        <option value="{{$ethnicity->id}}"> {{$ethnicity->name}} </option>
+                                    @endforeach
+                              </select>
+
+                              @if ($errors->has('ethnicity'))
+                                <span class="text-danger">{{ $errors->first('ethnicity') }}</span>
+                              @endif 
+                            
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                              <label> Mother Tounge <strong class="text-red">*</strong></label>
+                              <select class="form-control " name="mother_tounge"  style="width: 100%;">
+                                    
+                                    @foreach($mother_tounges as $mother_tounge)
+                                        <option value="{{$mother_tounge->id}}"> {{$mother_tounge->name}} </option>
+                                    @endforeach
+                              </select>
+
+                              @if ($errors->has('mother_tounge'))
+                                <span class="text-danger">{{ $errors->first('mother_tounge') }}</span>
+                              @endif 
+                            
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                              <label>Modality <strong class="text-red">*</strong></label>
+                              <select class="form-control " name="modality"  style="width: 100%;">
+                                    
+                                    @foreach($modalities as $modality)
+                                        <option value="{{$modality->id}}"> {{$modality->name}} </option>
+                                    @endforeach
+                              </select>
+
+                              @if ($errors->has('modality'))
+                                <span class="text-danger">{{ $errors->first('modality') }}</span>
+                              @endif 
+                            
+                          </div>
+                        </div>
+                                               
+                      </div>
+                                        
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">

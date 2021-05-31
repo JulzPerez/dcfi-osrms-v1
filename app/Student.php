@@ -14,6 +14,7 @@ class Student extends Model
     protected $fillable = [
        'id','user_id','lrn','first_name','middle_name','last_name','name_extension','contact_no',
        'sex','birthdate','birthplace','citizenship','religion','no_siblings','birth_order', 'purok','municipality',
-       'province'
+       'province','father_fullname', 'father_occupation','mother_fullname', 'mother_occupation', 'ethnicity_id',
+       'modality_id','mother_tounge_id'
     ];
 }

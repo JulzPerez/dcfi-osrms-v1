@@ -36,12 +36,21 @@ class CreateStudentTable extends Migration
                 $table->string('purok')->nullable(); 
                 $table->string('municipality')->nullable(); 
                 $table->string('province')->nullable();
-                $table->string('ethnicity')->nullable();
-                $table->string('modality')->nullable();
-                $table->string('mother_tounge')->nullable();
+
+                $table->string('father_fullname')->nullable();
+                $table->string('father_occupation')->nullable();
+                $table->string('mother_fullname')->nullable();
+                $table->string('mother_occupation')->nullable();
+
+                $table->unsignedBigInteger('ethnicity_id')->nullable();
+                $table->unsignedBigInteger('modality_id')->nullable();
+                $table->unsignedBigInteger('mother_tounge_id')->nullable();
 
                 $table->timestamps();
-        
+
+                $table->foreign('ethnicity_id')->references('id')->on('ethnicity')->onDelete('cascade'); 
+                $table->foreign('modality_id')->references('id')->on('modality')->onDelete('cascade'); 
+                $table->foreign('mother_tounge_id')->references('id')->on('mother_tounge')->onDelete('cascade');      
         });
     }
 

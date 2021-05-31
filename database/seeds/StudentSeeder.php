@@ -30,7 +30,10 @@ class StudentSeeder extends Seeder
             'religion' => 'Roman catholic',
             'no_siblings' => '2',
             'birth_order' => 'youngest',
-           
+
+            'ethnicity_id' => '1',
+            'modality_id' => '1',
+            'mother_tounge_id' => '1',           
         ]);
 
     }

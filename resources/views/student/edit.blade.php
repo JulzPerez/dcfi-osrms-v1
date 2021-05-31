@@ -41,6 +41,13 @@
                       
                               </div>                            
                         </div>
+                        <div class="col-md-3">
+                              <div class="form-group">
+                                <label>LRN</label>
+                                <input  type="text" class="form-control" name="lrn" value="{{ $student->lrn}}" >
+                      
+                              </div>                            
+                        </div>
                       </div>
                       <div class="row">                      
                         <div class="col-md-3">
@@ -218,7 +225,56 @@
                               @endif
                             
                           </div>
-                        </div>                   
+                        </div>
+                      </div>   
+                      <div class="row">
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label>Father <strong class="text-red">*</strong></label>
+                            <input  type="text" class="form-control"  name="father" value="{{ $student->father_fullname }}">
+                            
+                              @if ($errors->has('father'))
+                                <span class="text-danger">{{ $errors->first('father') }}</span>
+                              @endif 
+                            
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label>Occupation of Father <strong class="text-red">*</strong></label>
+                            <input  type="text" class="form-control"  name="father_occupation" value="{{ $student->father_occupation }}">
+                            
+                              @if ($errors->has('father_occupation'))
+                                <span class="text-danger">{{ $errors->first('father_occupation') }}</span>
+                              @endif 
+                            
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label>Mother <strong class="text-red">*</strong></label>
+                            <input  type="text" class="form-control"  name="mother" value="{{ $student->mother_fullname }}">
+                            
+                              @if ($errors->has('mother'))
+                                <span class="text-danger">{{ $errors->first('mother') }}</span>
+                              @endif 
+                            
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label>Occupation of Mother <strong class="text-red">*</strong></label>
+                            <input  type="text" class="form-control"  name="mother_occupation" value="{{ $student->mother_occupation }}">
+                            
+                              @if ($errors->has('mother_occupation'))
+                                <span class="text-danger">{{ $errors->first('mother_occupation') }}</span>
+                              @endif 
+                            
+                          </div>
+                        </div>                        
+                      </div>
+
+                                   
                         
                     </div>
                     <!-- /.card-body -->

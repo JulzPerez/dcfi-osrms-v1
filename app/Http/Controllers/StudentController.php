@@ -22,7 +22,11 @@ class StudentController extends Controller
 
                 if (DB::table('student')->where('user_id', $userid )->doesntExist() ) 
                 {
-                    return view('student.create');  
+                    $ethnicities = DB::table('ethnicity')->get();
+                    $mother_tounges = DB::table('mother_tounge')->get();
+                    $modalities = DB::table('modality')->get();
+
+                    return view('student.create',compact('ethnicities','mother_tounges','modalities'));  
                 }
                 else 
                 {                
@@ -30,7 +34,12 @@ class StudentController extends Controller
                     ->where('user_id', '=', $userid)
                     ->first();  
 
-                    return view('student.index', compact('student'));
+                    $ethnicity_name = DB::table('ethnicity')->where('id',$student->ethnicity_id)->first()->name;
+                    $modality_name = DB::table('modality')->where('id',$student->modality_id)->first()->name;
+                    $mother_tounge_name = DB::table('mother_tounge')->where('id',$student->mother_tounge_id)->first()->name;
+
+                    //dd($ethnicity_name);
+                    return view('student.index', compact('student','ethnicity_name','modality_name','mother_tounge_name'));
                 }
                   
             }
@@ -54,6 +63,7 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
         $this->validate($request, [
             'first_name' => 'required|string|max:191',
             'middle_name' => 'required|string|max:191',
@@ -69,7 +79,15 @@ class StudentController extends Controller
             //'purok' => 'required|string|max:191',
           
             'municipality' => 'required|string|max:191',  
-            'province' => 'required|string|max:191',         
+            'province' => 'required|string|max:191',  
+
+            'father' => 'required|string',
+            'mother' => 'required|string',
+          
+            
+            'ethnicity' => 'required',
+            'modality' => 'required',
+            'mother_tounge' => 'required',
             
         ], 
             [
@@ -88,6 +106,13 @@ class StudentController extends Controller
            
             'municipality.required' => 'Required field', 
             'province.required' => 'Required field',
+
+            'father.required' => 'Required Field',
+            'mother.required' => 'Required Field',
+
+            'ethnicity.required' => 'Required field',
+            'modality.required' => 'Required field',
+            'mother_tounge.required' => 'Required field',
             
             ]
         );
@@ -115,6 +140,15 @@ class StudentController extends Controller
            
             'municipality' => $request['municipality'], 
             'province' => $request['province'],
+
+            'father_fullname' => $request['father'],
+            'mother_fullname' => $request['mother'],
+            'father_occupation' => $request['father_occupation'],
+            'mother_occupation' => $request['mother_occupation'],
+
+            'ethnicity_id' => $request['ethnicity'],
+            'modality_id' => $request['modality'],
+            'mother_tounge_id' => $request['mother_tounge'],
         ]);
 
         return redirect('/student')->with('success', 'Record saved successfully!');
@@ -143,11 +177,16 @@ class StudentController extends Controller
         {
             $student = Student::find($id);
 
-            $stud = collect($student);       
+            $ethnicities = DB::table('ethnicity')->get();
+            $mother_tounges = DB::table('mother_tounge')->get();
+            $modalities = DB::table('modality')->get();
 
-            return view('student.edit', compact('student'));
-        } 
-       
+            //dd($eth_id);
+
+            //$stud = collect($student);       
+
+            return view('student.edit', compact('student','ethnicities','mother_tounges','modalities'));
+        }        
     }
 
     /**
@@ -216,6 +255,11 @@ class StudentController extends Controller
        
         $stud->municipality = $request['municipality']; 
         $stud->province = $request['province']; 
+
+        $stud->father_fullname = $request['father_fullname']; 
+        $stud->mother_fullname = $request['mother_fullname']; 
+        $stud->father_occupation = $request['father_occupation']; 
+        $stud->mother_occupation = $request['mother_occupation']; 
         
         $stud->save();
 

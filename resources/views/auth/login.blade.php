@@ -42,11 +42,11 @@
                     <div>
                         @if (Route::has('register'))
                             <p>
-                                Sign-up here for prospective student? 
+                                No account yet?   
                                 <a href="{{ route('register') }}">{{ __('Sign up') }}</a>
                             <br>
-                                Forgot Password? 
-                                <a href="#">{{ __('Click Here') }}</a>
+                                <!-- Forgot Password? 
+                                <a href="#">{{ __('Click Here') }}</a> -->
                             </p>
                         @endif
                     </div>   

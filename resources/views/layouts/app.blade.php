@@ -18,6 +18,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <style type="text/css">
+        .login-page {
+        background: url("login_cover2.png") no-repeat center center fixed;
+        background-size: cover;	
+        }
+    </style>
 </head>
 <body>
     <div id="app">

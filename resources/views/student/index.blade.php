@@ -12,13 +12,12 @@
         </div>
     </div>
     <br>
-    <h5> <strong class="text-blue"> Student Information </strong></h5>
 
     <div class="row ">
         <div class="col-md-3">
 
             <!-- Profile Image -->
-            <div class="card card-primary card-outline">
+            <div class="card card-primary">
               <div class="card-body box-profile">
                 <div class="text-center">
                     <a href="#">
@@ -38,7 +37,7 @@
                 </a>
                
                 <a href="#">
-                    <button  type="button" class="btn btn-primary ">Message</button>
+                    <button  type="button" class="btn btn-primary ">Change Picture</button>
                 </a>
                 
                 <hr>
@@ -50,7 +49,10 @@
         </div>
         <!-- /.col -->
         <div class="col-md-9">
-            <div class="card card-primary card-outline">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h5> Student Information </h5>
+                </div>
               
               <div class="card-body">
                 <table class="table table-bordered table-condensed">
@@ -116,6 +118,54 @@
                         <tr>
                             <td class="text-muted">Birth Order</td>
                             <td class="text-olive"> {{ ucfirst($student->birth_order)}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="text-muted">Purok</td>
+                            <td class="text-olive"> {{ ucfirst($student->purok)}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="text-muted">Municipality</td>
+                            <td class="text-olive"> {{ ucfirst($student->municipality)}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="text-muted">Province</td>
+                            <td class="text-olive"> {{ ucfirst($student->province)}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="text-muted">Father</td>
+                            <td class="text-olive"> {{ ucfirst($student->father_fullname)}}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted">Father Occupation</td>
+                            <td class="text-olive"> {{ ucfirst($student->father_occupation)}}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted">Mother</td>
+                            <td class="text-olive"> {{ ucfirst($student->mother_fullname)}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="text-muted">Mother Occupation</td>
+                            <td class="text-olive"> {{ ucfirst($student->mother_occupation)}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="text-muted">Modality</td>
+                            <td class="text-olive"> {{ $modality_name}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="text-muted">Ethnicity</td>
+                            <td class="text-olive"> {{ $ethnicity_name}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="text-muted">Mother Tounge</td>
+                            <td class="text-olive"> {{ $mother_tounge_name}}</td>
                         </tr>
                         
                     </tbody>                          

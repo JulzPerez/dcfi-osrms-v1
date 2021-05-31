@@ -9,7 +9,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>MSU-IIT | ODR</title>
+  <title>DCFI | ORMS</title>
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="/css/app.css">
 
@@ -164,7 +164,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
          
           <li class="nav-item">
             <a href="{{route('enroll_index')}}" class="nav-link">
-              <i class="nav-icon fas fa-user-circle"></i>
+            <i class="nav-icon fas fa-book-reader"></i>
               <p>
                 Enrollment          
               </p>
@@ -173,7 +173,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
           <li class="nav-item">
             <a href="/upload" class="nav-link">
-              <i class="nav-icon fas fa-user-circle"></i>
+            <i class="nav-icon fas fa-upload"></i>
               <p>
                 Upload Requirements          
               </p>
@@ -182,7 +182,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
           <li class="nav-item">
             <a href="/payment" class="nav-link">
-              <i class="nav-icon fas fa-user-circle"></i>
+              <i class="nav-icon fas fa-money-check-alt"></i>
               <p>
                 Upload Proof of Payment          
               </p>
@@ -248,7 +248,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Anything you want -->
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2021 <a href="https://www.msuiit.edu.ph">MSU-IIT</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2021 <a href="https://www.dcfi.edu.ph">Dansalan College Foundation, Inc</a>.</strong> All rights reserved.
   </footer>
 </div>
 <!-- ./wrapper -->
