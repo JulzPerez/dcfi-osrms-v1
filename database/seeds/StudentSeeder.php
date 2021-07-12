@@ -25,7 +25,7 @@ class StudentSeeder extends Seeder
             'contact_no' => '+639171729431',
             'sex' => 'Male',
             'age'=> '34',
-            'birtday' => '1987-05-28',
+            'birthday' => '1987-05-28',
             'birthplace' => 'ebro SFADS',
             'citizenship' => 'Filipino',
             'religion' => 'Roman catholic',
