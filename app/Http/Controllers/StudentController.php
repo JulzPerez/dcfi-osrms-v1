@@ -70,7 +70,7 @@ class StudentController extends Controller
             'last_name' => 'required|string|max:191',
             'contact_no' => 'required|string',
             'sex' => 'required|string|max:191',
-            'birthdate' => 'required',
+            'birthday' => 'required',
             'birth_place' => 'required|string|max:191',
             'citizenship' => 'required|string|max:191',
             'no_siblings' => 'required|string|max:191',
@@ -78,16 +78,16 @@ class StudentController extends Controller
             'birth_order' => 'required|string|max:191',
             //'purok' => 'required|string|max:191',
           
-            'municipality' => 'required|string|max:191',  
-            'province' => 'required|string|max:191',  
+            //'municipality' => 'required|string|max:191',  
+            //'province' => 'required|string|max:191',  
 
-            'father' => 'required|string',
-            'mother' => 'required|string',
+            //'father' => 'required|string',
+            //'mother' => 'required|string',
           
             
-            'ethnicity' => 'required',
-            'modality' => 'required',
-            'mother_tounge' => 'required',
+            //'ethnicity' => 'required',
+            //'modality' => 'required',
+            //'mother_tounge' => 'required',
             
         ], 
             [
@@ -104,15 +104,15 @@ class StudentController extends Controller
             'birth_order.required' => 'Required field',
             //'purok.required' => 'Required field',
            
-            'municipality.required' => 'Required field', 
-            'province.required' => 'Required field',
+            //'municipality.required' => 'Required field', 
+            //'province.required' => 'Required field',
 
-            'father.required' => 'Required Field',
-            'mother.required' => 'Required Field',
+            //'father.required' => 'Required Field',
+            //'mother.required' => 'Required Field',
 
-            'ethnicity.required' => 'Required field',
-            'modality.required' => 'Required field',
-            'mother_tounge.required' => 'Required field',
+            //'ethnicity.required' => 'Required field',
+            //'modality.required' => 'Required field',
+            //'mother_tounge.required' => 'Required field',
             
             ]
         );
@@ -130,7 +130,7 @@ class StudentController extends Controller
             'name_extension' => $request['name_extension'],
             'contact_no' => $request['contact_no'],
             'sex' => $request['sex'],
-            'birthdate' => $request['birthdate'],
+            'birthday' => $request['birthdate'],
             'birthplace' => $request['birth_place'],
             'citizenship' => $request['citizenship'],
             'religion' => $request['religion'],
@@ -138,17 +138,17 @@ class StudentController extends Controller
             'birth_order' => $request['birth_order'],
             'purok' => $request['purok'],
            
-            'municipality' => $request['municipality'], 
-            'province' => $request['province'],
+            //'municipality' => $request['municipality'], 
+            //'province' => $request['province'],
 
-            'father_fullname' => $request['father'],
-            'mother_fullname' => $request['mother'],
-            'father_occupation' => $request['father_occupation'],
-            'mother_occupation' => $request['mother_occupation'],
+            //'father_fullname' => $request['father'],
+            //'mother_fullname' => $request['mother'],
+            //'father_occupation' => $request['father_occupation'],
+            //'mother_occupation' => $request['mother_occupation'],
 
-            'ethnicity_id' => $request['ethnicity'],
-            'modality_id' => $request['modality'],
-            'mother_tounge_id' => $request['mother_tounge'],
+            //'ethnicity_id' => $request['ethnicity'],
+            //'modality_id' => $request['modality'],
+            //'mother_tounge_id' => $request['mother_tounge'],
         ]);
 
         return redirect('/student')->with('success', 'Record saved successfully!');
