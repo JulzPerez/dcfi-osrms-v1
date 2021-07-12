@@ -14,20 +14,21 @@ class CreateEnrollmentTable extends Migration
     public function up()
     {
         Schema::create('enrollment', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('student_id',15);
             $table->string('SY');
             $table->string('status')->default('pending');
-            $table->decimal('writtenOrOnlineExamRating',8,2)->nullable();
-            $table->decimal('oralExamOrInterviewRating',8,2)->nullable();
-            $table->unsignedBigInteger('modality_id')->nullable();
+            $table->decimal('written_online_rating',8,2)->nullable();
+            $table->decimal('oral_or_interview_rating',8,2)->nullable();
+            $table->integer('modality_id',false,true);
                         
-            $table->unsignedBigInteger('class_section_id')->nullable();
+            $table->integer('class_section_id',false,true);
             $table->timestamps();
 
             $table->foreign('student_id')->references('id')->on('student')->onDelete('cascade');
             $table->foreign('class_section_id')->references('id')->on('class_section')->onDelete('cascade');
-            
+            $table->foreign('modality_id')->references('id')->on('modality')->onDelete('cascade');
+
         });
     }
 

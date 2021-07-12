@@ -14,13 +14,15 @@ class CreateClassSectionTable extends Migration
     public function up()
     {
         Schema::create('class_section', function (Blueprint $table) {
-            $table->unsignedBigInteger('id')->primary();
-            $table->unsignedBigInteger('level_id');
-            $table->unsignedBigInteger('department_id');
-            $table->unsignedBigInteger('strand_id')->nullable();
-            $table->unsignedBigInteger('section_id')->nullable();
-            $table->unsignedBigInteger('school_year_id');
-            $table->string('semester');
+            $table->increments('id');
+            $table->integer('strand_id',false,true)->nullable();
+            $table->integer('section_id',false,true);
+            $table->integer('school_year_id',false,true);
+            $table->integer('level_id',false,true);
+            $table->string('semester')->nullable();            
+            $table->string('room')->nullable();
+            $table->integer('capacity');
+
             $table->timestamps();
         });
     }

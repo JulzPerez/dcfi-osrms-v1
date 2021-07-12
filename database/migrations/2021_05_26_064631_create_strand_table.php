@@ -14,8 +14,8 @@ class CreateStrandTable extends Migration
     public function up()
     {
         Schema::create('strand', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('track_id');
+            $table->increments('id');
+            $table->integer('track_id');
             $table->string('strand_name');
             $table->string('description');
 

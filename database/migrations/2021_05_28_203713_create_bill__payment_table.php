@@ -14,11 +14,12 @@ class CreateBillPaymentTable extends Migration
     public function up()
     {
         Schema::create('bill_payment', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('bill_id');
-            $table->string('or_no');
+            $table->increments('id');
+            $table->integer('bill_id',false,true);
             $table->decimal('amount',8,2);
             $table->timestamps();
+
+            $table->foreign('bill_id')->references('id')->on('bill')->onDelete('cascade');
         });
     }
 

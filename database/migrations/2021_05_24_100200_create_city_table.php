@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBillTable extends Migration
+class CreateCityTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateBillTable extends Migration
      */
     public function up()
     {
-        Schema::create('bill', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('enrollment_id',false,true);
+        Schema::create('city', function (Blueprint $table) {
+            $table->increments('number');
+            $table->integer('province_no',false,true);
             $table->string('name');
-            $table->string('status');
             $table->timestamps();
 
-            $table->foreign('enrollment_id')->references('id')->on('enrollment')->onDelete('cascade');
+            $table->foreign('province_no')->references('number')->on('province')->onDelete('cascade'); 
         });
     }
 
@@ -31,6 +30,6 @@ class CreateBillTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bill');
+        Schema::dropIfExists('city');
     }
 }

@@ -14,9 +14,9 @@ class CreateBillFeesTable extends Migration
     public function up()
     {
         Schema::create('bill_fees', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('bill_id');
-            $table->unsignedBigInteger('fee_id');
+            $table->increments('id');
+            $table->integer('bill_id',false,true);
+            $table->integer('fee_id',false,true);
             $table->decimal('amount',8,2);
             $table->timestamps();
 

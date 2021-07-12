@@ -16,41 +16,43 @@ class CreateStudentTable extends Migration
         Schema::create('student', function (Blueprint $table) {
                 $table->string('id',15)->primary();
                 $table->string('LRN',50)->nullable();
-                $table->unsignedBigInteger('user_id');    
+                $table->unsignedBigInteger('user_id')->nullable();    
                 $table->string('first_name');
                 $table->string('middle_name');
                 $table->string('last_name');
                 $table->string('name_extension')->nullable();     
                 $table->string('sex');
-                //$table->smallInteger('age')->nullable();
-                $table->date('birthdate');
-                $table->string('contact_no');
+                
+                $table->date('birthday');
+                $table->string('contact_no')->nullable();
+                $table->smallInteger('age');
                 $table->string('birthplace');
-                $table->string('citizenship');
-                $table->string('religion');
+                $table->string('citizenship');  
+                $table->string('religion')->nullable();
                 $table->string('no_siblings');
                 $table->string('birth_order');
-                $table->string('student_type')->default('prospective student');  
-                $table->string('student_status')->default('pending');    
-                $table->string('picture')->default('profile.png'); 
+                $table->string('email_add')->nullable();
+                $table->string('student_type')->nullable();  
+                $table->string('student_status')->nullable();    
+                $table->string('picture')->nullable(); 
                 $table->string('purok')->nullable(); 
-                $table->string('municipality')->nullable(); 
-                $table->string('province')->nullable();
+                $table->integer('municipality_no',false,true)->nullable(); 
+                $table->integer('city_no',false,true)->nullable();
+                $table->integer('ethnicity_id',false,true)->nullable();
+                $table->integer('guardian_id',false,true)->nullable();
 
-                $table->string('father_fullname')->nullable();
-                $table->string('father_occupation')->nullable();
-                $table->string('mother_fullname')->nullable();
-                $table->string('mother_occupation')->nullable();
-
-                $table->unsignedBigInteger('ethnicity_id')->nullable();
-                $table->unsignedBigInteger('modality_id')->nullable();
-                $table->unsignedBigInteger('mother_tounge_id')->nullable();
-
+                $table->integer('modality_id',false,true)->nullable();
+                $table->integer('mother_tounge_id',false,true)->nullable();
+               
                 $table->timestamps();
+
+                $table->foreign('municipality_no')->references('number')->on('municipality')->onDelete('cascade'); 
+                $table->foreign('city_no')->references('number')->on('city')->onDelete('cascade'); 
+                $table->foreign('guardian_id')->references('id')->on('guardian')->onDelete('cascade'); 
 
                 $table->foreign('ethnicity_id')->references('id')->on('ethnicity')->onDelete('cascade'); 
                 $table->foreign('modality_id')->references('id')->on('modality')->onDelete('cascade'); 
-                $table->foreign('mother_tounge_id')->references('id')->on('mother_tounge')->onDelete('cascade');      
+                $table->foreign('mother_tounge_id')->references('id')->on('mother_tounge')->onDelete('cascade');  
         });
     }
 

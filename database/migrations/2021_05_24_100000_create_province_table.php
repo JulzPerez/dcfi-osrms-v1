@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddEnrollmentIdToBillTable extends Migration
+class CreateProvinceTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddEnrollmentIdToBillTable extends Migration
      */
     public function up()
     {
-        Schema::table('bill', function (Blueprint $table) {
-            $table->unsignedBigInteger('enrollment_id');
+        Schema::create('province', function (Blueprint $table) {
+            $table->increments('number');
+            $table->string('name');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +27,6 @@ class AddEnrollmentIdToBillTable extends Migration
      */
     public function down()
     {
-        Schema::table('bill', function (Blueprint $table) {
-            $table->dropColumn('enrollment_id');
-        });
+        Schema::dropIfExists('province');
     }
 }

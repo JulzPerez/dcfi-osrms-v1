@@ -14,7 +14,7 @@ class CreatePaymentTable extends Migration
     public function up()
     {
         Schema::create('upload_payment', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('student_id',15);
             $table->string('proof');
             $table->string('payment_for');

@@ -14,7 +14,7 @@ class CreateStudentRequirementsTable extends Migration
     public function up()
     {
         Schema::create('upload_requirements', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('student_id');
             $table->string('name');
             $table->string('description')->nullable();

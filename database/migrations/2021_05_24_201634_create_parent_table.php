@@ -14,18 +14,17 @@ class CreateParentTable extends Migration
     public function up()
     {
         Schema::create('parent', function (Blueprint $table) {
-            $table->id();
-            $table->string('student_id',15);
-            $table->string('parent_type');
+            $table->increments('id');
+            
             $table->string('first_name');
             $table->string('middle_name');
             $table->string('last_name');
+            $table->string('name_extension');
             $table->string('occupation');
-            $table->string('income');
+            $table->string('contact_no');
 
             $table->timestamps();
 
-            $table->foreign('student_id')->references('id')->on('student')->onDelete('cascade');
         });
     }
 
