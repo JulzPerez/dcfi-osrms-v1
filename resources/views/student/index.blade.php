@@ -105,7 +105,7 @@
 
                         <tr>
                             <td class="text-muted">Date of Birth</td>
-                            <td class="text-olive"> {{ ucfirst($student->birthdate)}}</td>
+                            <td class="text-olive"> {{ ucfirst($student->birthday)}}</td>
                         </tr>
                         <tr>
                             <td class="text-muted">Place of Birth</td>
@@ -127,45 +127,45 @@
 
                         <tr>
                             <td class="text-muted">Municipality</td>
-                            <td class="text-olive"> {{ ucfirst($student->municipality)}}</td>
+                            <td class="text-olive"> </td>
                         </tr>
 
                         <tr>
                             <td class="text-muted">Province</td>
-                            <td class="text-olive"> {{ ucfirst($student->province)}}</td>
+                            <td class="text-olive"> </td>
                         </tr>
 
                         <tr>
                             <td class="text-muted">Father</td>
-                            <td class="text-olive"> {{ ucfirst($student->father_fullname)}}</td>
+                            <td class="text-olive"> </td>
                         </tr>
                         <tr>
                             <td class="text-muted">Father Occupation</td>
-                            <td class="text-olive"> {{ ucfirst($student->father_occupation)}}</td>
+                            <td class="text-olive"></td>
                         </tr>
                         <tr>
                             <td class="text-muted">Mother</td>
-                            <td class="text-olive"> {{ ucfirst($student->mother_fullname)}}</td>
+                            <td class="text-olive"> </td>
                         </tr>
 
                         <tr>
                             <td class="text-muted">Mother Occupation</td>
-                            <td class="text-olive"> {{ ucfirst($student->mother_occupation)}}</td>
+                            <td class="text-olive"> </td>
                         </tr>
 
                         <tr>
                             <td class="text-muted">Modality</td>
-                            <td class="text-olive"> {{ $modality_name}}</td>
+                            <td class="text-olive"> </td>
                         </tr>
 
                         <tr>
                             <td class="text-muted">Ethnicity</td>
-                            <td class="text-olive"> {{ $ethnicity_name}}</td>
+                            <td class="text-olive"> </td>
                         </tr>
 
                         <tr>
                             <td class="text-muted">Mother Tounge</td>
-                            <td class="text-olive"> {{ $mother_tounge_name}}</td>
+                            <td class="text-olive"> </td>
                         </tr>
                         
                     </tbody>                          
