@@ -15,8 +15,11 @@ class CreateLevelTable extends Migration
     {
         Schema::create('level', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('department_id',false,true);
             $table->string('level_name');
             $table->timestamps();
+
+            $table->foreign('department_id')->references('id')->on('department')->onDelete('cascade'); 
         });
     }
 
