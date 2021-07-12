@@ -136,7 +136,7 @@ class StudentController extends Controller
             'religion' => $request['religion'],
             'no_siblings' => $request['no_siblings'],
             'birth_order' => $request['birth_order'],
-            'purok' => $request['purok'],
+            //'purok' => $request['purok'],
            
             //'municipality' => $request['municipality'], 
             //'province' => $request['province'],
@@ -212,8 +212,8 @@ class StudentController extends Controller
             'religion' => 'required|string|max:191',
             'birth_order' => 'required|string|max:191',
             //'purok.required' => 'Required field',
-            'municipality' => 'required|string|max:191', 
-            'province' => 'required|string|max:191',           
+            //'municipality' => 'required|string|max:191', 
+            //'province' => 'required|string|max:191',           
             
         ], 
             [
@@ -231,8 +231,8 @@ class StudentController extends Controller
             'birth_order.required' => 'Required field',
             //'purok.required' => 'Required field',
             
-            'municipality.required' => 'Required field', 
-            'province.required' => 'Required field',
+            //'municipality.required' => 'Required field', 
+            //'province.required' => 'Required field',
             
             ]
         );
@@ -253,13 +253,13 @@ class StudentController extends Controller
         $stud->birth_order = $request['birth_order']; 
         $stud->purok = $request['purok']; 
        
-        $stud->municipality = $request['municipality']; 
-        $stud->province = $request['province']; 
+        //$stud->municipality = $request['municipality']; 
+        //$stud->province = $request['province']; 
 
-        $stud->father_fullname = $request['father_fullname']; 
-        $stud->mother_fullname = $request['mother_fullname']; 
-        $stud->father_occupation = $request['father_occupation']; 
-        $stud->mother_occupation = $request['mother_occupation']; 
+        //$stud->father_fullname = $request['father_fullname']; 
+        //$stud->mother_fullname = $request['mother_fullname']; 
+        //$stud->father_occupation = $request['father_occupation']; 
+        //$stud->mother_occupation = $request['mother_occupation']; 
         
         $stud->save();
 
