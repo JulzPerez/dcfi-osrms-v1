@@ -65,7 +65,7 @@ class EnrollmentController extends Controller
             DB::table('class_section')->insert([
             'id' => $classSection_id,
             'level_id' => $request['level_id'],
-            'department_id' => $request['dept_id'],
+            //'department_id' => $request['dept_id'],
             'strand_id' => $request['strand_id'],
             'school_year_id' => $request['school_year_id'],
             'semester' => $request['semester'],
@@ -77,7 +77,7 @@ class EnrollmentController extends Controller
             DB::table('class_section')->insert([
                 'id' => $classSection_id,
                 'level_id' => $request['level_id'],
-                'department_id' => $request['dept_id'],
+                //'department_id' => $request['dept_id'],
                 'strand_id' => null,
                 'school_year_id' => $request['school_year_id'],
                 'semester' => $request['semester'],
