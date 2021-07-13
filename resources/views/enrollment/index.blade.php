@@ -58,12 +58,12 @@
                         </tr>
                         <tr>
                             <td class="text-muted">Written Exam Rating </td>
-                            <td class="text-olive"> {{$enrollment->writtenOrOnlineExamRating}} </td>
+                            <td class="text-olive"> {{$enrollment->written_online_rating}} </td>
                         </tr>
                         
                         <tr>
                             <td class="text-muted">Oral Exam Rating</td>
-                            <td class="text-olive">{{$enrollment->oralExamOrInterviewRating}}  </td>
+                            <td class="text-olive">{{$enrollment->oral_or_interview_rating}}  </td>
                         </tr>
                     </tbody>                          
                 </table>

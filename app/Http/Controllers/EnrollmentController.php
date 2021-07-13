@@ -77,7 +77,7 @@ class EnrollmentController extends Controller
             DB::table('class_section')->insert([
                 'id' => $classSection_id,
                 'level_id' => $request['level_id'],
-                'section_id' => $request['section_id'],
+                //'section_id' => $request['section_id'],
                 //'department_id' => $request['dept_id'],
                 'strand_id' => null,
                 'school_year_id' => $request['school_year_id'],

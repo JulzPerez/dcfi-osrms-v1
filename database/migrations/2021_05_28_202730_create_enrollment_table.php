@@ -20,7 +20,7 @@ class CreateEnrollmentTable extends Migration
             $table->string('status')->default('pending');
             $table->decimal('written_online_rating',8,2)->nullable();
             $table->decimal('oral_or_interview_rating',8,2)->nullable();
-            $table->integer('modality_id',false,true);
+            $table->integer('modality_id',false,true)->nullable();
                         
             $table->integer('class_section_id',false,true);
             $table->timestamps();
