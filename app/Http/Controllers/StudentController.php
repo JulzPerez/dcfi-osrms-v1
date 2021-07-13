@@ -22,11 +22,13 @@ class StudentController extends Controller
 
                 if (DB::table('student')->where('user_id', $userid )->doesntExist() ) 
                 {
-                    $ethnicities = DB::table('ethnicity')->get();
-                    $mother_tounges = DB::table('mother_tounge')->get();
-                    $modalities = DB::table('modality')->get();
+                    $provinces = DB::table('province')->get();
 
-                    return view('student.create',compact('ethnicities','mother_tounges','modalities'));  
+                    $ethnicities = DB::table('ethnicity')->get();
+                    $mother_tongues = DB::table('mother_tongue')->get();
+                    $modalities = DB::table('modality')->get(); 
+
+                    return view('student.create', compact('provinces','ethnicities','mother_tongues','modalities'));  
                 }
                 else 
                 {                
@@ -36,10 +38,10 @@ class StudentController extends Controller
 
                     $ethnicity_name = DB::table('ethnicity')->where('id',$student->ethnicity_id)->first()->name;
                     $modality_name = DB::table('modality')->where('id',$student->modality_id)->first()->name;
-                    $mother_tounge_name = DB::table('mother_tounge')->where('id',$student->mother_tounge_id)->first()->name;
+                    $mother_tongue_name = DB::table('mother_tongue')->where('id',$student->mother_tongue_id)->first()->name; 
 
                     //dd($ethnicity_name);
-                    return view('student.index', compact('student','ethnicity_name','modality_name','mother_tounge_name'));
+                    return view('student.index', compact('student','ethnicity_name','modality_name','mother_tongue_name'));
                 }
                   
             }
@@ -70,7 +72,8 @@ class StudentController extends Controller
             'last_name' => 'required|string|max:191',
             'contact_no' => 'required|string',
             'sex' => 'required|string|max:191',
-            'birthday' => 'required',
+            'age' => 'required|numeric|max:191',
+            'birthdate' => 'required',
             'birth_place' => 'required|string|max:191',
             'citizenship' => 'required|string|max:191',
             'no_siblings' => 'required|string|max:191',
@@ -78,7 +81,8 @@ class StudentController extends Controller
             'birth_order' => 'required|string|max:191',
             //'purok' => 'required|string|max:191',
           
-            //'municipality' => 'required|string|max:191',  
+            //'city' => 'required|string|max:191',  
+            //'municipality' => 'required|string|max:191', 
             //'province' => 'required|string|max:191',  
 
             //'father' => 'required|string',
@@ -87,7 +91,7 @@ class StudentController extends Controller
             
             //'ethnicity' => 'required',
             //'modality' => 'required',
-            //'mother_tounge' => 'required',
+            //'mother_tongue' => 'required',
             
         ], 
             [
@@ -112,7 +116,7 @@ class StudentController extends Controller
 
             //'ethnicity.required' => 'Required field',
             //'modality.required' => 'Required field',
-            //'mother_tounge.required' => 'Required field',
+            //'mother_tongue.required' => 'Required field',
             
             ]
         );
@@ -130,15 +134,17 @@ class StudentController extends Controller
             'name_extension' => $request['name_extension'],
             'contact_no' => $request['contact_no'],
             'sex' => $request['sex'],
+            'age' => $request['age'],
             'birthday' => $request['birthdate'],
             'birthplace' => $request['birth_place'],
             'citizenship' => $request['citizenship'],
             'religion' => $request['religion'],
             'no_siblings' => $request['no_siblings'],
             'birth_order' => $request['birth_order'],
-            //'purok' => $request['purok'],
+            'purok' => $request['purok'],
            
-            //'municipality' => $request['municipality'], 
+            'municipality_no' => $request['municipality'], 
+            'city_no' => $request['city'],
             //'province' => $request['province'],
 
             //'father_fullname' => $request['father'],
@@ -146,9 +152,9 @@ class StudentController extends Controller
             //'father_occupation' => $request['father_occupation'],
             //'mother_occupation' => $request['mother_occupation'],
 
-            //'ethnicity_id' => $request['ethnicity'],
-            //'modality_id' => $request['modality'],
-            //'mother_tounge_id' => $request['mother_tounge'],
+            'ethnicity_id' => $request['ethnicity'],
+            'modality_id' => $request['modality'],
+            'mother_tongue_id' => $request['mother_tongue'],
         ]);
 
         return redirect('/student')->with('success', 'Record saved successfully!');
@@ -177,15 +183,15 @@ class StudentController extends Controller
         {
             $student = Student::find($id);
 
-            $ethnicities = DB::table('ethnicity')->get();
-            $mother_tounges = DB::table('mother_tounge')->get();
+            /* $ethnicities = DB::table('ethnicity')->get();
+            $mother_tongues = DB::table('mother_tongue')->get();
             $modalities = DB::table('modality')->get();
-
+ */
             //dd($eth_id);
 
             //$stud = collect($student);       
 
-            return view('student.edit', compact('student','ethnicities','mother_tounges','modalities'));
+            return view('student.edit', compact('student','ethnicities','mother_tongues','modalities'));
         }        
     }
 
@@ -245,7 +251,7 @@ class StudentController extends Controller
         $stud->name_extension = $request['name_extension'];
         $stud->contact_no = $request['contact_no'];
         $stud->sex = $request['sex'];
-        $stud->birthdate = $request['birthdate'];
+        $stud->birthday = $request['birthdate'];
         $stud->birthplace = $request['birth_place'];
         $stud->citizenship = $request['citizenship'];
         $stud->no_siblings = $request['no_siblings'];
@@ -276,5 +282,39 @@ class StudentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getMunicipalityByProvince(Request $request)
+    {
+        $html = '';
+
+        $html .= '<option value=""> --Select here--</option>';
+        
+        $municipalities = DB::table('municipality')->where('province_no',$request['province_no'])->get();
+        
+        //dd($places);
+
+        foreach ($municipalities as $municipality) {
+            $html .= '<option value="'.$municipality->number.'">'.$municipality->name.'</option>';
+        }
+
+        return response()->json(['html' => $html]);
+    }
+
+    public function getCityByProvince(Request $request)
+    {
+        $html = '';
+
+        $html .= '<option value=""> --Select here--</option>';
+        
+        $cities = DB::table('city')->where('province_no',$request['province_no'])->get();
+        
+        //dd($places);
+
+        foreach ($cities as $city) {
+            $html .= '<option value="'.$city->number.'">'.$city->name.'</option>';
+        }
+
+        return response()->json(['html' => $html]);
     }
 }

@@ -13,8 +13,7 @@ class Student extends Model
 
     protected $fillable = [
        'id','user_id','lrn','first_name','middle_name','last_name','name_extension','contact_no',
-       'sex','birthdate','birthplace','citizenship','religion','no_siblings','birth_order', 'purok','municipality',
-       'province','father_fullname', 'father_occupation','mother_fullname', 'mother_occupation', 'ethnicity_id',
-       'modality_id','mother_tounge_id'
+       'age','sex','birthday','birthplace','citizenship','religion','no_siblings','birth_order', 
+       'purok','municipality_no','city_no','ethnicity_id','modality_id','mother_tongue_id'
     ];
 }

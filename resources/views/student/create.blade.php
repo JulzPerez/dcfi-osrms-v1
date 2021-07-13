@@ -7,11 +7,11 @@
         <div>
           @if ($errors->any())
             <div class="alert alert-danger">
-              <!-- <ul>
+              <ul>
                   @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                   @endforeach
-              </ul> -->
+              </ul>
               <p>
               Please fill-in required information!
               </p>
@@ -96,6 +96,18 @@
 
                       <div class="row">
                         <div class="col-md-3">
+                          
+                          <div class="form-group">
+                            <label>Age <strong class="text-red">*</strong></label>
+                            <input  type="number" class="form-control" name="age" value="{{ old('age') }}">
+                            
+                              @if ($errors->has('age'))
+                                <span class="text-danger">{{ $errors->first('age') }}</span>
+                              @endif
+                            
+                          </div>
+                        </div>
+                        <div class="col-md-3">
                           <div class="form-group">
                               <label class="col-form-label">Sex <strong class="text-red">*</strong></label>
                               <select class="form-control" name="sex" value="{{ old('sex') }}" data-placeholder="Select from options below" style="width: 100%;">
@@ -131,20 +143,10 @@
                           </div>
                         </div> 
 
-                        <div class="col-md-3">
-                          <div class="form-group">
-                            <label>Citizenship <strong class="text-red">*</strong></label>
-                            <input  type="text" class="form-control" name="citizenship" value="{{ old('citizenship') }}">
-                            
-                              @if ($errors->has('citizenship'))
-                                <span class="text-danger">{{ $errors->first('citizenship') }}</span>
-                              @endif
-                            
-                          </div>
-                        </div> 
+                        
                       </div>  
                       <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                           <div class="form-group">
                               <label>Contact Number <strong class="text-red">*</strong></label>
                               <input  type="text" class="form-control"  name="contact_no" value="{{ old('contact_no') }}">
@@ -155,9 +157,9 @@
 
                           </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                           <div class="form-group">
-                              <label>Number of siblings <strong class="text-red">*</strong></label>
+                              <label>No. of siblings <strong class="text-red">*</strong></label>
                               <input  type="text" class="form-control"  name="no_siblings" value="{{ old('no_siblings') }}">
                               
                               @if ($errors->has('no_siblings'))
@@ -167,7 +169,7 @@
                           </div>
                         </div>
                         
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                           <div class="form-group">
                             <label>Birth Order <strong class="text-red">*</strong></label>
                             <input  type="text" class="form-control"  name="birth_order" value="{{ old('birth_order') }}">
@@ -189,9 +191,26 @@
                               @endif                            
                           </div>
                         </div>
+
+                        <div class="col-md-3">
+                          
+                          <div class="form-group">
+                            <label>Citizenship <strong class="text-red">*</strong></label>
+                            <input  type="text" class="form-control" name="citizenship" value="{{ old('citizenship') }}">
+                            
+                              @if ($errors->has('citizenship'))
+                                <span class="text-danger">{{ $errors->first('citizenship') }}</span>
+                              @endif
+                            
+                          </div>
+                        </div>
                         
                       </div>  
+
+                      <hr class="border1">
+                      <h5 style="color:red">Address</h5>
                       <div class="row">
+                      
                         <div class="col-md-3">
                           <div class="form-group">
                               <label>Purok/Street </label>
@@ -202,31 +221,59 @@
                               @endif 
 
                           </div>
-                        </div>
+                        </div> 
+                          
                         <div class="col-md-3">
                           <div class="form-group">
-                              <label>Municipality/City <strong class="text-red">*</strong></label>
-                              <input  type="text" class="form-control"  name="municipality" value="{{ old('municipality') }}">
+                            <label>Province <strong class="text-red">*</strong></label>
+                              <select class="form-control " name="province" id="province" style="width: 100%;">
+                              <option value="">--Please select ---</option> 
+                                    @foreach($provinces as $province)
+                                        <option value="{{$province->number}}"> {{$province->name}} </option>
+                                    @endforeach 
+                              </select>
+
+                              @if ($errors->has('province'))
+                                <span class="text-danger">{{ $errors->first('province') }}</span>
+                              @endif 
+                            
+                          </div>
+                        </div>
+
+                        <div class="col-md-3">
+                          <div class="form-group">
+                              <label>City </label>
+                              
+                              <select class="form-control " name="city" id="city"  style="width: 100%;">             
+                      
+                              </select>
+                              
+                              @if ($errors->has('city'))
+                                <span class="text-danger">{{ $errors->first('city') }}</span>
+                              @endif 
+
+                          </div>
+                        </div>  
+                        
+                        <div class="col-md-3">
+                          <div class="form-group">
+                              <label>Municipality</label>
+                              
+                              <select class="form-control " name="municipality" id="municipality"  style="width: 100%;">
+                                          
+                              </select>
                               
                               @if ($errors->has('municipality'))
                                 <span class="text-danger">{{ $errors->first('municipality') }}</span>
                               @endif 
 
                           </div>
-                        </div>
-                        
-                        <div class="col-md-3">
-                          <div class="form-group">
-                            <label>Province <strong class="text-red">*</strong></label>
-                            <input  type="text" class="form-control"  name="province" value="{{ old('province') }}">
+                        </div>                       
                             
-                              @if ($errors->has('province'))
-                                <span class="text-danger">{{ $errors->first('province') }}</span>
-                              @endif 
-                            
-                          </div>
-                        </div>    
-                      </div>  
+                      </div> 
+                      
+                      <hr class="border1">
+
                       <div class="row">
                         <div class="col-md-3">
                           <div class="form-group">
@@ -280,7 +327,7 @@
                             <label>Ethnicity <strong class="text-red">*</strong></label>
                               <select class="form-control " name="ethnicity"  style="width: 100%;">
                                     
-                                    @foreach($ethnicities as $ethnicity)
+                                   @foreach($ethnicities as $ethnicity)
                                         <option value="{{$ethnicity->id}}"> {{$ethnicity->name}} </option>
                                     @endforeach
                               </select>
@@ -294,15 +341,15 @@
                         <div class="col-md-3">
                           <div class="form-group">
                               <label> Mother Tounge <strong class="text-red">*</strong></label>
-                              <select class="form-control " name="mother_tounge"  style="width: 100%;">
+                              <select class="form-control " name="mother_tongue"  style="width: 100%;">
                                     
-                                    @foreach($mother_tounges as $mother_tounge)
-                                        <option value="{{$mother_tounge->id}}"> {{$mother_tounge->name}} </option>
-                                    @endforeach
+                                    @foreach($mother_tongues as $mother_tongue)
+                                        <option value="{{$mother_tongue->id}}"> {{$mother_tongue->name}} </option>
+                                    @endforeach 
                               </select>
 
-                              @if ($errors->has('mother_tounge'))
-                                <span class="text-danger">{{ $errors->first('mother_tounge') }}</span>
+                              @if ($errors->has('mother_tongue'))
+                                <span class="text-danger">{{ $errors->first('mother_tongue') }}</span>
                               @endif 
                             
                           </div>
@@ -312,9 +359,9 @@
                               <label>Modality <strong class="text-red">*</strong></label>
                               <select class="form-control " name="modality"  style="width: 100%;">
                                     
-                                    @foreach($modalities as $modality)
+                                  @foreach($modalities as $modality)
                                         <option value="{{$modality->id}}"> {{$modality->name}} </option>
-                                    @endforeach
+                                    @endforeach 
                               </select>
 
                               @if ($errors->has('modality'))
@@ -339,4 +386,30 @@
       </div>    
 
 </div>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        $("#province").change(function(){
+            $.ajax({
+                url: "{{ route('getMunicipality') }}?province_no=" + $(this).val(),
+                method: 'GET',
+                success: function(data) {
+                    $('#municipality').html(data.html);
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $("#province").change(function(){
+            $.ajax({
+                url: "{{ route('getCity') }}?province_no=" + $(this).val(),
+                method: 'GET',
+                success: function(data) {
+                    $('#city').html(data.html);
+                }
+            });
+        });
+    </script>
 @endsection

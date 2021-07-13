@@ -28,3 +28,5 @@ Route::get('/enrollment/create', 'EnrollmentController@create_enrollForm')->name
 Route::post('/enrollment', 'EnrollmentController@enroll')->name('enroll_store');
 Route::get('/enrollment', 'EnrollmentController@index')->name('enroll_index');
 
+Route::get('/getMunicipality', 'StudentController@getMunicipalityByProvince')->name('getMunicipality');
+Route::get('/getCity', 'StudentController@getCityByProvince')->name('getCity');

@@ -13,7 +13,7 @@ class CreateMotherToungeTable extends Migration
      */
     public function up()
     {
-        Schema::create('mother_tounge', function (Blueprint $table) {
+        Schema::create('mother_tongue', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateMotherToungeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mother_tounge');
+        Schema::dropIfExists('mother_tongue');
     }
 }

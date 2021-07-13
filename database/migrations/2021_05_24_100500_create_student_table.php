@@ -42,7 +42,7 @@ class CreateStudentTable extends Migration
                 $table->integer('guardian_id',false,true)->nullable();
 
                 $table->integer('modality_id',false,true)->nullable();
-                $table->integer('mother_tounge_id',false,true)->nullable();
+                $table->integer('mother_tongue_id',false,true)->nullable();
                
                 $table->timestamps();
 
@@ -52,7 +52,7 @@ class CreateStudentTable extends Migration
 
                 $table->foreign('ethnicity_id')->references('id')->on('ethnicity')->onDelete('cascade'); 
                 $table->foreign('modality_id')->references('id')->on('modality')->onDelete('cascade'); 
-                $table->foreign('mother_tounge_id')->references('id')->on('mother_tounge')->onDelete('cascade');  
+                $table->foreign('mother_tongue_id')->references('id')->on('mother_tongue')->onDelete('cascade');  
         });
     }
 

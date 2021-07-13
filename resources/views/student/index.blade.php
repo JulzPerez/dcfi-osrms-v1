@@ -155,17 +155,17 @@
 
                         <tr>
                             <td class="text-muted">Modality</td>
-                            <td class="text-olive"> </td>
+                            <td class="text-olive">{{$modality_name}} </td>
                         </tr>
 
                         <tr>
                             <td class="text-muted">Ethnicity</td>
-                            <td class="text-olive"> </td>
+                            <td class="text-olive"> {{$ethnicity_name}}</td>
                         </tr>
 
                         <tr>
                             <td class="text-muted">Mother Tounge</td>
-                            <td class="text-olive"> </td>
+                            <td class="text-olive"> {{$mother_tongue_name}}</td>
                         </tr>
                         
                     </tbody>                          

@@ -39,6 +39,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
       width: 100%;
       border: 1px solid #ddd;
     }
+
+    /* Thick red border */
+    hr.border1 {
+      border: 1px solid grey;
+    }
 /*
     th {
       text-align: left;
@@ -264,6 +269,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <script src="/js/app.js"></script>
 <script src="/js/popper.js"></script>
+
+@yield('scripts')
 
 </body>
 </html>
