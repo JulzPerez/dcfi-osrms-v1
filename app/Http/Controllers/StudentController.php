@@ -291,8 +291,6 @@ class StudentController extends Controller
         $html .= '<option value=""> --Select here--</option>';
        
         $municipalities = DB::table('municipality')->where('province_no',$request['province_no'])->get();
-        
-        dd($municipalities);
 
         foreach ($municipalities as $municipality) {
             $html .= '<option value="'.$municipality->number.'">'.$municipality->name.'</option>';
@@ -308,9 +306,7 @@ class StudentController extends Controller
         $html .= '<option value=""> --Select here--</option>';
         
         $cities = DB::table('city')->where('province_no',$request['province_no'])->get();
-        
        
-
         foreach ($cities as $city) {
             $html .= '<option value="'.$city->number.'">'.$city->name.'</option>';
         }
