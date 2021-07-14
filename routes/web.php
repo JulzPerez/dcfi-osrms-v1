@@ -30,3 +30,4 @@ Route::get('/enrollment', 'EnrollmentController@index')->name('enroll_index');
 
 Route::get('/getMunicipality', 'StudentController@getMunicipalityByProvince')->name('getMunicipality');
 Route::get('/getCity', 'StudentController@getCityByProvince')->name('getCity');
+

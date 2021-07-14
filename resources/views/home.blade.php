@@ -11,23 +11,17 @@
                     <div class="alert alert-info alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-info"></i> Enrollment Guide!</h5>
-                    <ol>
-                        <li>You must fill-in required information in profile. You cannot enroll unless you do so.</li>
-                        <li>When profile has been submitted and recorded, you click on Enrollment link or button to enroll.</li>
-                        <li>Fill in necessary information for enrollment.</li>
-                        <li>Once successful submission, data will be recorded and now subject for validation. </li>
-                        <li>Requirements needed can be uploaded in the Upload Requirements link. This will be used by the registrar in validating enrollment.
-                        <li>Registrar will validate record and once validated, you can now pay for the enrollment fee as can be seen in Enrollment tracking link or button. 
-                            <!-- <ol>
-                            <li>Phasellus iaculis neque</li>
-                            <li>Purus sodales ultricies</li>
-                            <li>Vestibulum laoreet porttitor sem</li>
-                            <li>Ac tristique libero volutpat at</li>
-                            </ol> -->
-                        </li>
+                    <ol start="1">
+                        <li>Complete the STUDENT PROFILE by filling in all necessary information, and submit.</li>
+                        <li>Then, click the ENROLLMENT facility button, fill in the required information, and enroll.</li>
+                        <li>Upload all needed documents through the UPLOAD REQUIREMENTS facility button for validation. </li>
+                        <li>Documents submitted will be checked and validated by the Registrar. </li>
+                        <li>Once documents are validated, you may now process the PAYMENT. </li>
+                        <li>Once payment is successfully made, upload the proof of your payment through the UPLOAD PROOF OF PAYMENT facility button.</li> 
+                        <li>The Business and Finance Office (BFO) will then verify your payment.</li>
                         <li>Once payment is made, student must upload payment in the Upload Payment link  </li>
-                        <li>Payment will be verified by the registrar. Status of verification can be seen in account tracking.</li>
-                        <li>You can then finally see enrollment record once all steps above are completed.</li>
+                        <li>Status of verification can be seen at the ACCOUNT TRACKING button.</li>
+                        <li>Lastly, the enrollment record shall be viewed after all steps are successful.</li>
                     </ol>
                     </div>
                 <!-- </div>

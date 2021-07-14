@@ -27,14 +27,15 @@ class StudentController extends Controller
                     $ethnicities = DB::table('ethnicity')->get();
                     $mother_tongues = DB::table('mother_tongue')->get();
                     $modalities = DB::table('modality')->get(); 
+                    $religions = DB::table('religion')->get();
 
-                    return view('student.create', compact('provinces','ethnicities','mother_tongues','modalities'));  
+                    return view('student.create', compact('provinces','ethnicities','mother_tongues','modalities', 'religions'));  
                 }
                 else 
                 {                
                     $student = DB::table('student')
-                    ->where('user_id', '=', $userid)
-                    ->first();  
+                        ->where('user_id', '=', $userid)
+                        ->first();  
 
                     $ethnicity_name = DB::table('ethnicity')->where('id',$student->ethnicity_id)->first()->name;
                     $modality_name = DB::table('modality')->where('id',$student->modality_id)->first()->name;
