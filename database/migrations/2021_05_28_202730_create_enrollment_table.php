@@ -22,7 +22,7 @@ class CreateEnrollmentTable extends Migration
             $table->decimal('oral_or_interview_rating',8,2)->nullable();
             $table->integer('modality_id',false,true)->nullable();
                         
-            $table->integer('class_section_id',false,true);
+            $table->integer('class_section_id',false,true)->nullable();
             $table->timestamps();
 
             $table->foreign('student_id')->references('id')->on('student')->onDelete('cascade');
