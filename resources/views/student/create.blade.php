@@ -374,15 +374,5 @@
         });
     </script>
 
-    <script type="text/javascript">
-        $("#religion").change(function(){
-            $.ajax({
-                url: "{{ route('getReligion') }}" + $(this).val(),
-                method: 'GET',
-                success: function(data) {
-                    $('#religion').html(data.html);
-                }
-            });
-        });
-    </script>
+    
 @endsection
