@@ -289,8 +289,10 @@ class StudentController extends Controller
         $html = '';
 
         $html .= '<option value=""> --Select here--</option>';
+
+        $var = $request['province_no'];
         
-        $municipalities = DB::table('municipality')->where('province_no',$request['province_no'])->get();
+        $municipalities = DB::table('municipality')->where('province_no',$var)->get();
         
         dd($municipalities);
 
