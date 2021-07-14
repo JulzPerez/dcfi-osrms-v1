@@ -309,11 +309,13 @@ class StudentController extends Controller
         
         $cities = DB::table('city')->where('province_no',$request['province_no'])->get();
         
-        //dd($places);
+        dd($cities);
 
         foreach ($cities as $city) {
             $html .= '<option value="'.$city->number.'">'.$city->name.'</option>';
         }
+
+        dd($cities,$municipalities);
 
         return response()->json(['html' => $html]);
     }
