@@ -74,31 +74,63 @@ class EnrollmentController extends Controller
         }
         else
         {
-                $SY = DB::table('school_year')->where('current',1)->first();       
+                $SY = DB::table('school_year')->where('current',1)->first();     
+  
+                $departments = DB::table('department')
+                        ->get();
 
-                $student_background = DB::table('educational_background_student')
-                                ->where('Student_ID',$student_id)
-                                ->get();
-        
-                $max_level = $student_background->max('Level_ID');
-       
-                $promoted_level = $max_level+1;
-
-                $level_name = DB::table('level')
-                        ->where('id', $promoted_level)
-                        ->first()->level_name;        
-
-                $dept_id = DB::table('level')
-                        ->where('id',$promoted_level)
-                        ->first()->department_id;
-
-                $dept_name = DB::table('department')
-                        ->select('department_name')
-                        ->where('id', $dept_id)->first()->department_name;
-
-                return view('enrollment.create', compact('dept_name', 'level_name','SY'));         
+                return view('enrollment.create', compact('departments','SY'));         
 
         }        
              
+    }
+
+    public function getGradeLevel(Request $request)
+    {
+        $html = '';
+        $html .= '<option value=""> --Select here--</option>';
+
+        $levels = DB::table('level')->where('department_id',$request['dept_id'])->get();
+        
+        foreach ($levels as $level) {
+            $html .= '<option value="'.$level->id.'">'.$level->level_name.'</option>';
+        }
+
+        return response()->json(['html' => $html]);
+    }
+
+    public function getTrack(Request $request)
+    {
+        $html = '';
+        $html .= '<option value=""> --Select here-- </option>';
+        
+        $tracks = DB::table('track')->get();
+        
+        if($tracks !=null)
+        {
+            foreach ($tracks as $track) {
+                $html .= '<option value="'.$track->id.'">'.$track->track_name.'</option>';
+            }
+        }   
+             
+
+        return response()->json(['html' => $html]);
+    }
+
+    public function getStrand(Request $request)
+    {
+        $html = '';
+        $html .= '<option value=""> --Select here-- </option>';
+        
+        $strands = DB::table('strand')->where('track_id',$request['track_id'])->get();
+        
+        if($strands !=null)
+        {
+            foreach ($strands as $strand) {
+                $html .= '<option value="'.$strand->id.'">'.$strand->strand_name.'</option>';
+            }
+        }                
+
+        return response()->json(['html' => $html]);
     }
 }

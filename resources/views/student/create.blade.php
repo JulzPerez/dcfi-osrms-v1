@@ -360,9 +360,7 @@
                 }
             });
         });
-    </script>
-
-    <script type="text/javascript">
+    
         $("#province").change(function(){
             $.ajax({
                 url: "{{ route('getCity') }}?province_no=" + $(this).val(),

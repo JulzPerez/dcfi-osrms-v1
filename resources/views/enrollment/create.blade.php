@@ -31,33 +31,45 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Department</label>
-                                <input  type="text" class="form-control"  name="" value="{{ $dept_name}}" disabled>
-                            
+                                
+                                <select class="form-control " name="department" id="department" style="width: 100%;">
+                                <option value=""> --- Select --- </option>
+                                    @foreach($departments as $department)
+                                        <option value="{{$department->id}}"> {{$department->department_name}} </option>
+                                    @endforeach 
+                                </select>
                             </div>    
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Grade Level</label>
-                                <input  type="text" class="form-control"  name="" value="{{ $level_name}}" disabled>
+                                
+                                <select class="form-control " name="level" id="level"  style="width: 100%;">                                          
+                                </select>
+
                             </div>                        
                         </div>
                     </div>
-                    <!-- <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Track <span class="text-red">*For Senior High School Only</span></label>
-                                
+                    <div class="row">
+                        <div class="col-md-12" >
+                            <div class="form-group" id="displayTrack" style="display:none;">
+                                <label>Track </label>
+                                <select class="form-control " name="track" id="track"  style="width: 100%;">                                          
+                                </select>
+
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Strand <span class="text-red">*For Senior High School Only</span></label>
-                                
+                        <div class="col-md-12" >
+                            <div class="form-group" id="displayStrand" style="display:none;">
+                                <label>Strand </label>
+                                <select class="form-control " name="strand" id="strand"  style="width: 100%;">                                          
+                                </select>
+
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -86,4 +98,55 @@
     </div>
         
 </div>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        $("#department").change(function(){
+
+            var dept_id = $(this).val();
+
+            $.ajax({
+                url: "{{ route('getGradeLevel') }}?dept_id=" + dept_id,
+                method: 'GET',
+                success: function(data) {
+                    $('#level').html(data.html);
+                }
+            });
+           
+            if(dept_id === '4')
+            {
+                document.getElementById("displayTrack").style.display = "block";
+
+                $.ajax({
+                url: "{{ route('getTrack') }}",
+                method: 'GET',
+                success: function(data) {
+                    $('#track').html(data.html);
+                }
+                });
+            }
+            else{
+                document.getElementById("displayTrack").style.display = "none";
+                document.getElementById("displayStrand").style.display = "none";
+            }           
+
+        });
+
+        $("#track").change(function(){
+
+            document.getElementById("displayStrand").style.display = "block";
+            $.ajax({
+                url: "{{ route('getStrand') }}?track_id=" + $(this).val(),
+                method: 'GET',
+                success: function(data) {
+                    $('#strand').html(data.html);
+                }
+            });
+
+        });
+
+    </script>
+
+   
 @endsection
