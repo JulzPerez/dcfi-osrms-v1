@@ -234,7 +234,7 @@
                           <div class="form-group">
                             <label>Province <strong class="text-red">*</strong></label>
                               <select class="form-control " name="province" id="province" style="width: 100%;">
-                              <option value="">--Please select ---</option> 
+                              <option value="">--- Please select ---</option> 
                                     @foreach($provinces as $province)
                                         <option value="{{$province->number}}"> {{$province->name}} </option>
                                     @endforeach 

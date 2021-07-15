@@ -74,6 +74,11 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Semester</label>
+                                <select class="form-control " name="semester" id="strand"  style="width: 100%;">  
+                                    <option value=""> -- Select here -- </option>   
+                                    <option value="1"> 1st </option>    
+                                    <option value="2"> 2nd </option>                    
+                                </select>
                                 
                             </div>  
                         </div>
