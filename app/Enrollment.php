@@ -9,7 +9,7 @@ class Enrollment extends Model
     protected $table = 'enrollment';
 
     protected $fillable = [
-        'student_id','SY','status','pending','writtenOrOnlineExamRating','oralExamOrInterviewRating',
+        'student_id','SY','status','writtenOrOnlineExamRating','oralExamOrInterviewRating',
         'modality_id','class_section_id'
     ];
 }

@@ -9,14 +9,22 @@ use Illuminate\Support\Facades\DB;
 
 class EnrollmentController extends Controller
 {
+    protected function failedValidation(Validator $validator)
+    {
+        throw (new ValidationException($validator))
+                    ->errorBag($this->errorBag)
+                    ->redirectTo($this->getRedirectUrl());
+    }
+
     public function index()
     {
         $userid = \Auth::user()->id;
         $student = Student::where('user_id',$userid)->first();
         
-
         if($student != null)
         {
+            $student_exist = true;
+
             $SY = DB::table('school_year')->where('current',1)->first();
             $year = $SY->SY;
 
@@ -24,42 +32,60 @@ class EnrollmentController extends Controller
             $enrollment = DB::table('enrollment')
                 ->where('student_id', $student_id)
                 ->where('SY',$year)
-                ->first();
-
-            if($enrollment == null)
-            {                
-                return redirect()->route('enroll_create');
-            }
-            else
-            {
-                return view('enrollment.index', compact('enrollment'));
-            }
-        }    
+                ->first();            
+        }
         else
         {
-            $enrollment = null;
-            return view('enrollment.index', compact('enrollment'));
-        }        
+            $student_exist = false;            
+        }
+
+        return view('enrollment.index', compact('student_exist','enrollment'));              
         
     }
 
     public function enroll(Request $request)
     {
-
-        $this->validate($request, [
-            'SY' => 'required',
-        ]);
+        //dd($request);
+/* 
+        $checkSHS = $request['track_strand_flag'];
+        if($checkSHS == "on")
+        {
+            $this->validate($request, [
+                'track' => 'required',
+                'strand' => 'required',
+                'SY' => 'required',
+                'level' => 'required',
+                'modality' => 'required',
+                'category' => 'required',
+                'semester' => 'required',
+            ]);
+        } 
+         else{
+             $this->validate($request, [                
+                'school_year' => 'required',
+                'level' => 'required',
+                'modality' => 'required',
+                'category' => 'required',
+                'semester' => 'required', 
+            ]); 
+        }   */      
+      
 
         $userid = \Auth::user()->id;
         $student_id = Student::where('user_id', $userid)->first()->id; 
 
-        Enrollment::create([
+        DB::table('enrollment')->insert([
             'student_id' => $student_id,  
             'SY' => $request['SY'],
-            //'class_section_id' => $classSection_id
+            'level_id' => $request['level'],
+            'strand_id' => $request['strand'],
+            'category' => $request['category'],
+            'modality_id' => $request['modality'],
+            'semester' => $request['semester'],
+            
         ]);
-        
-        return redirect()->route('enroll_index');        
+
+        return redirect('/enrollment')->with('success', 'Record saved successfully!');     
     }
 
     public function create_enrollForm()
@@ -74,12 +100,12 @@ class EnrollmentController extends Controller
         }
         else
         {
-                $SY = DB::table('school_year')->where('current',1)->first();     
-  
-                $departments = DB::table('department')
-                        ->get();
+            $SY = DB::table('school_year')->where('current',1)->first();     
 
-                return view('enrollment.create', compact('departments','SY'));         
+            $departments = DB::table('department')
+                    ->get();
+
+            return view('enrollment.create', compact('departments','SY'));         
 
         }        
              
@@ -93,7 +119,7 @@ class EnrollmentController extends Controller
         $levels = DB::table('level')->where('department_id',$request['dept_id'])->get();
         
         foreach ($levels as $level) {
-            $html .= '<option value="'.$level->id.'">'.$level->level_name.'</option>';
+            $html .= '<option value="'.$level->id.'">'.$level->level_name.'</option>';                               
         }
 
         return response()->json(['html' => $html]);
@@ -128,6 +154,23 @@ class EnrollmentController extends Controller
         {
             foreach ($strands as $strand) {
                 $html .= '<option value="'.$strand->id.'">'.$strand->strand_name.'</option>';
+            }
+        }                
+
+        return response()->json(['html' => $html]);
+    }
+
+    public function getModality(Request $request)
+    {
+        $html = '';
+        $html .= '<option value=""> --Select here-- </option>';
+        
+        $modalities = DB::table('modality')->get();
+        
+        if($modalities !=null)
+        {
+            foreach ($modalities as $modality) {
+                $html .= '<option value="'.$modality->id.'">'.$modality->name.'</option>';
             }
         }                
 

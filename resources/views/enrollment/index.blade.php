@@ -13,7 +13,7 @@
     </div>
     <br>
     
-    @if($enrollment===null)
+    @if(!$student_exist)
     <div class="row">
         <div class="col-md-6">
             <p class="text-red"><strong> You cannot enroll yet because you dont have student record! 
@@ -21,59 +21,90 @@
         </div>
     </div>
     @else
-    <div class="row ">
-        <div class="col-md-6">   
-            <div class="card card-primary">
-                <div class="card-header">
-                    Enrollment Details
-                </div>
-            
-                <div class="card-body">
-                    <div class="row">
-                        <p class="text-green text-center"><strong >Your data has been submitted successfully for validation.</strong></p>
+
+        @if($enrollment != null)
+        <div class="row ">
+            <div class="col-md-6">   
+                <div class="card card-primary">
+                    <div class="card-header">
+                        Enrollment Details
                     </div>
-                </div> <!--end card-body -->
-               
-            </div>
-          
-        </div>
-        <div class="col-md-6">   
-            <div class="card card-primary">
-                <div class="card-header">
-                    Enrollment Status
+                
+                    <div class="card-body">
+                        <div class="row">
+                            <p class="text-green text-center"><strong >Your data has been submitted successfully for validation.</strong></p>
+                        </div>
+                    </div> <!--end card-body -->
+                
                 </div>
             
-                <div class="card-body">
-                <table class="table table-bordered table-condensed">
-                    <tbody>
-                        
-                        <tr>
-                            <td class="text-muted">Student ID</td>
-                            <td class="text-olive">{{$enrollment->student_id}} </td>
-                        </tr>
-                        
-                        <tr>
-                            <td class="text-muted">Enrollment Status</td>
-                            <td class="text-olive">{{$enrollment->status}} </td>
-                        </tr>
-                        <tr>
-                            <td class="text-muted">Written Exam Rating </td>
-                            <td class="text-olive"> {{$enrollment->written_online_rating}} </td>
-                        </tr>
-                        
-                        <tr>
-                            <td class="text-muted">Oral Exam Rating</td>
-                            <td class="text-olive">{{$enrollment->oral_or_interview_rating}}  </td>
-                        </tr>
-                    </tbody>                          
-                </table>
-                </div> <!--end card-body -->
-               
+            </div>
+            <div class="col-md-6">   
+                <div class="card card-primary">
+                    <div class="card-header">
+                        Enrollment Status
+                    </div>
+                
+                    <div class="card-body">
+                        <table class="table table-bordered table-condensed">
+                            <tbody>
+                                
+                                <tr>
+                                    <td class="text-muted">Student ID</td>
+                                    <td class="text-olive">{{$enrollment->student_id}} </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td class="text-muted">Enrollment Status</td>
+                                    <td class="text-olive">{{$enrollment->status}} </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-muted">Written Exam Rating </td>
+                                    <td class="text-olive"> {{$enrollment->written_online_rating}} </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td class="text-muted">Oral Exam Rating</td>
+                                    <td class="text-olive">{{$enrollment->oral_or_interview_rating}}  </td>
+                                </tr>
+                            </tbody>                          
+                        </table>
+                    </div> <!--end card-body -->               
+                
+                </div>
             
             </div>
-          
         </div>
-    </div>
+
+        @else
+        <div class="row ">
+            <div class="col-md-6">   
+                <div class="card card-primary">
+                    <div class="card-header">
+                        Enrollment Details
+                    </div>
+                
+                    <div class="card-body">
+                        <div class="row">
+                            <p class="text-green text-center"><strong >You have no enrollment record this Academic Year.</strong></p>
+                        </div>
+                    </div> <!--end card-body -->
+                    <div class="card-footer">
+                        <a href="{{ route('enroll_create') }}">
+                            <button type="button" class="btn btn-outline-primary btn-block">
+                                <i class="fa fa-bell"></i> Enroll
+                            </button>
+                        </a>
+                      
+                    </div>
+                
+                </div>
+            
+            </div>
+            
+        </div>
+        @endif
+
     @endif
         
 </div>

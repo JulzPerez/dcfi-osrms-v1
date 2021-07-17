@@ -33,4 +33,5 @@ Route::get('/getCity', 'StudentController@getCityByProvince')->name('getCity');
 Route::get('/getGradeLevel', 'EnrollmentController@getGradeLevel')->name('getGradeLevel');
 Route::get('/getTrack', 'EnrollmentController@getTrack')->name('getTrack');
 Route::get('/getStrand', 'EnrollmentController@getStrand')->name('getStrand');
+Route::get('/getModality', 'EnrollmentController@getModality')->name('getModality');
 
