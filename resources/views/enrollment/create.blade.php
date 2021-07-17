@@ -128,8 +128,8 @@
                                 <label>Semester</label>
                                 <select class="form-control " name="semester" id="semester"  style="width: 100%;">  
                                     <option value=""> -- Select here -- </option>   
-                                    <option value="1st Sem"> 1st </option>    
-                                    <option value="2nd Sem"> 2nd </option>                    
+                                    <option value="First Semester"> First Semester  </option>    
+                                    <option value="Second Semester"> Second Semester </option>                    
                                 </select>
 
                                 @if ($errors->has('semester'))

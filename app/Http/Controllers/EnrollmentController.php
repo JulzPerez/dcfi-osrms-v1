@@ -36,6 +36,7 @@ class EnrollmentController extends Controller
         }
         else
         {
+            $enrollment = false;
             $student_exist = false;            
         }
 
@@ -45,32 +46,7 @@ class EnrollmentController extends Controller
 
     public function enroll(Request $request)
     {
-        //dd($request);
-/* 
-        $checkSHS = $request['track_strand_flag'];
-        if($checkSHS == "on")
-        {
-            $this->validate($request, [
-                'track' => 'required',
-                'strand' => 'required',
-                'SY' => 'required',
-                'level' => 'required',
-                'modality' => 'required',
-                'category' => 'required',
-                'semester' => 'required',
-            ]);
-        } 
-         else{
-             $this->validate($request, [                
-                'school_year' => 'required',
-                'level' => 'required',
-                'modality' => 'required',
-                'category' => 'required',
-                'semester' => 'required', 
-            ]); 
-        }   */      
-      
-
+ 
         $userid = \Auth::user()->id;
         $student_id = Student::where('user_id', $userid)->first()->id; 
 

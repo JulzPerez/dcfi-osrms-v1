@@ -9,6 +9,7 @@ require('./bootstrap');
 import $ from 'jquery';
 window.$ = window.jQuery = $;
 
+import Inputmask from "inputmask";
 
 import 'admin-lte/plugins/jquery/jquery.min.js';
 import 'admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js';
@@ -16,6 +17,7 @@ import 'admin-lte/plugins/select2/js/select2.full.min.js';
 import 'admin-lte/plugins/daterangepicker/daterangepicker.js';
 import 'admin-lte/plugins/bootstrap4-dualListbox/jquery.bootstrap-duallistbox.min.js';
 import 'admin-lte/plugins/bs-custom-file-input/bs-custom-file-input.min.js';
+import 'admin-lte/plugins/inputmask/jquery.inputmask.min.js'
 import 'admin-lte/dist/js/adminlte.min.js';
 
 $(function () {
@@ -41,19 +43,16 @@ $(function () {
     
     })
 
+    $('[data-mask]').inputmask()
+
     $('#selectDocument').change(function(){
 
         var selectVal = $(this).val();
         console.log(selectVal);
-    })
+    });
 
 })
 
-jQuery(document).ready(function() {
-
-
-
-}(jQuery))
 
 
 window.Vue = require('vue');

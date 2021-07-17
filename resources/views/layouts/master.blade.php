@@ -261,9 +261,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 @auth
 <script>
     window.user = @json(auth()->user())
-    
-  });
-
 </script>
 @endauth
 
