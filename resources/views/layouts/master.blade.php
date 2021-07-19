@@ -234,12 +234,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- Main content -->
     <div class="content">
-      <div class="container-fluid">
-            <div class="row mb-2">  
+      <!-- <div class="container-fluid">
+            <div class="row m-0">  --> 
                 @yield('main_content')
-            </div><!-- /.row -->
+            <!-- </div> --><!-- /.row -->
         
-      </div><!-- /.container-fluid -->
+      <!-- </div> --><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
   </div>

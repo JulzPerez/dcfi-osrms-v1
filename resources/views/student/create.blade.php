@@ -1,10 +1,8 @@
 @extends('layouts.master')
 
-
-
 @section('main_content')
 <div class="container-fluid">
-    <div class="row ">
+    <div class="row">
       <div class="col-sm-12">
         <div>
           @if ($errors->any())
@@ -24,7 +22,7 @@
       </div>
     </div>
 
-        <div class="row no-gutters">
+        <div class="row no-gutters m-0">
           <div class="col-md-12">
             <!-- <div class="card "> -->
               <!-- <div class="card-header">
