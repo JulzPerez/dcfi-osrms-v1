@@ -44,6 +44,9 @@
                       <div class="card-body">
                           @include('student.partials.personal-background')
                       </div>
+                      <div class="card-footer">
+                          <button type="submit" class="btn btn-primary">Save Data</button>
+                      </div>
                     </div>
                   </div>
                   <div class="card card-danger">

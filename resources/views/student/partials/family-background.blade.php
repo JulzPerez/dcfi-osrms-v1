@@ -73,7 +73,6 @@
                                       <div class="form-group">
                                           <label class="col-form-label">Sex <strong class="text-red">*</strong></label>
                                           <select class="form-control" name="sex" value="{{ old('sex') }}" data-placeholder="Select from options below" style="width: 100%;">
-                                           <option>--Select here --</option>
                                             <option>Male</option>
                                             <option>Female</option>                             
                                             
@@ -121,7 +120,7 @@
                                     
                                   </div>  
                                   <div class="row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                       <div class="form-group">
                                           <label>Contact Number <strong class="text-red">*</strong></label>
                                           <input  type="text" class="form-control"  name="contact_no" value="{{ old('contact_no') }}" data-inputmask='"mask": "99999999999"' data-mask>
@@ -132,7 +131,7 @@
 
                                       </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                       <div class="form-group">
                                           <label>No. of siblings <strong class="text-red">*</strong></label>
                                           <input  type="text" class="form-control"  name="no_siblings" value="{{ old('no_siblings') }}" data-inputmask='"mask": "99"' data-mask>
@@ -144,7 +143,7 @@
                                       </div>
                                     </div>
                                     
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                       <div class="form-group">
                                         <label>Birth Order <strong class="text-red">*</strong></label>
                                         <input  type="text" class="form-control"  name="birth_order" value="{{ old('birth_order') }}" data-inputmask='"mask": "99"' data-mask>
@@ -174,11 +173,6 @@
                                       </div>
                                     </div>
 
-                                    
-                                    
-                                  </div>  
-
-                                  <div class="row">
                                     <div class="col-md-3">
                                       
                                       <div class="form-group">
@@ -191,58 +185,10 @@
                                         
                                       </div>
                                     </div>
-                                    <div class="col-md-3">
-                                      <div class="form-group">
-                                        <label>Ethnicity <strong class="text-red">*</strong></label>
-                                          <select class="form-control " name="ethnicity"  style="width: 100%;">
-                                          <option value=""> --Select here -- </option>
+                                    
+                                  </div>  
 
-                                              @foreach($ethnicities as $ethnicity)
-                                                    <option value="{{$ethnicity->id}}"> {{$ethnicity->name}} </option>
-                                              @endforeach
-                                          </select>
-
-                                          @if ($errors->has('ethnicity'))
-                                            <span class="text-danger">{{ $errors->first('ethnicity') }}</span>
-                                          @endif 
-                                        
-                                      </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                      <div class="form-group">
-                                          <label> Mother Tounge <strong class="text-red">*</strong></label>
-                                          <select class="form-control " name="mother_tongue"  style="width: 100%;">
-                                            <option value=""> --Select here -- </option>
-                                                @foreach($mother_tongues as $mother_tongue)
-                                                    <option value="{{$mother_tongue->id}}"> {{$mother_tongue->name}} </option>
-                                                @endforeach 
-                                          </select>
-
-                                          @if ($errors->has('mother_tongue'))
-                                            <span class="text-danger">{{ $errors->first('mother_tongue') }}</span>
-                                          @endif 
-                                        
-                                      </div>
-                                    </div>
-                                    <!-- <div class="col-md-3">
-                                      <div class="form-group">
-                                          <label>Modality <strong class="text-red">*</strong></label>
-                                          <select class="form-control " name="modality"  style="width: 100%;">
-                                            <option value=""> --Select here -- </option>    
-                                              @foreach($modalities as $modality)
-                                                    <option value="{{$modality->id}}"> {{$modality->name}} </option>
-                                                @endforeach 
-                                          </select>
-
-                                          @if ($errors->has('modality'))
-                                            <span class="text-danger">{{ $errors->first('modality') }}</span>
-                                          @endif 
-                                        
-                                      </div>
-                                    </div>  -->                                                      
-                                  </div> 
-
-                                  <hr class="">
+                                  <hr class="border1">
                                   <h5 style="color:red">Address</h5>
                                   <div class="row">
                                   
@@ -307,8 +253,63 @@
                                         
                                   </div> 
                                   
-                                  <hr class="">
-                          
+                                  <hr class="border1">
+
+                                  
+                                  <div class="row">
+                                    <div class="col-md-3">
+                                      <div class="form-group">
+                                        <label>Ethnicity <strong class="text-red">*</strong></label>
+                                          <select class="form-control " name="ethnicity"  style="width: 100%;">
+                                          <option value=""> --Select here -- </option>
+
+                                              @foreach($ethnicities as $ethnicity)
+                                                    <option value="{{$ethnicity->id}}"> {{$ethnicity->name}} </option>
+                                              @endforeach
+                                          </select>
+
+                                          @if ($errors->has('ethnicity'))
+                                            <span class="text-danger">{{ $errors->first('ethnicity') }}</span>
+                                          @endif 
+                                        
+                                      </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                      <div class="form-group">
+                                          <label> Mother Tounge <strong class="text-red">*</strong></label>
+                                          <select class="form-control " name="mother_tongue"  style="width: 100%;">
+                                            <option value=""> --Select here -- </option>
+                                                @foreach($mother_tongues as $mother_tongue)
+                                                    <option value="{{$mother_tongue->id}}"> {{$mother_tongue->name}} </option>
+                                                @endforeach 
+                                          </select>
+
+                                          @if ($errors->has('mother_tongue'))
+                                            <span class="text-danger">{{ $errors->first('mother_tongue') }}</span>
+                                          @endif 
+                                        
+                                      </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                      <div class="form-group">
+                                          <label>Modality <strong class="text-red">*</strong></label>
+                                          <select class="form-control " name="modality"  style="width: 100%;">
+                                            <option value=""> --Select here -- </option>    
+                                              @foreach($modalities as $modality)
+                                                    <option value="{{$modality->id}}"> {{$modality->name}} </option>
+                                                @endforeach 
+                                          </select>
+
+                                          @if ($errors->has('modality'))
+                                            <span class="text-danger">{{ $errors->first('modality') }}</span>
+                                          @endif 
+                                        
+                                      </div>
+                                    </div>                                                        
+                                  </div>
+                                                    
+                                
+                                
                             </form>
             
                         </div>
