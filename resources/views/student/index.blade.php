@@ -38,41 +38,9 @@
     </div>
     @else 
     <div class="row ">
-        <div class="col-md-3">
-
-            <!-- Profile Image -->
-            <div class="card card-primary">
-            <div class="card-body box-profile">
-                <div class="text-center">
-                    <a href="#">
-                        <img class="profile-user-img img-fluid img-circle"
-                            src="images/profile.png"
-                            alt="User profile picture">
-                    </a>
-                </div>
-
-                <h3 class="profile-username text-center">{{ucfirst($student->first_name).' '.ucfirst($student->last_name)}}</h3>
-
-                <p class="text-muted text-center">{{ $student->student_type}}</p>
-
-                <hr>
-                <a href="{{ route('student.edit', $student->id) }}">
-                    <button  type="button" class="btn btn-primary ">Edit Info</button>
-                </a>
-            
-                <a href="#">
-                    <button  type="button" class="btn btn-primary ">Change Picture</button>
-                </a>
-                
-                <hr>
-
-            </div>
-            <!-- /.card-body -->
-            </div>
-            <!-- /.card -->            
-        </div>
+        
         <!-- /.col -->
-        <div class="col-md-9">
+        <div class="col-md-12">
             <div class="card card-primary">
                 <div class="card-header">
                     <h5> Student Information </h5>
@@ -184,12 +152,12 @@
 
                         <tr>
                             <td class="text-muted">Ethnicity</td>
-                            <td class="text-olive"> {{$ethnicity_name}}</td>
+                            <td class="text-olive"> </td>
                         </tr>
 
                         <tr>
                             <td class="text-muted">Mother Tounge</td>
-                            <td class="text-olive"> {{$mother_tongue_name}}</td>
+                            <td class="text-olive"> </td>
                         </tr>
                         
                     </tbody>                          

@@ -44,7 +44,7 @@
                       <div class="col-md-3">
                         <div class="form-group">
                           <label>LRN </label>
-                          <input  type="text" class="form-control"  name="lrn" value="{{ old('lrn') }}" id="lrn" data-inputmask='"mask": "999999999999"' data-mask >
+                          <input  type="text" class="form-control"  name="lrn" id="lrn" data-inputmask='"mask": "999999999999"' data-mask >
                           
                             
                             @error('lrn')
@@ -60,7 +60,7 @@
                       <div class="col-md-3">
                         <div class="form-group">
                           <label>First Name <strong class="text-red">*</strong></label>
-                          <input  type="text" class="form-control" name="first_name" value="{{ old('first_name') }}"> 
+                          <input  type="text" class="form-control" name="first_name" > 
                           <span class="text-danger error-text first_name_error"></span>
                           
                         </div>
@@ -68,7 +68,7 @@
                       <div class="col-md-3">
                         <div class="form-group">
                           <label>Middle Name <strong class="text-red">*</strong></label>
-                          <input  type="text" class="form-control" name="middle_name" value="{{ old('middle_name') }}">
+                          <input  type="text" class="form-control" name="middle_name" >
                         
                           <span class="text-danger error-text middle_name_error"></span>
 
@@ -77,7 +77,7 @@
                       <div class="col-md-3">
                         <div class="form-group">
                           <label>Last Name <strong class="text-red">*</strong></label>
-                          <input  type="text" class="form-control"  name="last_name" value="{{ old('last_name') }}">
+                          <input  type="text" class="form-control"  name="last_name" >
                           
                           <span class="text-danger error-text last_name_error"></span>
                           
@@ -86,7 +86,7 @@
                       <div class="col-md-3">
                         <div class="form-group">
                           <label>Suffix/Extension Name</label>
-                          <input  type="text" class="form-control"  name="name_extension" value="{{ old('name_extension') }}">
+                          <input  type="text" class="form-control"  name="name_extension" >
                           
                           <span class="text-danger error-text name_extension_error"></span>
                           
@@ -98,7 +98,7 @@
                       <div class="col-md-3">
                         <div class="form-group">
                             <label class="col-form-label">Sex <strong class="text-red">*</strong></label>
-                            <select class="form-control" name="sex" value="{{ old('sex') }}" data-placeholder="Select from options below" style="width: 100%;">
+                            <select class="form-control" name="sex" data-placeholder="Select from options below" style="width: 100%;">
                             <option value="">--Select here --</option>
                               <option value="Male">Male</option>
                               <option value="Female">Female</option>                             
@@ -112,7 +112,7 @@
                       <div class="col-md-3">                  
                         <div class="form-group">
                             <label>Date of Birth <strong class="text-red">*</strong></label>                             
-                            <input type="date" class="date form-control" name="birthdate" value="{{ old('birthdate') }}">
+                            <input type="date" class="date form-control" name="birthdate">
                           
                             <span class="text-danger error-text birthdate_error"></span>                          
                         </div>  
@@ -121,7 +121,7 @@
                         
                         <div class="form-group">
                           <label>Age <strong class="text-red">*</strong></label>
-                          <input  type="text" class="form-control" name="age" value="{{ old('age') }}" data-inputmask='"mask": "99"' data-mask>
+                          <input  type="text" class="form-control" name="age" data-inputmask='"mask": "99"' data-mask>
                           
                           <span class="text-danger error-text age_error"></span>
                           
@@ -130,7 +130,7 @@
                       <div class="col-md-3">
                         <div class="form-group">
                           <label>Place of Birth <strong class="text-red">*</strong></label>
-                          <input  type="text" class="form-control" name="birth_place" value="{{ old('birth_place') }}">
+                          <input  type="text" class="form-control" name="birth_place" >
                           
                           <span class="text-danger error-text birth_place_error"></span> 
 
@@ -142,7 +142,7 @@
                       <div class="col-md-3">
                         <div class="form-group">
                             <label>Contact Number <strong class="text-red">*</strong></label>
-                            <input  type="text" class="form-control"  name="contact_no" value="{{ old('contact_no') }}" data-inputmask='"mask": "99999999999"' data-mask>
+                            <input  type="text" class="form-control"  name="contact_no" data-inputmask='"mask": "99999999999"' data-mask>
                             
                             <span class="text-danger error-text contact_no_error"></span>
 
@@ -151,7 +151,7 @@
                       <div class="col-md-3">
                         <div class="form-group">
                             <label>No. of siblings <strong class="text-red">*</strong></label>
-                            <input  type="text" class="form-control"  name="no_siblings" value="{{ old('no_siblings') }}" data-inputmask='"mask": "99"' data-mask>
+                            <input  type="text" class="form-control"  name="no_siblings" data-inputmask='"mask": "99"' data-mask>
                             
                             <span class="text-danger error-text no_siblings_error"></span>
 
@@ -161,7 +161,7 @@
                       <div class="col-md-3">
                         <div class="form-group">
                           <label>Birth Order <strong class="text-red">*</strong></label>
-                          <input  type="text" class="form-control"  name="birth_order" value="{{ old('birth_order') }}" data-inputmask='"mask": "99"' data-mask>
+                          <input  type="text" class="form-control"  name="birth_order"  data-inputmask='"mask": "99"' data-mask>
                           
                           <span class="text-danger error-text birth_order_error"></span>
                           
@@ -171,15 +171,16 @@
                       <div class="col-md-3">
                         <div class="form-group">
                           <label>Religion <strong class="text-red">*</strong></label>
-                            <select class="form-control " name="religion"   style="width: 100%;">
+                            <select class="form-control " name="religion" id="religion"  style="width: 100%;">
                                 <option value="">--- Please select ---</option>
 
                                     @foreach($religions as $religion)
                                         <option value="{{$religion->ID}}"> {{$religion->Name}} </option>
                                     @endforeach 
                             </select>
-
                             <span class="text-danger error-text religion_error"></span> 
+
+                            <input type="hidden" name="religion_name" id="religion_name" value="">
 
                         </div>
                       </div>                                   
@@ -191,7 +192,7 @@
                         
                         <div class="form-group">
                           <label>Citizenship <strong class="text-red">*</strong></label>
-                          <input  type="text" class="form-control" name="citizenship" value="{{ old('citizenship') }}">
+                          <input  type="text" class="form-control" name="citizenship" >
                           
                           <span class="text-danger error-text citizenship_error"></span>
                           
@@ -253,7 +254,7 @@
                       <div class="col-md-3">
                         <div class="form-group">
                             <label>Purok/Street/Barangay </label>
-                            <input  type="text" class="form-control"  name="purok" value="{{ old('purok') }}">
+                            <input  type="text" class="form-control"  name="purok" >
                             
                             <span class="text-danger error-text purok_error"></span>
 
@@ -319,16 +320,17 @@
 
 @section('scripts')
     <script type="text/javascript">
-        $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-        });
 
-
+      
         $(function(){
           $("#main_form").on('submit', function(e){
               e.preventDefault();
+
+              $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+              });
 
               $.ajax({
                   url:$(this).attr('action'),
@@ -348,13 +350,12 @@
                       }else{
                           $('#main_form')[0].reset();
                           alert(data.msg);
+                          window.location.href = "/student";
                       }
                   }
               });
           });
         });
-
-        
 
         $("#province").change(function(){
             $.ajax({
@@ -375,6 +376,7 @@
                 }
             });
         });
+      
 
     </script>
 @endsection

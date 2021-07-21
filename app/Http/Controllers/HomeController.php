@@ -34,7 +34,9 @@ class HomeController extends Controller
                 //dd($student);
 
         if($student != null)
+        {
             session(['student_id'=> $student->id ]);
+        }            
         else
             session(['student_id' => null]);        
 

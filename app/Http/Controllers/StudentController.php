@@ -51,15 +51,14 @@ class StudentController extends Controller
                         ->where('user_id', '=', $userid)
                         ->first();  
 
-                    $ethnicity_name = DB::table('ethnicity')->where('id',$student->ethnicity_id)->first()->name;
+                    /* $ethnicity_name = DB::table('ethnicity')->where('id',$student->ethnicity_id)->first()->name;
                     //$modality_name = DB::table('modality')->where('id',$student->modality_id)->first()->name;
                     $mother_tongue_name = DB::table('mother_tongue')->where('id',$student->mother_tongue_id)->first()->name; 
+                    */
+                    $student_exist = true; 
 
-                    $student_exist = true;
-
-                    return view('student.index', compact('student','ethnicity_name', 'mother_tongue_name'));
-                }
-                  
+                    return view('student.index', compact('student_exist','student',/*'ethnicity_name', 'mother_tongue_name'*/) );
+                }                  
             }
     }
 
@@ -74,7 +73,6 @@ class StudentController extends Controller
 
             $ethnicities = DB::table('ethnicity')->get();
             $mother_tongues = DB::table('mother_tongue')->get();
-            //$modalities = DB::table('modality')->get(); 
             $religions = DB::table('religion')->get();             
 
             return view('student.create', compact('provinces','ethnicities', 'mother_tongues','religions' )); 
@@ -89,7 +87,7 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-
+        //dd(session('religion_name'));
         $validator = Validator::make($request->all(),[
             'first_name' => 'required|string|max:191',
             'middle_name' => 'required|string|max:191',
@@ -139,6 +137,9 @@ class StudentController extends Controller
             return response()->json(['status'=>0, 'error'=>$validator->errors()->toArray()]);
         }
         else{
+
+            $userid = session('user_id');
+            $studentID = date('Y').'-'.mt_rand(100000 ,599999);
             
             try
             {
@@ -168,8 +169,6 @@ class StudentController extends Controller
                     
                 ]);
     
-                session(['student_id' => $studentID]);
-    
                 //return redirect('/student')->with('success', 'Record saved successfully!');
             }
             catch(\Illuminate\Database\QueryException $ex)
@@ -182,105 +181,10 @@ class StudentController extends Controller
             }
 
             if( $query ){
+                session(['student_id' => $studentID]);
                 return response()->json(['status'=>1, 'msg'=>'The record has been successfully added!']);
             }
-        }
-
-        //dd($request);
-        /* if ($validator->fails()) {
-            return response()->json();
-        } */
-
-          /* $this->validate($request, [
-            'first_name' => 'required|string|max:191',
-            'middle_name' => 'required|string|max:191',
-            'last_name' => 'required|string|max:191',
-            'contact_no' => 'required|string',
-            'sex' => 'required|string|max:191',
-            'age' => 'required|numeric|max:191',
-            'birthdate' => 'required',
-            'birth_place' => 'required|string|max:191',
-            'citizenship' => 'required|string|max:191',
-            'no_siblings' => 'required|string|max:191',
-            'religion' => 'required|string|max:191',
-            'birth_order' => 'required|string|max:191',
-            //'purok' => 'required|string|max:191',
-          
-            //'city' => 'required|string|max:191',  
-            //'municipality' => 'required|string|max:191', 
-            //'province' => 'required|string|max:191',  
-
-            //'father' => 'required|string',
-            //'mother' => 'required|string',
-          
-            
-            //'ethnicity' => 'required',
-            //'modality' => 'required',
-            //'mother_tongue' => 'required',
-            
-        ], 
-            [
-            'first_name.required' => 'Required field',
-            'middle_name.required' => 'Required field',
-            'last_name.required' => 'Required field',
-            'contact_no.required' => 'Required field',
-            'sex.required' => 'Required field',
-            'birthdate.required' => 'Required field',
-            'birth_place.required' => 'Required field',
-            'citizenship.required' => 'Required field',
-            'no_siblings.required' => 'Required field',
-            'religion.required' => 'Required field',
-            'birth_order.required' => 'Required field',
-            //'purok.required' => 'Required field',
-           
-            //'municipality.required' => 'Required field', 
-            //'province.required' => 'Required field',
-
-            //'father.required' => 'Required Field',
-            //'mother.required' => 'Required Field',
-
-            //'ethnicity.required' => 'Required field',
-            //'modality.required' => 'Required field',
-            //'mother_tongue.required' => 'Required field',
-            
-            ]
-        ); 
-  */
-        //$userid = \Auth::user()->id; 
-        $userid = session('user_id');
-        $studentID = date('Y').'-'.mt_rand(100000 ,599999);
-        //$studentID = date('Y').'-'.uniqid();
-
-        //dd($studentID);
-    
-       /*  Student::create([
-            'id' => $studentID,
-            'user_id' => $userid, 
-            'LRN' => $request['lrn'],
-            'first_name' => $request['first_name'],
-            'middle_name' => $request['middle_name'],
-            'last_name' => $request['last_name'],
-            'name_extension' => $request['name_extension'],
-            'contact_no' => $request['contact_no'],
-            'sex' => $request['sex'],
-            'age' => $request['age'],
-            'birthday' => $request['birthdate'],
-            'birthplace' => $request['birth_place'],
-            'citizenship' => $request['citizenship'],
-            'religion' => $request['religion'],
-            'no_siblings' => $request['no_siblings'],
-            'birth_order' => $request['birth_order'],
-            'purok' => $request['purok'],
-           
-            'municipality_no' => $request['municipality'], 
-            'city_no' => $request['city'],
-            'ethnicity_id' => $request['ethnicity'],
-            'modality_id' => $request['modality'],
-            'mother_tongue_id' => $request['mother_tongue'],
-        ]); */
-
-        
-
+        }       
             
     }
 

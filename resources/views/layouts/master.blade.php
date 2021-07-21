@@ -18,6 +18,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
       display: block;
       margin-left: auto;
       margin-right: auto;
+      max-width: 75%;
+      height: 120px;
     }
 
     div.user-center {
@@ -121,26 +123,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-     <!--  <img src="./img/logo.png" alt="Logo" class="brand-image img-circle elevation-3"
-           style="opacity: .8"> -->
-      <span class="brand-text font-weight-light user-center">DCFI <br> Online School Record <br> Management System </span>
+      <img src="/images/logo.jpg" alt="Logo" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight-light user-center">DCFI-SRMS </span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <!-- <div class="image">
-          <img src="./img/profile.png" class="img-circle elevation-2" alt="User Image">
-        </div>
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        
-        <div class="info user-center">
-          <a href="#" class="d-block">
-              {{Auth::user()->first_name.' '.Auth::user()->last_name}}
-             
-          </a>
-        </div>
-      </div> -->
+      <div class="image">
+        <a href="#" class="brand-link">
+          <img src="/images/profile.png" class="img-circle elevation-2" alt="User Image">
+          <h5 class="text-white" style="text-align:center"> {{ucwords( Auth::user()->first_name .' '.Auth::user()->last_name ) }} </h5>
+        </a>  
+      </div>
+      <hr style="">
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
