@@ -58,7 +58,7 @@ class EnrollmentController extends Controller
 
         DB::table('enrollment')->insert([
             'student_id' => $student_id,  
-            'schoolyear_id' => $request['school_year_id'],
+            'school_year_id' => $request['school_year_id'],
             'level_id' => $request['level'],
             'strand_id' => $request['strand'],
             'category' => $request['category'],
