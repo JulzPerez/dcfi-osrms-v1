@@ -40,7 +40,7 @@
     <!-- ./row -->
     <div class="row">
           <div class="col-md-12">
-            <div class="card card-primary card-tabs">
+            <div class="card card-danger card-tabs">
               <div class="card-header p-0 pt-1">
                 <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
                   <li class="nav-item">
@@ -145,10 +145,10 @@
                             
 
                             <tr>
-                                <td class="text-muted">Father</td>
+                                <td class="text-muted" width="30%">Father</td>
                                 <td class="text-olive"> </td>
                             </tr>
-                            <tr>
+                            <tr class="text-muted" width="30%">
                                 <td class="text-muted">Father Occupation</td>
                                 <td class="text-olive"></td>
                             </tr>
@@ -174,7 +174,7 @@
                             
 
                             <tr>
-                                <td class="text-muted">Purok</td>
+                                <td class="text-muted" width="30%">Purok</td>
                                 <td class="text-olive"> {{ ucfirst($student->purok)}}</td>
                             </tr>
 
