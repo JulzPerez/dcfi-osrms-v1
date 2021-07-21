@@ -13,12 +13,36 @@
     </div>
     <br>
 
+    @if(!$student_exist)
+    <div class="row">
+        
+        <div class="card card-primary">
+            <div class="card-header">
+                Student Record
+            </div>
+        
+            <div class="card-body">
+                <div class="row">
+                    <p class="text-green text-center"><strong >You have no exisiting record from the database. Please click on 'Create' button to submit record.</strong></p>
+                </div>
+            </div> <!--end card-body -->
+            <div class="card-footer">
+                <a href="{{ route('student.create') }}">
+                    <button type="button" class="btn btn-outline-primary btn-block">
+                        <i class="fa fa-bell"></i> Create
+                    </button>
+                </a>
+                
+            </div>        
+        </div>
+    </div>
+    @else 
     <div class="row ">
         <div class="col-md-3">
 
             <!-- Profile Image -->
             <div class="card card-primary">
-              <div class="card-body box-profile">
+            <div class="card-body box-profile">
                 <div class="text-center">
                     <a href="#">
                         <img class="profile-user-img img-fluid img-circle"
@@ -35,15 +59,15 @@
                 <a href="{{ route('student.edit', $student->id) }}">
                     <button  type="button" class="btn btn-primary ">Edit Info</button>
                 </a>
-               
+            
                 <a href="#">
                     <button  type="button" class="btn btn-primary ">Change Picture</button>
                 </a>
                 
                 <hr>
 
-              </div>
-              <!-- /.card-body -->
+            </div>
+            <!-- /.card-body -->
             </div>
             <!-- /.card -->            
         </div>
@@ -53,8 +77,8 @@
                 <div class="card-header">
                     <h5> Student Information </h5>
                 </div>
-              
-              <div class="card-body">
+            
+            <div class="card-body">
                 <table class="table table-bordered table-condensed">
                     <tbody>
                         <tr>
@@ -155,7 +179,7 @@
 
                         <tr>
                             <td class="text-muted">Modality</td>
-                            <td class="text-olive">{{$modality_name}} </td>
+                            <td class="text-olive"> </td>
                         </tr>
 
                         <tr>
@@ -172,11 +196,15 @@
                 </table>
                 
                 
-              </div><!-- /.card-body -->
+            </div><!-- /.card-body -->
             </div>
             <!-- /.nav-tabs-custom -->
         </div>
-         <!-- /.col -->
+        <!-- /.col -->
     </div>
+
+        
+
+    @endif
 </div>
 @endsection

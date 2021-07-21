@@ -1,42 +1,4 @@
-@extends('layouts.master')
-
-@section('main_content')
-<div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-12">
-        <div>
-          @if ($errors->any())
-            <div class="alert alert-danger">
-              <ul>
-                  @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                  @endforeach
-              </ul>
-              <p>
-              Please fill-in required information!
-              </p>
-            </div><br />
-          @endif
-            
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-12">        
-        <div id="accordion"> 
-          <div class="card card-danger">
-            <div class="card-header">
-              <h4 class="card-title mb-0">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                  Personal Background
-                </a>
-              </h4>
-            </div>
-            <div id="collapseOne" class="panel-collapse collapse in show">
-              
-                <form  id="main_form"  action="{{route('student.store')}}" method="POST">
-                <!-- method="POST" action="" -->
+<form method="POST" action="{{route('student.store')}}">
                 @csrf
                   <div class="card-body ">
                   
@@ -61,8 +23,11 @@
                         <div class="form-group">
                           <label>First Name <strong class="text-red">*</strong></label>
                           <input  type="text" class="form-control" name="first_name" value="{{ old('first_name') }}"> 
-                          <span class="text-danger error-text first_name_error"></span>
-                          
+
+                          @if ($errors->has('first_name'))
+                              <span class="text-danger">{{ $errors->first('first_name') }}</span>
+                          @endif                          
+
                         </div>
                       </div>
                       <div class="col-md-3">
@@ -70,7 +35,9 @@
                           <label>Middle Name <strong class="text-red">*</strong></label>
                           <input  type="text" class="form-control" name="middle_name" value="{{ old('middle_name') }}">
                         
-                          <span class="text-danger error-text middle_name_error"></span>
+                          @if ($errors->has('middle_name'))
+                              <span class="text-danger">{{ $errors->first('middle_name') }}</span>
+                          @endif 
 
                         </div>
                       </div>
@@ -79,7 +46,9 @@
                           <label>Last Name <strong class="text-red">*</strong></label>
                           <input  type="text" class="form-control"  name="last_name" value="{{ old('last_name') }}">
                           
-                          <span class="text-danger error-text last_name_error"></span>
+                          @if ($errors->has('last_name'))
+                              <span class="text-danger">{{ $errors->first('last_name') }}</span>
+                          @endif 
                           
                         </div>
                       </div>
@@ -88,7 +57,9 @@
                           <label>Suffix/Extension Name</label>
                           <input  type="text" class="form-control"  name="name_extension" value="{{ old('name_extension') }}">
                           
-                          <span class="text-danger error-text name_extension_error"></span>
+                          @if ($errors->has('name_extension'))
+                              <span class="text-danger">{{ $errors->first('name_extension') }}</span>
+                          @endif 
                           
                         </div>
                       </div>
@@ -105,7 +76,9 @@
                               
                             </select>
                             
-                            <span class="text-danger error-text sex_error"></span>
+                            @if ($errors->has('sex'))
+                              <span class="text-danger">{{ $errors->first('sex') }}</span>
+                            @endif 
                           
                         </div>
                       </div>
@@ -114,7 +87,9 @@
                             <label>Date of Birth <strong class="text-red">*</strong></label>                             
                             <input type="date" class="date form-control" name="birthdate" value="{{ old('birthdate') }}">
                           
-                            <span class="text-danger error-text birthdate_error"></span>                          
+                            @if ($errors->has('birthdate'))
+                              <span class="text-danger">{{ $errors->first('birthdate') }}</span>
+                            @endif                            
                         </div>  
                       </div>
                       <div class="col-md-3">
@@ -123,7 +98,9 @@
                           <label>Age <strong class="text-red">*</strong></label>
                           <input  type="text" class="form-control" name="age" value="{{ old('age') }}" data-inputmask='"mask": "99"' data-mask>
                           
-                          <span class="text-danger error-text age_error"></span>
+                            @if ($errors->has('age'))
+                              <span class="text-danger">{{ $errors->first('age') }}</span>
+                            @endif
                           
                         </div>
                       </div>
@@ -132,8 +109,9 @@
                           <label>Place of Birth <strong class="text-red">*</strong></label>
                           <input  type="text" class="form-control" name="birth_place" value="{{ old('birth_place') }}">
                           
-                          <span class="text-danger error-text birth_place_error"></span> 
-
+                            @if ($errors->has('birth_place'))
+                              <span class="text-danger">{{ $errors->first('birth_place') }}</span>
+                            @endif                              
                         </div>
                       </div>                                     
                     </div> 
@@ -144,7 +122,9 @@
                             <label>Contact Number <strong class="text-red">*</strong></label>
                             <input  type="text" class="form-control"  name="contact_no" value="{{ old('contact_no') }}" data-inputmask='"mask": "99999999999"' data-mask>
                             
-                            <span class="text-danger error-text contact_no_error"></span>
+                            @if ($errors->has('contact_no'))
+                              <span class="text-danger">{{ $errors->first('contact_no') }}</span>
+                            @endif
 
                         </div>
                       </div>
@@ -153,7 +133,9 @@
                             <label>No. of siblings <strong class="text-red">*</strong></label>
                             <input  type="text" class="form-control"  name="no_siblings" value="{{ old('no_siblings') }}" data-inputmask='"mask": "99"' data-mask>
                             
-                            <span class="text-danger error-text no_siblings_error"></span>
+                            @if ($errors->has('no_siblings'))
+                              <span class="text-danger">{{ $errors->first('no_siblings') }}</span>
+                            @endif
 
                         </div>
                       </div>
@@ -163,7 +145,9 @@
                           <label>Birth Order <strong class="text-red">*</strong></label>
                           <input  type="text" class="form-control"  name="birth_order" value="{{ old('birth_order') }}" data-inputmask='"mask": "99"' data-mask>
                           
-                          <span class="text-danger error-text birth_order_error"></span>
+                            @if ($errors->has('birth_order'))
+                              <span class="text-danger">{{ $errors->first('birth_order') }}</span>
+                            @endif
                           
                         </div>
                       </div>
@@ -179,7 +163,9 @@
                                     @endforeach 
                             </select>
 
-                            <span class="text-danger error-text religion_error"></span> 
+                            @if ($errors->has('religion'))
+                              <span class="text-danger">{{ $errors->first('religion') }}</span>
+                            @endif  
 
                         </div>
                       </div>                                   
@@ -193,7 +179,9 @@
                           <label>Citizenship <strong class="text-red">*</strong></label>
                           <input  type="text" class="form-control" name="citizenship" value="{{ old('citizenship') }}">
                           
-                          <span class="text-danger error-text citizenship_error"></span>
+                            @if ($errors->has('citizenship'))
+                              <span class="text-danger">{{ $errors->first('citizenship') }}</span>
+                            @endif
                           
                         </div>
                       </div>
@@ -208,7 +196,9 @@
                                 @endforeach
                             </select>
 
-                            <span class="text-danger error-text ethnicity_error"></span>
+                            @if ($errors->has('ethnicity'))
+                              <span class="text-danger">{{ $errors->first('ethnicity') }}</span>
+                            @endif 
                           
                         </div>
                       </div>
@@ -222,7 +212,9 @@
                                   @endforeach 
                             </select>
 
-                            <span class="text-danger error-text mother_tongue_error"></span>
+                            @if ($errors->has('mother_tongue'))
+                              <span class="text-danger">{{ $errors->first('mother_tongue') }}</span>
+                            @endif 
                           
                         </div>
                       </div>
@@ -252,10 +244,12 @@
                     <div class="row">                                  
                       <div class="col-md-3">
                         <div class="form-group">
-                            <label>Purok/Street/Barangay </label>
+                            <label>Purok/Street </label>
                             <input  type="text" class="form-control"  name="purok" value="{{ old('purok') }}">
                             
-                            <span class="text-danger error-text purok_error"></span>
+                            @if ($errors->has('purok'))
+                              <span class="text-danger">{{ $errors->first('purok') }}</span>
+                            @endif 
 
                         </div>
                       </div> 
@@ -270,7 +264,9 @@
                                   @endforeach 
                             </select>
 
-                            <span class="text-danger error-text province_error"></span>
+                            @if ($errors->has('province'))
+                              <span class="text-danger">{{ $errors->first('province') }}</span>
+                            @endif 
                           
                         </div>
                       </div>
@@ -283,7 +279,9 @@
                     
                             </select>
                             
-                            <span class="text-danger error-text city_error"></span>
+                            @if ($errors->has('city'))
+                              <span class="text-danger">{{ $errors->first('city') }}</span>
+                            @endif 
 
                         </div>
                       </div>  
@@ -296,7 +294,9 @@
                                         
                             </select>
                             
-                            <span class="text-danger error-text municipality_error"></span>
+                            @if ($errors->has('municipality'))
+                              <span class="text-danger">{{ $errors->first('municipality') }}</span>
+                            @endif 
 
                         </div>
                       </div> 
@@ -307,75 +307,3 @@
                   </div>
                     
                 </form>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </div>
-</div>
-@endsection
-
-@section('scripts')
-    <script type="text/javascript">
-        $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-        });
-
-
-        $(function(){
-          $("#main_form").on('submit', function(e){
-              e.preventDefault();
-
-              $.ajax({
-                  url:$(this).attr('action'),
-                  method:$(this).attr('method'),
-                  data:new FormData(this),
-                  processData:false,
-                  dataType:'json',
-                  contentType:false,
-                  beforeSend:function(){
-                      $(document).find('span.error-text').text('');
-                  },
-                  success:function(data){
-                      if(data.status == 0){
-                          $.each(data.error, function(prefix, val){
-                              $('span.'+prefix+'_error').text(val[0]);
-                          });
-                      }else{
-                          $('#main_form')[0].reset();
-                          alert(data.msg);
-                      }
-                  }
-              });
-          });
-        });
-
-        
-
-        $("#province").change(function(){
-            $.ajax({
-                url: "{{ route('getMunicipality') }}?province_no=" + $(this).val(),
-                method: 'GET',
-                success: function(data) {
-                    $('#municipality').html(data.html);
-                }
-            });
-        });
-    
-        $("#province").change(function(){
-            $.ajax({
-                url: "{{ route('getCity') }}?province_no=" + $(this).val(),
-                method: 'GET',
-                success: function(data) {
-                    $('#city').html(data.html);
-                }
-            });
-        });
-
-    </script>
-@endsection
-

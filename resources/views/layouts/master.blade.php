@@ -234,9 +234,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- Main content -->
     <div class="content">
+      @yield('main_content')
       <!-- <div class="container-fluid">
             <div class="row m-0">  --> 
-                @yield('main_content')
+                
             <!-- </div> --><!-- /.row -->
         
       <!-- </div> --><!-- /.container-fluid -->
@@ -265,7 +266,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 @endauth
 
 <script src="/js/app.js"></script>
-<script src="/js/popper.js"></script>
+
 
 @yield('scripts')
 

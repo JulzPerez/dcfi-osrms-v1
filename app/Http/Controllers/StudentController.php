@@ -5,9 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Student;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+   /*  protected function failedValidation(Validator $validator)
+    {
+        throw (new ValidationException($validator))
+                    ->errorBag($this->errorBag)
+                    ->redirectTo($this->getRedirectUrl());
+    } */
+
     /**
      * Display a listing of the resource.
      *
@@ -15,34 +28,36 @@ class StudentController extends Controller
      */
     public function index()
     {
-            $userid = \Auth::user()->id;
-            
+        //dd(session('student_id'));
             if(\Gate::allows('isProspectiveStudent') || \Gate::allows('isStudent'))
             {
 
-                if (DB::table('student')->where('user_id', $userid )->doesntExist() ) 
+                if ( session('student_id') == null ) 
                 {
-                    $provinces = DB::table('province')->get();
+                    /* $provinces = DB::table('province')->get();
 
                     $ethnicities = DB::table('ethnicity')->get();
                     $mother_tongues = DB::table('mother_tongue')->get();
-                    $modalities = DB::table('modality')->get(); 
-                    $religions = DB::table('religion')->get();
+                    //$modalities = DB::table('modality')->get(); 
+                    $religions = DB::table('religion')->get(); */
+                    $student_exist = false;
 
-                    return view('student.create', compact('provinces','ethnicities','mother_tongues','modalities', 'religions'));  
+                    return view('student.index', compact('student_exist'));  
                 }
                 else 
-                {                
+                {             
+                    $userid = session('user_id');   
                     $student = DB::table('student')
                         ->where('user_id', '=', $userid)
                         ->first();  
 
                     $ethnicity_name = DB::table('ethnicity')->where('id',$student->ethnicity_id)->first()->name;
-                    $modality_name = DB::table('modality')->where('id',$student->modality_id)->first()->name;
+                    //$modality_name = DB::table('modality')->where('id',$student->modality_id)->first()->name;
                     $mother_tongue_name = DB::table('mother_tongue')->where('id',$student->mother_tongue_id)->first()->name; 
 
-                    //dd($ethnicity_name);
-                    return view('student.index', compact('student','ethnicity_name','modality_name','mother_tongue_name'));
+                    $student_exist = true;
+
+                    return view('student.index', compact('student','ethnicity_name', 'mother_tongue_name'));
                 }
                   
             }
@@ -55,6 +70,14 @@ class StudentController extends Controller
      */
     public function create()
     {
+            $provinces = DB::table('province')->get();
+
+            $ethnicities = DB::table('ethnicity')->get();
+            $mother_tongues = DB::table('mother_tongue')->get();
+            //$modalities = DB::table('modality')->get(); 
+            $religions = DB::table('religion')->get();             
+
+            return view('student.create', compact('provinces','ethnicities', 'mother_tongues','religions' )); 
         
     }
 
@@ -66,8 +89,109 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validator = Validator::make($request->all(),[
+            'first_name' => 'required|string|max:191',
+            'middle_name' => 'required|string|max:191',
+            'last_name' => 'required|string|max:191',
+           
+            'contact_no' => 'required|string',
+            'sex' => 'required|string|max:191',
+            'birthdate' => 'required',
+            'birth_place' => 'required|string|max:191',
+            'citizenship' => 'required|string|max:191',
+            'no_siblings' => 'required|string|max:191',
+            'religion' => 'required|string|max:191',
+            'birth_order' => 'required|string|max:191',
+            'purok' => 'required',
+            'province' => 'required|string|max:191', 
+            'ethnicity' => 'required',
+            //'modality.required' => 'Required field',
+            'mother_tongue' => 'required'
+        ], 
+        [
+        'first_name.required' => 'Required field',
+        'middle_name.required' => 'Required field',
+        'last_name.required' => 'Required field',
+        'contact_no.required' => 'Required field',
+        'sex.required' => 'Required field',
+        'birthdate.required' => 'Required field',
+        'birth_place.required' => 'Required field',
+        'citizenship.required' => 'Required field',
+        'no_siblings.required' => 'Required field',
+        'religion.required' => 'Required field',
+        'birth_order.required' => 'Required field',
+        'purok.required' => 'Required field',
+       
+        'province.required' => 'Required field',
+
+        //'father.required' => 'Required Field',
+        //'mother.required' => 'Required Field',
+
+        'ethnicity.required' => 'Required field',
+        //'modality.required' => 'Required field',
+        'mother_tongue.required' => 'Required field',
+        
+        ]
+    );
+
+        if(!$validator->passes()){
+            return response()->json(['status'=>0, 'error'=>$validator->errors()->toArray()]);
+        }
+        else{
+            
+            try
+            {
+                $query = DB::table('student')->insert([
+                    'id' => $studentID,
+                    'user_id' => $userid, 
+                    'LRN' => $request['lrn'],
+                    'first_name' => $request['first_name'],
+                    'middle_name' => $request['middle_name'],
+                    'last_name' => $request['last_name'],
+                    'name_extension' => $request['name_extension'],
+                    'contact_no' => $request['contact_no'],
+                    'sex' => $request['sex'],
+                    'age' => $request['age'],
+                    'birthday' => $request['birthdate'],
+                    'birthplace' => $request['birth_place'],
+                    'citizenship' => $request['citizenship'],
+                    'religion' => $request['religion'],
+                    'no_siblings' => $request['no_siblings'],
+                    'birth_order' => $request['birth_order'],
+                    'purok' => $request['purok'],           
+                    'municipality_no' => $request['municipality'], 
+                    'city_no' => $request['city'],
+    
+                    'ethnicity_id' => $request['ethnicity'],
+                    'mother_tongue_id' => $request['mother_tongue'],
+                    
+                ]);
+    
+                session(['student_id' => $studentID]);
+    
+                //return redirect('/student')->with('success', 'Record saved successfully!');
+            }
+            catch(\Illuminate\Database\QueryException $ex)
+            { 
+                dd($ex->getMessage()); 
+            }
+            catch(\PDOException $exception)
+            {
+                dd($exception->getMessage());
+            }
+
+            if( $query ){
+                return response()->json(['status'=>1, 'msg'=>'The record has been successfully added!']);
+            }
+        }
+
         //dd($request);
-        $this->validate($request, [
+        /* if ($validator->fails()) {
+            return response()->json();
+        } */
+
+          /* $this->validate($request, [
             'first_name' => 'required|string|max:191',
             'middle_name' => 'required|string|max:191',
             'last_name' => 'required|string|max:191',
@@ -120,12 +244,16 @@ class StudentController extends Controller
             //'mother_tongue.required' => 'Required field',
             
             ]
-        );
+        ); 
+  */
+        //$userid = \Auth::user()->id; 
+        $userid = session('user_id');
+        $studentID = date('Y').'-'.mt_rand(100000 ,599999);
+        //$studentID = date('Y').'-'.uniqid();
 
-        $userid = \Auth::user()->id; 
-        $studentID = date('Y').'-'.mt_rand(100000,500000);
+        //dd($studentID);
     
-        Student::create([
+       /*  Student::create([
             'id' => $studentID,
             'user_id' => $userid, 
             'LRN' => $request['lrn'],
@@ -146,19 +274,14 @@ class StudentController extends Controller
            
             'municipality_no' => $request['municipality'], 
             'city_no' => $request['city'],
-            //'province' => $request['province'],
-
-            //'father_fullname' => $request['father'],
-            //'mother_fullname' => $request['mother'],
-            //'father_occupation' => $request['father_occupation'],
-            //'mother_occupation' => $request['mother_occupation'],
-
             'ethnicity_id' => $request['ethnicity'],
             'modality_id' => $request['modality'],
             'mother_tongue_id' => $request['mother_tongue'],
-        ]);
+        ]); */
 
-        return redirect('/student')->with('success', 'Record saved successfully!');
+        
+
+            
     }
 
     /**
@@ -205,6 +328,7 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $this->validate($request, [
             'first_name' => 'required|string|max:191',
             'middle_name' => 'required|string|max:191',

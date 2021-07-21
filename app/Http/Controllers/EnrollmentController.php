@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\DB;
 
 class EnrollmentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     protected function failedValidation(Validator $validator)
     {
         throw (new ValidationException($validator))
@@ -18,25 +23,26 @@ class EnrollmentController extends Controller
 
     public function index()
     {
-        $userid = \Auth::user()->id;
-        $student = Student::where('user_id',$userid)->first();
+        //$userid = \Auth::user()->id;
+        //$student = Student::where('user_id',$userid)->first();
+        $userid = session('user_id');
         
-        if($student != null)
+        if(session('student_id') != null)
         {
             $student_exist = true;
 
             $SY = DB::table('school_year')->where('current',1)->first();
-            $year = $SY->SY;
+            $SY_id = $SY->id;
 
-            $student_id = $student->id;
+            //$student_id = $student->id;
             $enrollment = DB::table('enrollment')
-                ->where('student_id', $student_id)
-                ->where('SY',$year)
+                ->where('student_id', session('student_id'))
+                ->where('schoolyear_id',$SY_id)
                 ->first();            
         }
         else
         {
-            $enrollment = false;
+            $enrollment = null;
             $student_exist = false;            
         }
 
@@ -52,7 +58,7 @@ class EnrollmentController extends Controller
 
         DB::table('enrollment')->insert([
             'student_id' => $student_id,  
-            'SY' => $request['SY'],
+            'schoolyear_id' => $request['school_year_id'],
             'level_id' => $request['level'],
             'strand_id' => $request['strand'],
             'category' => $request['category'],
@@ -66,10 +72,11 @@ class EnrollmentController extends Controller
 
     public function create_enrollForm()
     {
-        $userid = \Auth::user()->id;
-        $student_id = Student::where('user_id', $userid)->first()->id;
+        /* $userid = \Auth::user()->id;
+        $student_id = Student::where('user_id', $userid)->first()->id; */
 
-        if($student_id == null)
+
+        if(session('student_id') == null)
         {
             $no_student_record = true;
             return view('enrollment.create', compact('no_student_record'));  
