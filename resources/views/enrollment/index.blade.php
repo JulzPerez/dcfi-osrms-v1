@@ -20,6 +20,7 @@
             <br> Please go to Profile and submit details!</strong></p>
         </div>
     </div>
+    
     @else
 
         @if($enrollment != null)

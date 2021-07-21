@@ -27,10 +27,11 @@ class EnrollmentController extends Controller
         //$student = Student::where('user_id',$userid)->first();
         $userid = session('user_id');
         
+        
         if(session('student_id') != null)
         {
             $student_exist = true;
-
+            
             $SY = DB::table('school_year')->where('current',1)->first();
             $SY_id = $SY->id;
 
@@ -63,8 +64,7 @@ class EnrollmentController extends Controller
             'strand_id' => $request['strand'],
             'category' => $request['category'],
             'modality_id' => $request['modality'],
-            'semester' => $request['semester'],
-            
+            'semester' => $request['semester'],            
         ]);
 
         return redirect('/enrollment')->with('success', 'Record saved successfully!');     
