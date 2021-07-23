@@ -35,3 +35,9 @@ Route::get('/getTrack', 'EnrollmentController@getTrack')->name('getTrack');
 Route::get('/getStrand', 'EnrollmentController@getStrand')->name('getStrand');
 Route::get('/getModality', 'EnrollmentController@getModality')->name('getModality');
 
+//for payments
+Route::group(['prefix' => 'account'], function () {
+    Route::get('/', ['as' => 'account.index', 'uses' => 'AccountTrackingController@index']);
+    Route::get('/billDetails/{id}', ['as' => 'account.billDetails', 'uses' => 'AccountTrackingController@billDetails']);
+});
+

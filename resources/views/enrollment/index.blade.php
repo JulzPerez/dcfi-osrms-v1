@@ -26,7 +26,7 @@
         @if($enrollment != null)
         <div class="row ">
             <div class="col-md-6">   
-                <div class="card card-primary">
+                <div class="card card-danger">
                     <div class="card-header">
                         Enrollment Details
                     </div>
@@ -41,7 +41,7 @@
             
             </div>
             <div class="col-md-6">   
-                <div class="card card-primary">
+                <div class="card card-danger">
                     <div class="card-header">
                         Enrollment Status
                     </div>
@@ -80,7 +80,7 @@
         @else
         <div class="row ">
             <div class="col-md-6">   
-                <div class="card card-primary">
+                <div class="card card-danger">
                     <div class="card-header">
                         Enrollment Details
                     </div>

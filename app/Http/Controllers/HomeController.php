@@ -24,25 +24,43 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $userid = \Auth::user()->id;
-        session(['user_id'=> $userid ]);
-
-        $student = DB::table('student')
-                    ->select('id')
-                    ->where('user_id', $userid )
-                    ->first();
-                //dd($student);
-
-        if($student != null)
+        if(\Auth::check())
         {
-            session(['student_id'=> $student->id ]);
-        }            
-        else
-            session(['student_id' => null]);        
+            $userid = \Auth::user()->id;
+            session(['user_id'=> $userid ]);
 
-        //dd(session('student_id'));
+            $student = DB::table('student')
+                        ->select('id')
+                        ->where('user_id', $userid )
+                        ->first();
+                    //dd($student);
 
-        return view('home');
+            if($student != null)
+            {
+                session(['student_id'=> $student->id ]);
+            }            
+            else
+            {
+                session(['student_id' => null]);
+            }
+                        
+
+            $SY = DB::table('school_year')
+                    ->where('current',1)->first();
+            
+            if($SY)
+            {
+                session(['school_year_id' => $SY->id ] );
+                session(['school_year_name'=> $SY->SY ] );
+               
+            }                
+                
+
+            return view('home');
+        }
+        else{
+            //redirect to log-in page
+        }
     }
    
 }

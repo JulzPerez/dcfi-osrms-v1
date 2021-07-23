@@ -57,7 +57,7 @@ class EnrollmentController extends Controller
         $userid = \Auth::user()->id;
         $student_id = Student::where('user_id', $userid)->first()->id; 
 
-        DB::table('enrollment')->insert([
+        $enrollment_id = DB::table('enrollment')->insertGetId([
             'student_id' => $student_id,  
             'school_year_id' => $request['school_year_id'],
             'level_id' => $request['level'],
@@ -66,6 +66,7 @@ class EnrollmentController extends Controller
             'modality_id' => $request['modality'],
             'semester' => $request['semester'],            
         ]);
+        //session $enrollment_id
 
         return redirect('/enrollment')->with('success', 'Record saved successfully!');     
     }
@@ -83,8 +84,8 @@ class EnrollmentController extends Controller
         }
         else
         {
-            $SY = DB::table('school_year')->where('current',1)->first();     
-
+            $SY = session('school_year_name');   
+    
             $departments = DB::table('department')
                     ->get();
 

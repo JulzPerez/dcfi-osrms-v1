@@ -174,6 +174,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
 
           <li class="nav-item">
+            <a href="/account" class="nav-link">
+            <i class="nav-icon fas fa-upload"></i>
+              <p>
+                Account Tracking          
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a href="/upload" class="nav-link">
             <i class="nav-icon fas fa-upload"></i>
               <p>
