@@ -21,7 +21,8 @@ class AccountTrackingController extends Controller
                     ->where('enrollment.student_id',session('student_id'))
                     ->where('enrollment.school_year_id',session('school_year_id'))
                     ->get();
-        //dd($accounts);
+        /* dd($accounts);
+        session(['bill_id' => $accounts->bill_id]); */
 
         return view('account.index',compact('accounts'));
     }
@@ -35,5 +36,14 @@ class AccountTrackingController extends Controller
         //dd($billDetails);
 
         return view('account.billDetails',compact('billDetails'));
+    }
+    public function payments($id)
+    {
+        $billPayments = DB::table('bill_payment')
+                    ->where('bill_id',$id)
+                    ->get();
+        //dd($billPayments);
+
+        return view('account.payments',compact('billPayments'));
     }
 }

@@ -14,20 +14,9 @@
 
     <div class="row mt-3">
         <div class="col-md-12">
-            <div class="card card-primary card-outline">
+            <div class="card card-danger">
             <div class="card-header">
-                
-            
-                <form class="form-inline ml-3 float-right">
-                    <div class="input-group input-group-sm ">
-                        <input class="form-control form-control-navbar " type="search" placeholder="Search" aria-label="Search">
-                        <div class="input-group-append">
-                        <button class="btn btn-navbar" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                        </div>
-                    </div>
-                </form>
+                <h6>Bill Details</h6>
             </div>
                 
                 <div class="card-body"  >
@@ -35,9 +24,9 @@
                     <table class="table table-hover table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th style="width:5%">Bill ID</th>
-                                <th style="width:10%">Fee Name</th>
-                                <th style="width:20%">Amount</th>            
+                                <th style="width:20%">Bill ID</th>
+                                <th style="width:40%">Fee Name</th>
+                                <th style="width:200%">Amount</th>            
                             </tr>
                         </thead>
                       

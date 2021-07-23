@@ -39,5 +39,6 @@ Route::get('/getModality', 'EnrollmentController@getModality')->name('getModalit
 Route::group(['prefix' => 'account'], function () {
     Route::get('/', ['as' => 'account.index', 'uses' => 'AccountTrackingController@index']);
     Route::get('/billDetails/{id}', ['as' => 'account.billDetails', 'uses' => 'AccountTrackingController@billDetails']);
+    Route::get('/payments/{id}', ['as' => 'account.payments', 'uses' => 'AccountTrackingController@payments']);
 });
 
