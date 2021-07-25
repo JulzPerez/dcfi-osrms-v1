@@ -161,7 +161,7 @@
                       <div class="col-md-3">
                         <div class="form-group">
                           <label>Birth Order <strong class="text-red">*</strong></label>
-                          <input  type="text" class="form-control"  name="birth_order"  data-inputmask='"mask": "99"' data-mask>
+                          <input  type="number" class="form-control"  name="birth_order" >
                           
                           <span class="text-danger error-text birth_order_error"></span>
                           
