@@ -63,15 +63,9 @@ class StudentController extends Controller
                         
                         $student_exist = true; 
 
-                        if($ethnicity_name != null && $mother_tongue_name !=null  
-                        && $religion_name != null && $father != null && $mother != null)
-                        {
-                            return view('student.index', compact('student_exist','student','ethnicity_name', 'mother_tongue_name','religion_name','father','mother')) ;
-                        
-                        }
-                        else
-                            return response()->json(['error' => true, 'msg' => 'Something went wrong! Either some data does not exist for student record!' ]);
-                        
+                         return view('student.index', compact('student_exist','student','ethnicity_name', 'mother_tongue_name','religion_name','father','mother')) ;
+                   
+                            
                     }                                    
             }
     }

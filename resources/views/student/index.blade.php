@@ -140,7 +140,12 @@
                     </table>
                   </div>
                   <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
-                  <table class="table table-bordered table-condensed">
+                  
+                    @if($father == null)
+                        <p>There is no record for Fathers' Information</p>
+                    @else
+
+                    <table class="table table-bordered table-condensed">
                         <tbody>
                             <br>
                             <tr>
@@ -171,7 +176,19 @@
                                 <td class="text-olive">{{$father->contact_no}} </td>
                             </tr>
                             
-                            <tr>
+                                                        
+                            
+                        </tbody>                          
+                    </table>
+                    @endif
+
+                    @if($mother == null)
+                        <p>There is no record for Mother's Information</p>
+                    @else
+                    <table class="table table-bordered table-condensed">
+                        <tbody>
+                            <br>
+                             <tr>
                                 <td class="text-muted"><h5 class="text-red">Mother Info</h5></td>
                                 
                                 
@@ -200,6 +217,8 @@
                             
                         </tbody>                          
                     </table>
+                   @endif
+
 
                   </div>
                   <div class="tab-pane fade" id="custom-tabs-one-messages" role="tabpanel" aria-labelledby="custom-tabs-one-messages-tab">
