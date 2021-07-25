@@ -28,30 +28,23 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //dd(session('student_id'));
+       
             if(\Gate::allows('isProspectiveStudent') || \Gate::allows('isStudent'))
             {
+                $userid = session('user_id'); 
+                $student = DB::table('student')                
+                            ->where('user_id', $userid )
+                            ->first();
 
-                if(\Auth::check())
-                {
-                    if ( session('student_id') == null ) 
+                    if ( $student == null ) 
                     {
-                        /* $provinces = DB::table('province')->get();
 
-                        $ethnicities = DB::table('ethnicity')->get();
-                        $mother_tongues = DB::table('mother_tongue')->get();
-                        //$modalities = DB::table('modality')->get(); 
-                        $religions = DB::table('religion')->get(); */
                         $student_exist = false;
 
                         return view('student.index', compact('student_exist'));  
                     }
                     else 
                     {             
-                        $userid = session('user_id');   
-                        $student = DB::table('student')
-                            ->where('user_id', '=', $userid)
-                            ->first();  
 
                         $ethnicity_name = DB::table('ethnicity')->where('id',$student->ethnicity_id)->first()->name;
                         
@@ -70,10 +63,16 @@ class StudentController extends Controller
                         
                         $student_exist = true; 
 
-                        return view('student.index', compact('student_exist','student','ethnicity_name', 'mother_tongue_name','religion_name','father','mother')) ;
-                    }
-                }
-                                      
+                        if($ethnicity_name != null && $mother_tongue_name !=null  
+                        && $religion_name != null && $father != null && $mother != null)
+                        {
+                            return view('student.index', compact('student_exist','student','ethnicity_name', 'mother_tongue_name','religion_name','father','mother')) ;
+                        
+                        }
+                        else
+                            return response()->json(['error' => true, 'msg' => 'Something went wrong! Either some data does not exist for student record!' ]);
+                        
+                    }                                    
             }
     }
 

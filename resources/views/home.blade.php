@@ -29,7 +29,7 @@
             </div> -->
         </div>
     </div>
-    <div class="row mt-3">
+    <!-- <div class="row mt-3">
         <div class="col-md-12">
             
             <div class="card">
@@ -55,10 +55,10 @@
                 </a>
                 
               </div>
-              <!-- /.card-body -->
+         
             </div>
-            <!-- /.card -->
+    
         </div>
-    </div>
+    </div> -->
 </div>
 @endsection
