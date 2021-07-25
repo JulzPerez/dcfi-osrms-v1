@@ -151,7 +151,7 @@
                       <div class="col-md-3">
                         <div class="form-group">
                             <label>No. of siblings <strong class="text-red">*</strong></label>
-                            <input  type="text" class="form-control"  name="no_siblings" data-inputmask='"mask": "99"' data-mask>
+                            <input  type="number" class="form-control"  name="no_siblings" >
                             
                             <span class="text-danger error-text no_siblings_error"></span>
 
