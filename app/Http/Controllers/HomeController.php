@@ -52,6 +52,7 @@ class HomeController extends Controller
             {
                 session(['school_year_id' => $SY->id ] );
                 session(['school_year_name'=> $SY->SY ] );
+                session(['semester' => $SY->semester]);
                
             }                
                 

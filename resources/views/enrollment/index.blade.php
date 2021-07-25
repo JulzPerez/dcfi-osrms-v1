@@ -13,8 +13,14 @@
     </div>
     <br>
     
-    @if(!$student_exist)
     <div class="row">
+        <div class="col-md-12">
+            <h3 class="">School Year:<strong> {{session('school_year_name')}} </strong>,        Semester: <strong>{{session('semester')}}</strong></h3>
+        </div>
+    </div>
+
+    @if(!$student_exist)
+    <div class="row mt-3">
         <div class="col-md-6">
             <p class="text-red"><strong> You cannot enroll yet because you dont have student record! 
             <br> Please go to Profile and submit details!</strong></p>

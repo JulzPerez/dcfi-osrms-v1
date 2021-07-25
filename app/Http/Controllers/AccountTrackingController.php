@@ -25,13 +25,19 @@ class AccountTrackingController extends Controller
                     ->select('bill.*','bill.id as bill_id','bill.status as bill_status')
                     ->where('enrollment.student_id',$student->id)
                     ->where('enrollment.school_year_id',session('school_year_id'))
-                    ->get();
+                    ->get();     
+        
+       /*  
+        $billTotal = DB::table('bill_fees')
+                    ->where('bill_id',$accounts->bill_id)
+                    ->sum('amount'); */
         
         //dd($accounts);
         //session(['bill_id' => $accounts->bill_id]); */
 
         return view('account.index',compact('accounts'));
     }
+
     public function billDetails($id)
     {
         $billDetails = DB::table('bill_fees')
@@ -39,9 +45,11 @@ class AccountTrackingController extends Controller
                     ->select('bill_fees.*','fees.fee_name')
                     ->where('bill_fees.bill_id',$id)
                     ->get();
-        //dd($billDetails);
+        
+        $total_amount = $billDetails->sum('amount');
+        //dd($total_amount);
 
-        return view('account.billDetails',compact('billDetails'));
+        return view('account.billDetails',compact('billDetails','total_amount'));
     }
     public function payments($id)
     {
