@@ -23,23 +23,22 @@ class EnrollmentController extends Controller
 
     public function index()
     {
-        //$userid = \Auth::user()->id;
-        //$student = Student::where('user_id',$userid)->first();
         $userid = session('user_id');
+        //$userid = \Auth::user()->id;
+        $student = Student::where('user_id',$userid)->first();    
         
         
-        if(session('student_id') != null)
+        if($student != null)
         {
+            
             $student_exist = true;
             
-            $SY = DB::table('school_year')->where('current',1)->first();
-            $SY_id = $SY->id;
-
-            //$student_id = $student->id;
             $enrollment = DB::table('enrollment')
-                ->where('student_id', session('student_id'))
-                ->where('school_year_id',$SY_id)
-                ->first();            
+                ->where('student_id', $student->id)
+                ->where('school_year_id',session('school_year_id'))
+                ->first(); 
+            
+            //dd($enrollment);           
         }
         else
         {
@@ -57,15 +56,17 @@ class EnrollmentController extends Controller
         $userid = \Auth::user()->id;
         $student_id = Student::where('user_id', $userid)->first()->id; 
 
-        $enrollment_id = DB::table('enrollment')->insertGetId([
+        $enrollment = DB::table('enrollment')->insert([
             'student_id' => $student_id,  
-            'school_year_id' => $request['school_year_id'],
+            'school_year_id' => session('school_year_id'),
             'level_id' => $request['level'],
             'strand_id' => $request['strand'],
             'category' => $request['category'],
             'modality_id' => $request['modality'],
             'semester' => $request['semester'],            
         ]);
+
+        //dd($enrollment);
         //session $enrollment_id
 
         return redirect('/enrollment')->with('success', 'Record saved successfully!');     
@@ -73,11 +74,11 @@ class EnrollmentController extends Controller
 
     public function create_enrollForm()
     {
-        /* $userid = \Auth::user()->id;
-        $student_id = Student::where('user_id', $userid)->first()->id; */
+        $userid = \Auth::user()->id;        
+        $student_id = Student::where('user_id', $userid)->first()->id; 
 
 
-        if(session('student_id') == null)
+        if($student_id == null)
         {
             $no_student_record = true;
             return view('enrollment.create', compact('no_student_record'));  
