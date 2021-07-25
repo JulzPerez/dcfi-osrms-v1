@@ -29,7 +29,7 @@ class HomeController extends Controller
             $userid = \Auth::user()->id;
             session(['user_id'=> $userid ]);
 
-            $student = DB::table('student')
+            /* $student = DB::table('student')
                         ->select('id')
                         ->where('user_id', $userid )
                         ->first();
@@ -42,7 +42,7 @@ class HomeController extends Controller
             else
             {
                 session(['student_id' => null]);
-            }
+            } */
                         
 
             $SY = DB::table('school_year')

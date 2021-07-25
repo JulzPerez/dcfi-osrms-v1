@@ -13,78 +13,64 @@
     </div>
 
     
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card card-danger">
-                <div class="card-header">
-                    <h5>Accounts </h5>
-                </div>
-                <div class="card-body">
-                    @if($accounts == null)
-                        <p> No bill record for this account yet.</p>
-                    @else
-                            <table class="table table-hover table-bordered table-striped">
-                                <thead>
+    <div class="row mt-3">
+        
+        @if($accounts->isEmpty())
+        <br>
+        <div class="callout callout-danger">
+            
+            <h5 class="text-red">Info: No billing record for the student this school year {{session('school_year_name')}}.</h5>
+        </div>     
+            
+        
+        @else
+        <div class="col-md-6">
+                <div class="card card-danger">
+                    <div class="card-header">
+                        <h5> Billing  for Academic Year {{session('school_year_name')}}</h5>
+                    </div>  
+                    <div class="card-body">
+                    @foreach($accounts as $account)
+                        <div class="callout callout-danger">
+                            
+                            <table class="table  table-bordered">
+                                <tbody>  
                                     <tr>
-                                        <th style="width:5%">Bill ID</th>
-                                        <th style="width:20%">Bill Name</th>
-                                        <th style="width:30%">Status</th>
-                                        
-                                        <th style="width:10%" colspan = 2>Action</th>                 
+                                        <td class="text-muted" width="30%"><h6>Bill Name</h6></td>
+                                        <td class="text-olive"> {{$account->name}} </td>
                                     </tr>
-                                </thead>
-                            
-                                    <tbody style="line-height: 0.75">
-                                        @foreach($accounts as $account) 
-                                        <tr>
-                                            <td>{{$account->bill_id}}</td>
-                                            
-                                            <td>
-                                                <a href="{{ route('account.billDetails',$account->bill_id) }}">
-                                                    {{$account->name}}
-                                                </a>   
-                                            </td>      
-                                            
-                                            <td>{{$account->status}}</td>
-                                        
-                                            <td>
-                                                <a href="{{ route('account.payments', $account->bill_id) }}" class="btn btn-primary btn-block">
-                                                    View Payments
-                                                </a>
-                                            </td>
-                                        
-                                        </tr>                         
-                                        @endforeach 
-                                    </tbody>
-                            
-                            </table>
-                    @endif
-                <div>
-                <div class="card-footer">
+                                    <tr>
+                                        <td class="text-muted" width="30%">Account Status</td>
+                                        <td class="text-olive"> {{$account->status}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-muted" width="30%"></td>
+                                        <td class="text-olive">
+                                            <a href="{{ route('account.billDetails',$account->bill_id) }}">
+                                                   <strong class="text-blue"> View Bill Fees </strong>
+                                            </a> / 
+                                            <a href="{{ route('account.payments', $account->bill_id) }}" >
+                                            <strong class="text-blue"> View Payments </strong>
+                                            </a>
 
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div> 
+                        
+                    @endforeach
+                    </div>
                 </div>
 
-                    
-            </div>
-        </div> 
-    <div>
+
+            
+        @endif
+        </div>
+    </div>
                 
 </div>
 @endsection
 
-@section('scripts')
-    <script type="text/javascript">
 
-        $("#custom-tabs-one-bill").click(function(){
-            $.ajax({
-                url: "",
-                method: 'GET',
-                success: function(data) {
-                    $('#payments').html(data.html);
-                }
-            });
-        });
-    
-       
-    </script>
-@endsection
