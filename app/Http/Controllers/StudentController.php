@@ -32,44 +32,48 @@ class StudentController extends Controller
             if(\Gate::allows('isProspectiveStudent') || \Gate::allows('isStudent'))
             {
 
-                if ( session('student_id') == null ) 
+                if(\Auth::check())
                 {
-                    /* $provinces = DB::table('province')->get();
+                    if ( session('student_id') == null ) 
+                    {
+                        /* $provinces = DB::table('province')->get();
 
-                    $ethnicities = DB::table('ethnicity')->get();
-                    $mother_tongues = DB::table('mother_tongue')->get();
-                    //$modalities = DB::table('modality')->get(); 
-                    $religions = DB::table('religion')->get(); */
-                    $student_exist = false;
+                        $ethnicities = DB::table('ethnicity')->get();
+                        $mother_tongues = DB::table('mother_tongue')->get();
+                        //$modalities = DB::table('modality')->get(); 
+                        $religions = DB::table('religion')->get(); */
+                        $student_exist = false;
 
-                    return view('student.index', compact('student_exist'));  
+                        return view('student.index', compact('student_exist'));  
+                    }
+                    else 
+                    {             
+                        $userid = session('user_id');   
+                        $student = DB::table('student')
+                            ->where('user_id', '=', $userid)
+                            ->first();  
+
+                        $ethnicity_name = DB::table('ethnicity')->where('id',$student->ethnicity_id)->first()->name;
+                        
+                        $mother_tongue_name = DB::table('mother_tongue')->where('id',$student->mother_tongue_id)->first()->name; 
+                        $religion_name = DB::table('religion')->where('id',$student->religion)->first()->Name; 
+
+                        $father = DB::table('parent')
+                                        ->join('guardian','parent.id','=','guardian.father_id')
+                                        ->where('guardian.id',$student->guardian_id)
+                                        ->first();
+
+                        $mother = DB::table('parent')
+                                        ->join('guardian','parent.id','=','guardian.mother_id')
+                                        ->where('guardian.id',$student->guardian_id)
+                                        ->first();
+                        
+                        $student_exist = true; 
+
+                        return view('student.index', compact('student_exist','student','ethnicity_name', 'mother_tongue_name','religion_name','father','mother')) ;
+                    }
                 }
-                else 
-                {             
-                    $userid = session('user_id');   
-                    $student = DB::table('student')
-                        ->where('user_id', '=', $userid)
-                        ->first();  
-
-                    $ethnicity_name = DB::table('ethnicity')->where('id',$student->ethnicity_id)->first()->name;
-                    
-                    $mother_tongue_name = DB::table('mother_tongue')->where('id',$student->mother_tongue_id)->first()->name; 
-                    $religion_name = DB::table('religion')->where('id',$student->religion)->first()->Name; 
-
-                    $father = DB::table('parent')
-                                    ->join('guardian','parent.id','=','guardian.father_id')
-                                    ->where('guardian.id',$student->guardian_id)
-                                    ->first();
-
-                    $mother = DB::table('parent')
-                                    ->join('guardian','parent.id','=','guardian.mother_id')
-                                    ->where('guardian.id',$student->guardian_id)
-                                    ->first();
-                    
-                    $student_exist = true; 
-
-                    return view('student.index', compact('student_exist','student','ethnicity_name', 'mother_tongue_name','religion_name','father','mother')) ;
-                }                  
+                                      
             }
     }
 
