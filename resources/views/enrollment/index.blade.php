@@ -87,16 +87,15 @@
                 
                     <div class="card-body">
                         <div class="row">
-                            <p class="text-green text-center"><strong >You have no enrollment record this Academic Year.</strong></p>
+                            <p class="text-green text-center"><strong >You have no enrollment record this Academic Year {{session('school_year_name')}}.</strong></p>
                         </div>
                     </div> <!--end card-body -->
                     <div class="card-footer">
                         <a href="{{ route('enroll_create') }}">
                             <button type="button" class="btn btn-outline-primary btn-block">
-                                <i class="fa fa-bell"></i> Enroll
+                            <i class="fas fa-pencil-alt"></i> Enroll
                             </button>
-                        </a>
-                      
+                        </a>                      
                     </div>
                 
                 </div>

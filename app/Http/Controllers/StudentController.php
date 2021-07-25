@@ -59,11 +59,26 @@ class StudentController extends Controller
                         $mother = DB::table('parent')
                                         ->join('guardian','parent.id','=','guardian.mother_id')
                                         ->where('guardian.id',$student->guardian_id)
+                                        ->first();    
+
+                        $city = DB::table('city')
+                                        ->join('province','city.province_no','=','province.number')
+                                        ->select('city.*','province.*','city.name as city_name', 'province.name as province_name')
+                                        ->where('city.number',$student->city_no)
                                         ->first();
+                            if($city != null)
+                            {
+                                $city_name = $city->city_name;
+                                $province_name = $city->province_name;
+                            } 
+                            else{
+                                $city_name = null;
+                            }                       
                         
+
                         $student_exist = true; 
 
-                         return view('student.index', compact('student_exist','student','ethnicity_name', 'mother_tongue_name','religion_name','father','mother')) ;
+                        return view('student.index', compact('student_exist','student','ethnicity_name', 'mother_tongue_name','religion_name','father','mother','city_name', 'province_name')) ;
                    
                             
                     }                                    
@@ -103,19 +118,32 @@ class StudentController extends Controller
            
             'contact_no' => 'required|string',
             'sex' => 'required|string|max:191',
+            'age' => 'required|numeric',
             'birthdate' => 'required',
             'birth_place' => 'required|string|max:191',
             'citizenship' => 'required|string|max:191',
-            'no_siblings' => 'required|string|max:191',
+            'no_siblings' => 'required|numeric|max:191',
             'religion' => 'required|string|max:191',
-            'birth_order' => 'required|string|max:191',
+            'birth_order' => 'required|numeric|max:191',
             'purok' => 'required',
             'province' => 'required|string|max:191', 
             'ethnicity' => 'required',
             //'modality.required' => 'Required field',
             'mother_tongue' => 'required',
-            /* 'father' => 'required',
-            'mother' => 'required', */
+
+            'father_first' => 'required',
+            'father_middle' => 'required',
+            'father_last' => 'required',
+            'father_occupation' => 'required',
+            'father_contact' => 'required',
+            'father_extension' => 'required',
+            
+            'mother_first' => 'required',
+            'mother_middle' => 'required',
+            'mother_last' => 'required',
+            'mother_occupation' => 'required',
+            'mother_contact' => 'required',
+
 
         ], 
         [
@@ -134,8 +162,18 @@ class StudentController extends Controller
        
         'province.required' => 'Required field',
 
-        /* 'father.required' => 'Required Field',
-        'mother.required' => 'Required Field', */
+        'father_first.required' => 'Required field',
+        'father_middle.required' => 'Required field',
+        'father_last.required' => 'Required field',
+        'father_occupation.required' => 'Required field',
+        'father_contact.required' => 'Required field',
+        'father_extension.required' => 'Required field',
+        
+        'mother_first.required' => 'Required field',
+        'mother_middle.required' => 'Required field',
+        'mother_last.required' => 'Required field',
+        'mother_occupation.required' => 'Required field',
+        'mother_contact.required' => 'Required field',
 
         'ethnicity.required' => 'Required field',
         //'modality.required' => 'Required field',
@@ -367,10 +405,7 @@ class StudentController extends Controller
 
         $html .= '<option value=""> --Select here--</option>';
        
-        $municipalities = DB::table('municipality')->where('province_no',$request['province_no'])->get();
-        $cities = DB::table('city')->where('province_no',$request['province_no'])->get();
-
-        $localities = $municipalities->merge($cities);
+        $localitites = DB::table('city')->where('province_no',$request['province_no'])->get();
 
         foreach ($localities as $locality) {
             $html .= '<option value="'.$locality->number.'">'.$locality->name.'</option>';

@@ -23,13 +23,13 @@
         
             <div class="card-body">
                 <div class="row">
-                    <p class="text-green text-center"><strong >You have no exisiting record from the database. Please click on 'Create' button to submit record.</strong></p>
+                    <p class="text-green text-center"><strong >You have no exisiting record yet. Please click on 'Create' button to submit record.</strong></p>
                 </div>
             </div> <!--end card-body -->
             <div class="card-footer">
                 <a href="{{ route('student.create') }}">
                     <button type="button" class="btn btn-outline-primary btn-block">
-                        <i class="fa fa-bell"></i> Create
+                    <i class="fas fa-pencil-alt"></i> Create
                     </button>
                 </a>
                 
@@ -227,18 +227,23 @@
                             
 
                             <tr>
-                                <td class="text-muted" width="30%">Purok</td>
+                                <td class="text-muted" width="30%">Street/Purok/Barangay</td>
                                 <td class="text-olive"> {{ ucfirst($student->purok)}}</td>
                             </tr>
 
                             <tr>
-                                <td class="text-muted">Municipality</td>
-                                <td class="text-olive"> </td>
+                                <td class="text-muted">City/Municipality</td>
+                                @if($city_name != null)
+                                    <td class="text-olive"> {{$city_name}} </td>
+                                @else
+                                    <td class="text-olive"> No record </td>
+                                @endif
+
                             </tr>
 
                             <tr>
                                 <td class="text-muted">Province</td>
-                                <td class="text-olive"> </td>
+                                <td class="text-olive"> {{$province_name}}</td>
                             </tr>
 
                             

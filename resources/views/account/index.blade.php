@@ -17,9 +17,12 @@
         <div class="col-md-12">
             <div class="card card-danger">
                 <div class="card-header">
-                    <h6>Accounts </h6>
+                    <h5>Accounts </h5>
                 </div>
                 <div class="card-body">
+                    @if($accounts == null)
+                        <p> No bill record for this account yet.</p>
+                    @else
                             <table class="table table-hover table-bordered table-striped">
                                 <thead>
                                     <tr>
@@ -55,8 +58,12 @@
                                     </tbody>
                             
                             </table>
-                    
+                    @endif
                 <div>
+                <div class="card-footer">
+
+                </div>
+
                     
             </div>
         </div> 

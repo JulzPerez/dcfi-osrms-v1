@@ -121,7 +121,7 @@
                         
                         <div class="form-group">
                           <label>Age <strong class="text-red">*</strong></label>
-                          <input  type="number" class="form-control" name="age" >
+                          <input  type="text" class="form-control" name="age" >
                           
                           <span class="text-danger error-text age_error"></span>
                           
@@ -366,7 +366,7 @@
                           <label>Last Name <strong class="text-red">*</strong></label>
                           <input  type="text" class="form-control"  name="mother_last" >
 
-                          <span class="text-danger error-text mmother_last_error"></span>
+                          <span class="text-danger error-text mother_last_error"></span>
                           
                         </div>
                       </div>

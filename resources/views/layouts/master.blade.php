@@ -175,7 +175,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
           <li class="nav-item">
             <a href="/account" class="nav-link">
-            <i class="nav-icon fas fa-upload"></i>
+            <i class="nav-icon  fas fa-file-invoice-dollar"></i>
               <p>
                 Account Tracking          
               </p>

@@ -19,7 +19,7 @@ import 'admin-lte/plugins/bootstrap4-dualListbox/jquery.bootstrap-duallistbox.mi
 import 'admin-lte/plugins/bs-custom-file-input/bs-custom-file-input.min.js';
 import 'admin-lte/plugins/inputmask/jquery.inputmask.min.js'
 import 'admin-lte/dist/js/adminlte.min.js';
-
+/* 
 $(function () {
 
         //Initialize Select2 Elements
@@ -51,7 +51,7 @@ $(function () {
         console.log(selectVal);
     });
 
-})
+}) */
 
 
 

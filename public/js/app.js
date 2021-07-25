@@ -75966,27 +75966,40 @@ window.$ = window.jQuery = jquery__WEBPACK_IMPORTED_MODULE_0___default.a;
 
 
 
-jquery__WEBPACK_IMPORTED_MODULE_0___default()(function () {
-  //Initialize Select2 Elements
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.select2').select2(); //Initialize Select2 Elements
+/* 
+$(function () {
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.select2bs4').select2({
-    theme: 'bootstrap4'
-  }); //Bootstrap Duallistbox
+        //Initialize Select2 Elements
+    $('.select2').select2()
 
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.duallistbox').bootstrapDualListbox();
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#from_date').daterangepicker({
-    singleDatePicker: true
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#to_date').daterangepicker({
-    singleDatePicker: true
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('[data-mask]').inputmask();
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#selectDocument').change(function () {
-    var selectVal = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).val();
-    console.log(selectVal);
-  });
-});
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+        theme: 'bootstrap4'
+    })
+
+    //Bootstrap Duallistbox
+    $('.duallistbox').bootstrapDualListbox()
+
+    $('#from_date').daterangepicker({
+        singleDatePicker: true,
+        
+    })
+
+    $('#to_date').daterangepicker({
+        singleDatePicker: true,
+    
+    })
+
+    $('[data-mask]').inputmask()
+
+    $('#selectDocument').change(function(){
+
+        var selectVal = $(this).val();
+        console.log(selectVal);
+    });
+
+}) */
+
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /**
  * The following block of code may be used to automatically register your

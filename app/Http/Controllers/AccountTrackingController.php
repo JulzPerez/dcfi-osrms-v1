@@ -21,8 +21,8 @@ class AccountTrackingController extends Controller
                     ->where('enrollment.student_id',session('student_id'))
                     ->where('enrollment.school_year_id',session('school_year_id'))
                     ->get();
-        /* dd($accounts);
-        session(['bill_id' => $accounts->bill_id]); */
+         //dd($accounts);
+        //session(['bill_id' => $accounts->bill_id]); */
 
         return view('account.index',compact('accounts'));
     }
