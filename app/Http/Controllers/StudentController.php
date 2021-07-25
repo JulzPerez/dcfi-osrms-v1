@@ -51,13 +51,14 @@ class StudentController extends Controller
                         ->where('user_id', '=', $userid)
                         ->first();  
 
-                    /* $ethnicity_name = DB::table('ethnicity')->where('id',$student->ethnicity_id)->first()->name;
-                    //$modality_name = DB::table('modality')->where('id',$student->modality_id)->first()->name;
+                    $ethnicity_name = DB::table('ethnicity')->where('id',$student->ethnicity_id)->first()->name;
+                    
                     $mother_tongue_name = DB::table('mother_tongue')->where('id',$student->mother_tongue_id)->first()->name; 
-                    */
+                    $religion_name = DB::table('religion')->where('id',$student->religion)->first()->Name; 
+                    
                     $student_exist = true; 
 
-                    return view('student.index', compact('student_exist','student',/*'ethnicity_name', 'mother_tongue_name'*/) );
+                    return view('student.index', compact('student_exist','student','ethnicity_name', 'mother_tongue_name','religion_name')) ;
                 }                  
             }
     }
@@ -166,8 +167,9 @@ class StudentController extends Controller
     
                     'ethnicity_id' => $request['ethnicity'],
                     'mother_tongue_id' => $request['mother_tongue'],
-                    
+                            
                 ]);
+
     
                 //return redirect('/student')->with('success', 'Record saved successfully!');
             }

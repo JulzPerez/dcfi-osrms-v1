@@ -101,7 +101,7 @@
                             
                             <tr>
                                 <td class="text-muted">Religion</td>
-                                <td class="text-olive">{{ ucfirst($student->religion)}}</td>
+                                <td class="text-olive">{{ ucwords($religion_name)}}</td>
                             </tr>
                             <tr>
                                 <td class="text-muted">Citizenship</td>
@@ -128,12 +128,12 @@
                             
                             <tr>
                                 <td class="text-muted">Ethnicity</td>
-                                <td class="text-olive"> </td>
+                                <td class="text-olive">{{ucwords($ethnicity_name)}} </td>
                             </tr>
 
                             <tr>
                                 <td class="text-muted">Mother Tounge</td>
-                                <td class="text-olive"> </td>
+                                <td class="text-olive"> {{ ucwords($mother_tongue_name) }}</td>
                             </tr>
                             
                         </tbody>                          

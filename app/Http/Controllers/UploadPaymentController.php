@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Storage;
 
 class UploadPaymentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -18,24 +23,31 @@ class UploadPaymentController extends Controller
      */
     public function index()
     {
-        $userid = \Auth::user()->id;
-        $student = Student::where('user_id', $userid)->first();
-
-        if($student != null)
+        if(\Auth::check())
         {
-            $student_id = $student->id;
-            $payments = DB::table('upload_payment')
-                            ->where('student_id', '=', $student_id)
-                            ->get(); 
+            //$userid = \Auth::user()->id;
+            $userid = session('user_id');
+            $student = Student::where('user_id', $userid)->first();
 
-            //dd($requirements);
+            if($student != null)
+            {
+                $student_id = $student->id;
+                $payments = DB::table('upload_payment')
+                                ->where('student_id', '=', $student_id)
+                                ->get(); 
 
-            return view('payment.index', compact('payments'));
+                //dd($requirements);
+
+                return view('payment.index', compact('payments'));
+            }
+            else
+            {
+                $payments = null;
+                return view('payment.index', compact('payments'));
+            }
         }
-        else
-        {
-            $payments = null;
-            return view('payment.index', compact('payments'));
+        else{
+
         }
     }
 

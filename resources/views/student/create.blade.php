@@ -291,6 +291,41 @@
                       
                     </div> 
                   </div>
+
+                  <div class="row">                                  
+                      <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Father's Fullname</label>
+                            <input  type="text" class="form-control"  name="father" >
+                            
+                            <span class="text-danger error-text father_error"></span>
+
+                        </div>
+                      </div> 
+                        
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label>Mother's Fullname <strong class="text-red">*</strong></label>
+                          <input  type="text" class="form-control"  name="mother" >
+
+                          <span class="text-danger error-text mother_error"></span>
+                          
+                        </div>
+                      </div>
+
+                      <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Guardian's Fullname </label>                            
+                            <input  type="text" class="form-control"  name="guardian" >
+                            
+                            <span class="text-danger error-text guardian_error"></span>
+
+                        </div>
+                      </div>  
+                      
+                    </div> 
+                  </div>
+
                   <div class="card-footer">
                       <button type="submit" class="btn btn-primary">Save Data</button>
                   </div>
