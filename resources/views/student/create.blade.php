@@ -121,7 +121,7 @@
                         
                         <div class="form-group">
                           <label>Age <strong class="text-red">*</strong></label>
-                          <input  type="text" class="form-control" name="age" data-inputmask='"mask": "99"' data-mask>
+                          <input  type="number" class="form-control" name="age" >
                           
                           <span class="text-danger error-text age_error"></span>
                           
@@ -142,7 +142,7 @@
                       <div class="col-md-3">
                         <div class="form-group">
                             <label>Contact Number <strong class="text-red">*</strong></label>
-                            <input  type="text" class="form-control"  name="contact_no" data-inputmask='"mask": "99999999999"' data-mask>
+                            <input  type="number" class="form-control"  name="contact_no">
                             
                             <span class="text-danger error-text contact_no_error"></span>
 
