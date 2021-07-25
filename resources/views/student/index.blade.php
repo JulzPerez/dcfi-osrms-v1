@@ -47,10 +47,10 @@
                     <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Personal Info</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Family Info</a>
+                    <a class="nav-link" id="custom-tabs-one-family-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Family Info</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-one-messages-tab" data-toggle="pill" href="#custom-tabs-one-messages" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false">Contact Info / Address</a>
+                    <a class="nav-link" id="custom-tabs-one-contact-tab" data-toggle="pill" href="#custom-tabs-one-messages" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false">Contact Info / Address</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" id="custom-tabs-one-settings-tab" data-toggle="pill" href="#custom-tabs-one-settings" role="tab" aria-controls="custom-tabs-one-settings" aria-selected="false">Educational Background</a>
@@ -142,34 +142,68 @@
                   <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
                   <table class="table table-bordered table-condensed">
                         <tbody>
-                            
-
+                            <br>
                             <tr>
-                                <td class="text-muted" width="30%">Father</td>
-                                <td class="text-olive"> </td>
+                                <h5 class="text-red">Father Info</h5>
+                            </tr>
+                            <tr>
+                                <td class="text-muted" width="30%">First Name</td>
+                                <td class="text-olive"> {{ucfirst($father->first_name)}}  </td>
+                            </tr>
+                            <tr>
+                                <td class="text-muted" width="30%">Middle Name</td>
+                                <td class="text-olive"> {{ucfirst($father->middle_name)}} </td>
+                            </tr>
+                            <tr>
+                                <td class="text-muted" width="30%">Last Name</td>
+                                <td class="text-olive"> {{ucfirst($father->last_name)}} </td>
                             </tr>
                             <tr class="text-muted" width="30%">
-                                <td class="text-muted">Father Occupation</td>
-                                <td class="text-olive"></td>
+                                <td class="text-muted"> Name extension</td>
+                                <td class="text-olive">{{ucfirst($father->name_extension)}}</td>
+                            </tr>
+                            <tr class="text-muted" width="30%">
+                                <td class="text-muted"> Occupation</td>
+                                <td class="text-olive">{{ucfirst($father->occupation)}}</td>
                             </tr>
                             <tr>
-                                <td class="text-muted">Mother</td>
-                                <td class="text-olive"> </td>
+                                <td class="text-muted">Contact No.</td>
+                                <td class="text-olive">{{$father->contact_no}} </td>
                             </tr>
-
-                            <tr>
-                                <td class="text-muted">Mother Occupation</td>
-                                <td class="text-olive"> </td>
-                            </tr>
-
                             
+                            <tr>
+                                <td class="text-muted"><h5 class="text-red">Mother Info</h5></td>
+                                
+                                
+                            </tr>
+                            <tr>
+                                <td class="text-muted" width="30%">First Name</td>
+                                <td class="text-olive"> {{ucfirst($mother->first_name)}} </td>
+                            </tr>
+                            <tr>
+                                <td class="text-muted" width="30%">Middle Name</td>
+                                <td class="text-olive"> {{ucfirst($mother->middle_name)}} </td>
+                            </tr>
+                            <tr>
+                                <td class="text-muted" width="30%">Last Name</td>
+                                <td class="text-olive"> {{ucfirst($mother->last_name)}} </td>
+                            </tr>
+                            
+                            <tr class="text-muted" width="30%">
+                                <td class="text-muted"> Occupation</td>
+                                <td class="text-olive">{{ucfirst($mother->occupation)}}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-muted">Contact No.</td>
+                                <td class="text-olive"> {{$mother->contact_no}} </td>
+                            </tr>                            
                             
                         </tbody>                          
                     </table>
 
                   </div>
                   <div class="tab-pane fade" id="custom-tabs-one-messages" role="tabpanel" aria-labelledby="custom-tabs-one-messages-tab">
-                  <table class="table table-bordered table-condensed">
+                    <table class="table table-bordered table-condensed">
                         <tbody>
                             
 

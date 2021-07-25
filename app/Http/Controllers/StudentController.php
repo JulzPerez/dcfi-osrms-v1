@@ -55,10 +55,20 @@ class StudentController extends Controller
                     
                     $mother_tongue_name = DB::table('mother_tongue')->where('id',$student->mother_tongue_id)->first()->name; 
                     $religion_name = DB::table('religion')->where('id',$student->religion)->first()->Name; 
+
+                    $father = DB::table('parent')
+                                    ->join('guardian','parent.id','=','guardian.father_id')
+                                    ->where('guardian.id',$student->guardian_id)
+                                    ->first();
+
+                    $mother = DB::table('parent')
+                                    ->join('guardian','parent.id','=','guardian.mother_id')
+                                    ->where('guardian.id',$student->guardian_id)
+                                    ->first();
                     
                     $student_exist = true; 
 
-                    return view('student.index', compact('student_exist','student','ethnicity_name', 'mother_tongue_name','religion_name')) ;
+                    return view('student.index', compact('student_exist','student','ethnicity_name', 'mother_tongue_name','religion_name','father','mother')) ;
                 }                  
             }
     }
@@ -106,7 +116,10 @@ class StudentController extends Controller
             'province' => 'required|string|max:191', 
             'ethnicity' => 'required',
             //'modality.required' => 'Required field',
-            'mother_tongue' => 'required'
+            'mother_tongue' => 'required',
+            /* 'father' => 'required',
+            'mother' => 'required', */
+
         ], 
         [
         'first_name.required' => 'Required field',
@@ -124,8 +137,8 @@ class StudentController extends Controller
        
         'province.required' => 'Required field',
 
-        //'father.required' => 'Required Field',
-        //'mother.required' => 'Required Field',
+        /* 'father.required' => 'Required Field',
+        'mother.required' => 'Required Field', */
 
         'ethnicity.required' => 'Required field',
         //'modality.required' => 'Required field',
@@ -162,7 +175,7 @@ class StudentController extends Controller
                     'no_siblings' => $request['no_siblings'],
                     'birth_order' => $request['birth_order'],
                     'purok' => $request['purok'],           
-                    'municipality_no' => $request['municipality'], 
+                    //'municipality_no' => $request['municipality'],
                     'city_no' => $request['city'],
     
                     'ethnicity_id' => $request['ethnicity'],
@@ -170,8 +183,41 @@ class StudentController extends Controller
                             
                 ]);
 
-    
-                //return redirect('/student')->with('success', 'Record saved successfully!');
+                $father_id = DB::table('parent')->insertGetId(
+                    [
+                        'first_name' => $request['father_first'],
+                        'middle_name' => $request['father_middle'],
+                        'last_name' => $request['father_last'],
+                        'name_extension' => $request['father_extension'],
+                        'occupation' => $request['father_occupation'],
+                        'contact_no' => $request['father_contact'],
+                    
+                    ]
+                );
+
+                $mother_id = DB::table('parent')->insertGetId(
+                    [
+                        'first_name' => $request['mother_first'],
+                        'middle_name' => $request['mother_middle'],
+                        'last_name' => $request['mother_last'],
+                        'name_extension' => $request['mother_extension'],
+                        'occupation' => $request['mother_occupation'],
+                        'contact_no' => $request['mother_contact'],                        
+                    ]
+                );
+
+                $guardian_id = DB::table('guardian')->insertGetId(
+                    [
+                        'mother_id' => $mother_id,
+                        'father_id' => $father_id,
+                                              
+                    ]
+                );
+                
+                $affected = DB::table('student')
+                    ->where('id', $studentID)
+                    ->update(['guardian_id' => $guardian_id]);
+
             }
             catch(\Illuminate\Database\QueryException $ex)
             { 
@@ -185,6 +231,9 @@ class StudentController extends Controller
             if( $query ){
                 session(['student_id' => $studentID]);
                 return response()->json(['status'=>1, 'msg'=>'The record has been successfully added!']);
+            }
+            else{
+                return response()->json(['status'=>0, 'msg'=>'Something went wrong!']);
             }
         }       
             

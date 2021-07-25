@@ -227,24 +227,7 @@
                           
                         </div>
                       </div>
-                      <!-- <div class="col-md-3">
-                        <div class="form-group">
-                            <label>Modality <strong class="text-red">*</strong></label>
-                            <select class="form-control " name="modality"  style="width: 100%;">
-                              <option value=""> --Select here -- </option>    
-                               {{-- 
-                                 @foreach($modalities as $modality)
-                                      <option value="{{$modality->id}}"> {{$modality->name}} </option>
-                                  @endforeach   
-                                --}}
-                            </select>
-
-                            @if ($errors->has('modality'))
-                              <span class="text-danger">{{ $errors->first('modality') }}</span>
-                            @endif 
-                          
-                        </div>
-                      </div>  -->                                                      
+                                                                        
                     </div> 
 
                     <hr class="">
@@ -265,10 +248,10 @@
                         <div class="form-group">
                           <label>Province <strong class="text-red">*</strong></label>
                             <select class="form-control " name="province" id="province" style="width: 100%;">
-                            <option value="">--- Please select ---</option> 
+                                  <option value="">--- Please select ---</option> 
                                   @foreach($provinces as $province)
                                       <option value="{{$province->number}}"> {{$province->name}} </option>
-                                  @endforeach 
+                                  @endforeach  
                             </select>
 
                             <span class="text-danger error-text province_error"></span>
@@ -290,40 +273,124 @@
                       </div>  
                       
                     </div> 
-                  </div>
+                  
+                    <hr class="">
+                    <h5 style="color:red">Fathers' Info</h5>
 
-                  <div class="row">                                  
+                    <div class="row">                                  
                       <div class="col-md-3">
                         <div class="form-group">
-                            <label>Father's Fullname</label>
-                            <input  type="text" class="form-control"  name="father" >
+                            <label>First Name</label>
+                            <input  type="text" class="form-control"  name="father_first" >
                             
-                            <span class="text-danger error-text father_error"></span>
+                            <span class="text-danger error-text father_first_error"></span>
 
                         </div>
                       </div> 
-                        
+
                       <div class="col-md-3">
                         <div class="form-group">
-                          <label>Mother's Fullname <strong class="text-red">*</strong></label>
-                          <input  type="text" class="form-control"  name="mother" >
+                            <label>Middle Name</label>
+                            <input  type="text" class="form-control"  name="father_middle" >
+                            
+                            <span class="text-danger error-text father_middle_error"></span>
 
-                          <span class="text-danger error-text mother_error"></span>
+                        </div>
+                      </div> 
+
+                      <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input  type="text" class="form-control"  name="father_last" >
+                            
+                            <span class="text-danger error-text father_last_error"></span>
+
+                        </div>
+                      </div> 
+                      <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Name Extension</label>
+                            <input  type="text" class="form-control"  name="father_extension" >
+                            
+                            <span class="text-danger error-text father_extension_error"></span>
+
+                        </div>
+                      </div> 
+
+                      <div class="col-md-3">
+                        <div class="form-group">
+                            <label> Occupation </label>                            
+                            <input  type="text" class="form-control"  name="father_occupation" >
+                            
+                            <span class="text-danger error-text father_occupation_error"></span>
+
+                        </div>
+                      </div>     
+                      
+                      <div class="col-md-3">
+                        <div class="form-group">
+                            <label> Contact No.</label>
+                            <input  type="text" class="form-control"  name="father_contact" >
+                            
+                            <span class="text-danger error-text father_contact_error"></span>
+
+                        </div>
+                      </div> 
+                      
+                    </div> 
+                  
+                    <hr class="">
+                    <h5 style="color:red">Mothers' Info</h5>
+
+                    <div class="row">
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label>First Name <strong class="text-red">*</strong></label>
+                          <input  type="text" class="form-control"  name="mother_first" >
+
+                          <span class="text-danger error-text mother_first_error"></span>
                           
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label>Middle Name <strong class="text-red">*</strong></label>
+                          <input  type="text" class="form-control"  name="mother_middle" >
+
+                          <span class="text-danger error-text mother_middle_error"></span>
+                          
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label>Last Name <strong class="text-red">*</strong></label>
+                          <input  type="text" class="form-control"  name="mother_last" >
+
+                          <span class="text-danger error-text mmother_last_error"></span>
+                          
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                            <label> Occupation </label>                            
+                            <input  type="text" class="form-control"  name="mother_occupation" >
+                            
+                            <span class="text-danger error-text mother_occupation_error"></span>
+
                         </div>
                       </div>
 
                       <div class="col-md-3">
                         <div class="form-group">
-                            <label>Guardian's Fullname </label>                            
-                            <input  type="text" class="form-control"  name="guardian" >
+                            <label> Contact No. </label>                            
+                            <input  type="text" class="form-control"  name="mother_contact" >
                             
-                            <span class="text-danger error-text guardian_error"></span>
+                            <span class="text-danger error-text mother_contact_error"></span>
 
                         </div>
-                      </div>  
-                      
-                    </div> 
+                      </div>
+                    </div>
+
                   </div>
 
                   <div class="card-footer">

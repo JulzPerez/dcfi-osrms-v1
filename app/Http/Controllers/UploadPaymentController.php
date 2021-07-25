@@ -46,9 +46,7 @@ class UploadPaymentController extends Controller
                 return view('payment.index', compact('payments'));
             }
         }
-        else{
-
-        }
+       
     }
 
     /**
@@ -75,31 +73,36 @@ class UploadPaymentController extends Controller
             'file' => 'required|file|mimes:zip,pdf,jpg,jpeg,bmp,png,doc,docx,csv,rtf,xlsx,xls,txt',
         ]);
 
-        $userid = \Auth::user()->id;
 
-        $student = DB::table('student')
-                        ->where('user_id', $userid)
-                        ->first();
-        $student_id = $student->id;
-        
-            $file = $request->file('file');
+        if(\Auth::check())
+        {
+            $userid = \Auth::user()->id;
 
-            if($file != null)
-            {
-                $filename = $student_id.'_'.time().'_'.$file->getClientOriginalName();          
-                 // Save the file
-                $path = $file->storeAs('payments', $filename);
-                //dd($path);
-            }           
-        
-        UploadPayment::create([
-            'student_id' => $student_id,
-            'payment_for' => $request['payment_for'],
-            'amount' => $request['amount'],
-            'notes' => $request['notes'],
-            'proof' => $filename
-        ]); 
+            $student = DB::table('student')
+                            ->where('user_id', $userid)
+                            ->first();
+            $student_id = $student->id;
+            
+                $file = $request->file('file');
 
+                if($file != null)
+                {
+                    $filename = $student_id.'_'.time().'_'.$file->getClientOriginalName();          
+                    // Save the file
+                    $path = $file->storeAs('payments', $filename);
+                    //dd($path);
+                }           
+            
+            UploadPayment::create([
+                'student_id' => $student_id,
+                'payment_for' => $request['payment_for'],
+                'amount' => $request['amount'],
+                'notes' => $request['notes'],
+                'proof' => $filename
+            ]); 
+
+        }
+            
         return redirect('/payment')->with('success', 'Payment uploaded successfully!');
     }
 
