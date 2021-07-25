@@ -278,9 +278,9 @@
 
                       <div class="col-md-3">
                         <div class="form-group">
-                            <label>City </label>
+                            <label>City/Municipality </label>
                             
-                            <select class="form-control " name="city" id="city"  style="width: 100%;">             
+                            <select class="form-control " name="city" id="locality"  style="width: 100%;">             
                     
                             </select>
                             
@@ -289,18 +289,6 @@
                         </div>
                       </div>  
                       
-                      <div class="col-md-3">
-                        <div class="form-group">
-                            <label>Municipality</label>
-                            
-                            <select class="form-control " name="municipality" id="municipality"  style="width: 100%;">
-                                        
-                            </select>
-                            
-                            <span class="text-danger error-text municipality_error"></span>
-
-                        </div>
-                      </div> 
                     </div> 
                   </div>
                   <div class="card-footer">
@@ -359,23 +347,14 @@
 
         $("#province").change(function(){
             $.ajax({
-                url: "{{ route('getMunicipality') }}?province_no=" + $(this).val(),
+                url: "{{ route('getLocality') }}?province_no=" + $(this).val(),
                 method: 'GET',
                 success: function(data) {
-                    $('#municipality').html(data.html);
+                    $('#locality').html(data.html);
                 }
             });
         });
     
-        $("#province").change(function(){
-            $.ajax({
-                url: "{{ route('getCity') }}?province_no=" + $(this).val(),
-                method: 'GET',
-                success: function(data) {
-                    $('#city').html(data.html);
-                }
-            });
-        });
       
 
     </script>

@@ -313,16 +313,19 @@ class StudentController extends Controller
         //
     }
 
-    public function getMunicipalityByProvince(Request $request)
+    public function getLocalityByProvince(Request $request)
     {
         $html = '';
 
         $html .= '<option value=""> --Select here--</option>';
        
         $municipalities = DB::table('municipality')->where('province_no',$request['province_no'])->get();
+        $cities = DB::table('city')->where('province_no',$request['province_no'])->get();
 
-        foreach ($municipalities as $municipality) {
-            $html .= '<option value="'.$municipality->number.'">'.$municipality->name.'</option>';
+        $localities = $municipalities->merge($cities);
+
+        foreach ($localities as $locality) {
+            $html .= '<option value="'.$locality->number.'">'.$locality->name.'</option>';
         }
 
         return response()->json(['html' => $html]);

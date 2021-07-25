@@ -28,8 +28,7 @@ Route::get('/enrollment/create', 'EnrollmentController@create_enrollForm')->name
 Route::post('/enrollment', 'EnrollmentController@enroll')->name('enroll_store');
 Route::get('/enrollment', 'EnrollmentController@index')->name('enroll_index');
 
-Route::get('/getMunicipality', 'StudentController@getMunicipalityByProvince')->name('getMunicipality');
-Route::get('/getCity', 'StudentController@getCityByProvince')->name('getCity');
+Route::get('/getLocality', 'StudentController@getLocalityByProvince')->name('getLocality');
 Route::get('/getGradeLevel', 'EnrollmentController@getGradeLevel')->name('getGradeLevel');
 Route::get('/getTrack', 'EnrollmentController@getTrack')->name('getTrack');
 Route::get('/getStrand', 'EnrollmentController@getStrand')->name('getStrand');
