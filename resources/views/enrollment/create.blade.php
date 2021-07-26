@@ -131,7 +131,7 @@
                                     <option value="First Semester"> First Semester  </option>    
                                     <option value="Second Semester"> Second Semester </option>                    
                                 </select> -->
-                                <input  type="text" class="form-control"  name="semester" value="{{session('semester)}}" disabled>
+                                <input  type="text" class="form-control"  name="semester" value="{{session('semester')}}" disabled>
                                 
                                 @if ($errors->has('semester'))
                                     <span class="text-danger">{{ $errors->first('semester') }}</span>
