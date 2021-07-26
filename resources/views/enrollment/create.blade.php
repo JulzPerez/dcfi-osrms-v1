@@ -115,6 +115,10 @@
                                 <select class="form-control " id="modality" name="modality"  style="width: 100%;"> 
                                 </select>
 
+                                @if ($errors->has('modality'))
+                                    <span class="text-danger">{{ $errors->first('modality') }}</span>
+                                @endif
+
                             </div>
                         </div>
                     </div>
@@ -127,9 +131,11 @@
                                     <option value="First Semester"> First Semester  </option>    
                                     <option value="Second Semester"> Second Semester </option>                    
                                 </select> -->
-                                <input  type="text" class="form-control"  name="school_year" value="{{session('semester)}}" disabled>
+                                <input  type="text" class="form-control"  name="semester" value="{{session('semester)}}" disabled>
                                 
-                                
+                                @if ($errors->has('semester'))
+                                    <span class="text-danger">{{ $errors->first('semester') }}</span>
+                                @endif
                                 
                             </div>  
                         </div>
@@ -139,7 +145,9 @@
                                 <input  type="text" class="form-control"  name="school_year" value="{{$SY}}" disabled>
                                 
 
-        
+                                @if ($errors->has('school_year'))
+                                    <span class="text-danger">{{ $errors->first('school_year') }}</span>
+                                @endif
                             
                             </div>                        
                         </div>
