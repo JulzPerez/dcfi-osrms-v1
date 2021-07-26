@@ -243,10 +243,7 @@
                 alert("Please select modality!");
             }        
       
-            else if( !$('#semester').val() ) { 
-                e.preventDefault();
-                alert("Please select semester!");
-            }   
+              
 
             else
             {
