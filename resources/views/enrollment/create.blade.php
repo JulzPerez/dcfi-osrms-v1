@@ -139,9 +139,7 @@
                                 <input  type="text" class="form-control"  name="school_year" value="{{$SY}}" disabled>
                                 
 
-                                @if ($errors->has('school_year'))
-                                    <span class="text-danger">{{ $errors->first('school_year') }}</span>
-                                @endif
+        
                             
                             </div>                        
                         </div>
