@@ -159,7 +159,7 @@ class StudentController extends Controller
             'father_last' => 'required',
             'father_occupation' => 'required',
             'father_contact' => 'required',
-            'father_extension' => 'required',
+            
             
             'mother_first' => 'required',
             'mother_middle' => 'required',
@@ -190,7 +190,7 @@ class StudentController extends Controller
         'father_last.required' => 'Required field',
         'father_occupation.required' => 'Required field',
         'father_contact.required' => 'Required field',
-        'father_extension.required' => 'Required field',
+        
         
         'mother_first.required' => 'Required field',
         'mother_middle.required' => 'Required field',
