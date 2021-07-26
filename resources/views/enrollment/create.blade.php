@@ -126,12 +126,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Semester</label>
-                                <select class="form-control " name="semester" id="semester"  style="width: 100%;">  
+                                <!-- <select class="form-control " name="semester" id="semester"  style="width: 100%;">  
                                     <option value=""> -- Select here -- </option>   
                                     <option value="First Semester"> First Semester  </option>    
                                     <option value="Second Semester"> Second Semester </option>                    
-                                </select>
-
+                                </select> -->
+                                <input  type="text" class="form-control"  name="school_year" value="{{session('semester)}}" disabled>
+                                
                                 @if ($errors->has('semester'))
                                     <span class="text-danger">{{ $errors->first('semester') }}</span>
                                 @endif
