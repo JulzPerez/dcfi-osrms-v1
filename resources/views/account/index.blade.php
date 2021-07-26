@@ -43,6 +43,16 @@
                                         <td class="text-muted" width="30%">Account Status</td>
                                         <td class="text-olive"> {{$account->status}}</td>
                                     </tr>
+
+                                   <!--  <tr>
+                                        <td class="text-muted" width="30%">Total Bill Amount</td>
+                                        <td class="text-olive">  </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="text-muted" width="30%">Total Payment Amount</td>
+                                        <td class="text-olive"> </td>
+                                    </tr> -->
                                     
                                     <tr>
                                         <td class="text-muted" width="30%"></td>
