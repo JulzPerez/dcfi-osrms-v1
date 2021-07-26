@@ -29,9 +29,6 @@
                     <!-- /.info-box-content -->
                     </div>
                     <!-- /.info-box -->
-                
-                    
-                        
                             <table class="table table-hover table-bordered table-striped">
                                 <thead>
                                     <tr>

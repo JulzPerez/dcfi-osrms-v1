@@ -263,7 +263,7 @@
                         <div class="form-group">
                             <label>City/Municipality </label>
                             
-                            <select class="form-control " name="city" id="locality"  style="width: 100%;">             
+                            <select class="form-control " name="city" id="city"  style="width: 100%;">           
                     
                             </select>
                             
@@ -447,15 +447,17 @@
           });
         });
 
-        $("#province").change(function(){
-            $.ajax({
-                url: "{{ route('getLocality') }}?province_no=" + $(this).val(),
-                method: 'GET',
-                success: function(data) {
-                    $('#locality').html(data.html);
-                }
+        $(function(){
+            $("#province").change(function(){
+                $.ajax({
+                    url: "{{ route('getLocality') }}?province_no=" + $(this).val(),
+                    method: 'GET',
+                    success: function(data) {
+                        $('#city').html(data.html);
+                    }
+                });
             });
-        });
+          });
     
       
 

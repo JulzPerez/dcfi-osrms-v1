@@ -46,10 +46,32 @@ class StudentController extends Controller
                     else 
                     {             
 
-                        $ethnicity_name = DB::table('ethnicity')->where('id',$student->ethnicity_id)->first()->name;
+                        $ethnicity_name = 
+                        
+                        $ethnicity = DB::table('ethnicity')->where('id',$student->ethnicity_id)->first();
+
+                        if($ethnicity != null)
+                        {
+                            $ethnicity_name = $ethnicity->name;
+                        }
+                        else{
+                            $ethnicity_name = null;
+                        }
+                        
                         
                         $mother_tongue_name = DB::table('mother_tongue')->where('id',$student->mother_tongue_id)->first()->name; 
-                        $religion_name = DB::table('religion')->where('id',$student->religion)->first()->Name; 
+
+
+                         
+                        $religion = DB::table('religion')->where('id',$student->religion)->first();
+
+                        if($religion != null)
+                        {
+                            $religion_name = $religion->Name;
+                        }
+                        else{
+                            $religion_name = null;
+                        }
 
                         $father = DB::table('parent')
                                         ->join('guardian','parent.id','=','guardian.father_id')
@@ -66,6 +88,7 @@ class StudentController extends Controller
                                         ->select('city.*','province.*','city.name as city_name', 'province.name as province_name')
                                         ->where('city.number',$student->city_no)
                                         ->first();
+
                             if($city != null)
                             {
                                 $city_name = $city->city_name;
@@ -404,12 +427,21 @@ class StudentController extends Controller
         $html = '';
 
         $html .= '<option value=""> --Select here--</option>';
-       
-        $localitites = DB::table('city')->where('province_no',$request['province_no'])->get();
 
-        foreach ($localities as $locality) {
-            $html .= '<option value="'.$locality->number.'">'.$locality->name.'</option>';
+        $localities = DB::table('city')->where('province_no',$request['province_no'])->get();
+
+        if(!$localities->isEmpty())
+        {
+            foreach ($localities as $locality) 
+            {
+                $html .= '<option value="'.$locality->number.'">'.$locality->name.'</option>';
+            }
         }
+        else{
+            $html .= '<option value="">No existing list of places. </option>';
+        }
+       
+               
 
         return response()->json(['html' => $html]);
     }
