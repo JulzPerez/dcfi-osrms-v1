@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Storage;
 
 class UploadRequirementsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -63,31 +68,36 @@ class UploadRequirementsController extends Controller
             'file' => 'required|file|mimes:zip,pdf,jpg,jpeg,bmp,png,doc,docx,csv,rtf,xlsx,xls,txt',
         ]);
 
-        $userid = \Auth::user()->id;
+        if(\Auth::check())
+        {
+            $userid = \Auth::user()->id;
 
-        $student = DB::table('student')
-                        ->where('user_id', $userid)
-                        ->first();
-        $student_id = $student->id;
+            $student = DB::table('student')
+                            ->where('user_id', $userid)
+                            ->first();
+            $student_id = $student->id;
+            
+                $file = $request->file('file');
+
+                if($file != null)
+                {
+                    $filename = $student_id.'_'.time().'_'.$file->getClientOriginalName();          
+                    // Save the file
+                    $path = $file->storeAs('student_requirements', $filename);
+                    //dd($path);
+                }           
+            
+            UploadRequirements::create([
+                'student_id' => $student_id,
+                'name' => $request['doc_name'],
+                'attachment' => $filename
+            ]); 
+
+            return redirect('/upload')->with('success', 'File uploaded successfully!');
+            }
+
         
-            $file = $request->file('file');
-
-            if($file != null)
-            {
-                $filename = $student_id.'_'.time().'_'.$file->getClientOriginalName();          
-                 // Save the file
-                $path = $file->storeAs('student_requirements', $filename);
-                //dd($path);
-            }           
-        
-        UploadRequirements::create([
-            'student_id' => $student_id,
-            'name' => $request['doc_name'],
-            'attachment' => $filename
-        ]); 
-
-        return redirect('/upload')->with('success', 'File uploaded successfully!');
-    }
+        }
 
     /**
      * Display the specified resource.
