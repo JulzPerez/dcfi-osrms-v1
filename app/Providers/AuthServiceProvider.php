@@ -31,7 +31,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('isRegistrar',function($user){
-            return $user->user_type === 'registrar';
+            return $user->user_type === 'Registrar';
         });
 
         Gate::define('isStudent',function($user){

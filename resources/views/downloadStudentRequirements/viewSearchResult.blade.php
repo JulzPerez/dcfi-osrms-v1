@@ -16,37 +16,35 @@
     
     <div class="row ">
         
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="card card-primary">
                 <div class="card-header"> Search Result </div>
                          
                 <div class="card-body" >
-                    @if($payments->isEmpty() || (count($payments) <= 0))
-                            <p> <strong class="text-red">No proof of payment was uploaded by this student! </strong> </p>
+                    @if(empty($result))
+                            <p> <strong class="text-red">No record found! </strong> </p>
                             
                     @else
                     <table class="table table-hover table-bordered table-striped" >
                         <thead>
                             <tr>
                                 <th style="width:5%">#</th>    
-                                <th style="width:55%">File Name</th>
-                                <th style="width:20%">Payment Purpose</th>
-                                <th style="width:20%">Date Uploaded</th>    
+                                <th style="width:65%">Student Name</th>
+                                <th style="width:30%">Action</th>    
                             </tr>
                         </thead>
 
                             <tbody style="line-height: 0.75" id="search_result">
                                 @php ($count=0)
-                                @foreach($payments as $payment)
+                                @foreach($result as $rs)
                                 <tr>
                                     <td>{{++$count}}.</td>
-                                    <td> 
-                                        <a href="{{ route('downloadFile', $payment->proof) }}" >
-                                            {{$payment->proof}}
-                                        </a>
-                                    </td>   
-                                    <td> {{$payment->payment_for}}</td> 
-                                    <td> {{$payment->created_at}}</td>
+                                    <td> <strong class="text-blue">{{$rs->last_name}}, {{$rs->first_name}} {{$rs->middle_name}}<strong></td>   
+                                    <td>
+                                        <a href="{{ route('getStudentRequirements',$rs->id) }}">
+                                            View
+                                        </a>                                         
+                                    </td>
                                 </tr>                            
                                 @endforeach
                                             
@@ -56,7 +54,7 @@
 
                 </div>
                 <div class="card-footer">
-                    <a href="{{route('searchForm')}}">
+                    <a href="{{route('searchFormRequirements')}}">
                         <button type="button" class="btn btn-primary">Back</button>
                     </a>                    
                 </div>               

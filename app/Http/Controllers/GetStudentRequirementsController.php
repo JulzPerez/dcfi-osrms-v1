@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class GetPaymentsController extends Controller
+class GetStudentRequirementsController extends Controller
 {
     //
     public function __construct()
@@ -15,15 +15,15 @@ class GetPaymentsController extends Controller
 
     public function index()
     {
-        if(\Gate::allows('isBFO') )
+        if(\Gate::allows('isRegistrar') )
         {
-            return view('downloadPayments.searchForm');
+            return view('downloadStudentRequirements.searchForm');
         }
     }
 
-    public function getStudent(Request $request)
+    public function getStudentList(Request $request)
     {      
-        if(\Gate::allows('isBFO') )
+        if(\Gate::allows('isRegistrar') )
         {
             if($request['searchBy'] == 'ID')
             {
@@ -38,27 +38,27 @@ class GetPaymentsController extends Controller
                     ->get();
             }
         
-            return view('downloadPayments.viewSearchResult', compact('result'));
+            return view('downloadStudentRequirements.viewSearchResult', compact('result'));
 
         }
     }
 
-    public function getStudentPayments($id)
+    public function getStudentRequirements($id)
     {
-        if(\Gate::allows('isBFO') )
+        if(\Gate::allows('isRegistrar') )
         {
-            $payments = DB::table('upload_payment')
+            $requirements = DB::table('upload_requirements')
                         ->where('student_id',$id)
                         ->get();
-
-            return view('downloadPayments.viewStudentPayment', compact('payments'));
+        
+            return view('downloadStudentRequirements.viewStudentRequirements', compact('requirements'));
         }
         
     }
 
-    public function downloadFile($id)
+    public function downloadDocument($id)
     {
-        $file = storage_path('app/public/payments/' . $id);
+        $file = storage_path('app/public/student_requirements/' . $id);
 
         if(!file_exists($file))
         {
@@ -68,5 +68,6 @@ class GetPaymentsController extends Controller
         {
             return response()->download($file);
         }
+        
     }
 }

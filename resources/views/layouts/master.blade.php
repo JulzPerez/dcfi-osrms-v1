@@ -213,6 +213,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           @endcan
 
+          @can('isRegistrar')
+          <li class="nav-item">
+            <a href="{{ route('searchFormRequirements') }}" class="nav-link">
+            <i class="nav-icon  fas fa-file-invoice-dollar"></i>
+              <p>
+                View Student Requirements          
+              </p>
+            </a>
+          </li>
+          @endcan
+
 
           @can('isAdmin')
           <li class="nav-item ">

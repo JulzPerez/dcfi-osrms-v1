@@ -43,10 +43,14 @@ Route::group(['prefix' => 'account'], function () {
 
 });
 
-//for downloads
+//for payments download
 Route::get('/searchForm', 'GetPaymentsController@index')->name('searchForm');
 Route::get('/getStudent', 'GetPaymentsController@getStudent')->name('getStudent');
 Route::get('/getStudentPayments/{id}', 'GetPaymentsController@getStudentPayments')->name('getStudentPayments');
 Route::get('/downloadFile/{id}','GetPaymentsController@downloadFile')->name('downloadFile');
 
-
+//for student requirements download
+Route::get('/searchFormRequirements', 'GetStudentRequirementsController@index')->name('searchFormRequirements');
+Route::get('/getStudentList', 'GetStudentRequirementsController@getStudentList')->name('getStudentList');
+Route::get('/getStudentRequirements/{id}', 'GetStudentRequirementsController@getStudentRequirements')->name('getStudentRequirements');
+Route::get('/downloadDocument/{id}','GetStudentRequirementsController@downloadDocument')->name('downloadDocument');
