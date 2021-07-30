@@ -149,7 +149,7 @@
                         <tbody>
                             <br>
                             <tr>
-                                <h5 class="text-red">Father Info</h5>
+                                <h5 class="text-red">Father's Info</h5>
                             </tr>
                             <tr>
                                 <td class="text-muted" width="30%">First Name</td>
@@ -189,8 +189,7 @@
                         <tbody>
                             <br>
                              <tr>
-                                <td class="text-muted"><h5 class="text-red">Mother Info</h5></td>
-                                
+                                <h5 class="text-red">Mother's Info</h5>                               
                                 
                             </tr>
                             <tr>
@@ -213,6 +212,47 @@
                             <tr>
                                 <td class="text-muted">Contact No.</td>
                                 <td class="text-olive"> {{$mother->contact_no}} </td>
+                            </tr>                            
+                            
+                        </tbody>                          
+                    </table>
+                   @endif
+
+                   @if($mother == null)
+                        <p>There is no record for Guardian's Information</p>
+                    @else
+                    <table class="table table-bordered table-condensed">
+                        <tbody>
+                            <br>
+                             <tr>
+                                <h5 class="text-red">Guardian's Info</h5>                               
+                                
+                            </tr>
+                            <tr>
+                                <td class="text-muted" width="30%">First Name</td>
+                                <td class="text-olive"> {{ucfirst($guardian->first_name)}} </td>
+                            </tr>
+                            <tr>
+                                <td class="text-muted" width="30%">Middle Name</td>
+                                <td class="text-olive"> {{ucfirst($guardian->middle_name)}} </td>
+                            </tr>
+                            <tr>
+                                <td class="text-muted" width="30%">Last Name</td>
+                                <td class="text-olive"> {{ucfirst($guardian->last_name)}} </td>
+                            </tr>
+
+                            <tr class="text-muted" width="30%">
+                                <td class="text-muted"> Name extension</td>
+                                <td class="text-olive">{{ucfirst($guardian->name_extension)}}</td>
+                            </tr>
+                            
+                            <tr class="text-muted" width="30%">
+                                <td class="text-muted"> Occupation</td>
+                                <td class="text-olive">{{ucfirst($guardian->occupation)}}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-muted">Contact No.</td>
+                                <td class="text-olive"> {{$guardian->contact_no}} </td>
                             </tr>                            
                             
                         </tbody>                          

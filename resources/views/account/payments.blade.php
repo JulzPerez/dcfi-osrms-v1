@@ -23,7 +23,7 @@
                     <span class="info-box-icon bg-info"><i class="fas fa-ruble-sign"></i></span>
 
                             <div class="info-box-content">
-                                <span class="info-box-text"><h5><strong>Balance</strong></h4></span>
+                                <span class="info-box-text"><h5><strong>Total Payment</strong></h4></span>
                                 <span class="info-box-number"><h4><strong class="text-red">Php. {{number_format($total_payment,2)}}</strong></span>
                             </div>
                     <!-- /.info-box-content -->
@@ -34,7 +34,7 @@
                                     <tr>
                                         <th style="width:20%">#</th>    
                                         <th style="width:30%">Amount</th>
-                                        <th style="width:30%">Method of Payment</th>    
+                                        <th style="width:30%">Mode of Payment</th>    
                                     </tr>
                                 </thead>
                             

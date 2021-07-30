@@ -17,7 +17,7 @@ class AccountTrackingController extends Controller
     {
         $userid = session('user_id'); 
         $student = DB::table('student')                
-                    ->where('user_id', $userid )
+                    ->where('user_id', $userid)
                     ->first();
 
         $accounts = DB::table('enrollment')

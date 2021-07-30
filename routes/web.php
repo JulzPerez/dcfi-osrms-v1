@@ -39,5 +39,14 @@ Route::group(['prefix' => 'account'], function () {
     Route::get('/', ['as' => 'account.index', 'uses' => 'AccountTrackingController@index']);
     Route::get('/billDetails/{id}', ['as' => 'account.billDetails', 'uses' => 'AccountTrackingController@billDetails']);
     Route::get('/payments/{id}', ['as' => 'account.payments', 'uses' => 'AccountTrackingController@payments']);
+    Route::get('/getPayments', ['as' => 'account.getPayments', 'uses' => 'getPaymentsController@index']);
+
 });
+
+//for downloads
+Route::get('/searchForm', 'GetPaymentsController@index')->name('searchForm');
+Route::get('/getStudent', 'GetPaymentsController@getStudent')->name('getStudent');
+Route::get('/getStudentPayments/{id}', 'GetPaymentsController@getStudentPayments')->name('getStudentPayments');
+Route::get('/downloadFile/{id}','GetPaymentsController@downloadFile')->name('downloadFile');
+
 

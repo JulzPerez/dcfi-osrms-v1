@@ -36,7 +36,6 @@
             <div id="collapseOne" class="panel-collapse collapse in show">
               
                 <form  id="main_form"  action="{{route('student.store')}}" method="POST">
-                <!-- method="POST" action="" -->
                 @csrf
                   <div class="card-body ">
                   
@@ -275,7 +274,7 @@
                     </div> 
                   
                     <hr class="">
-                    <h5 style="color:red">Fathers' Info</h5>
+                    <h5 style="color:red">Father's Info</h5>
 
                     <div class="row">                                  
                       <div class="col-md-3">
@@ -340,7 +339,7 @@
                     </div> 
                   
                     <hr class="">
-                    <h5 style="color:red">Mothers' Info</h5>
+                    <h5 style="color:red">Mother's Info</h5>
 
                     <div class="row">
                       <div class="col-md-3">
@@ -390,6 +389,68 @@
                         </div>
                       </div>
                     </div>
+
+                    <hr class="">
+                    <h5 style="color:red">Guardian's Info</h5>
+
+                    <div class="row">
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label>First Name <strong class="text-red">*</strong></label>
+                          <input  type="text" class="form-control"  name="guardian_first" >
+
+                          <span class="text-danger error-text guardian_first_error"></span>
+                          
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label>Middle Name <strong class="text-red">*</strong></label>
+                          <input  type="text" class="form-control"  name="guardian_middle" >
+
+                          <span class="text-danger error-text guardian_middle_error"></span>
+                          
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label>Last Name <strong class="text-red">*</strong></label>
+                          <input  type="text" class="form-control"  name="guardian_last" >
+
+                          <span class="text-danger error-text guardian_last_error"></span>
+                          
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Name Extension</label>
+                            <input  type="text" class="form-control"  name="guardian_extension" >
+                            
+                            <span class="text-danger error-text guardian_extension_error"></span>
+
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                            <label> Occupation </label>                            
+                            <input  type="text" class="form-control"  name="guardian_occupation" >
+                            
+                            <span class="text-danger error-text guardian_occupation_error"></span>
+
+                        </div>
+                      </div>
+
+                      <div class="col-md-3">
+                        <div class="form-group">
+                            <label> Contact No. </label>                            
+                            <input  type="text" class="form-control"  name="guardian_contact" >
+                            
+                            <span class="text-danger error-text guardian_contact_error"></span>
+
+                        </div>
+                      </div>
+                    </div>
+
 
                   </div>
 

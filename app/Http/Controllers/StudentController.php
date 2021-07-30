@@ -75,13 +75,22 @@ class StudentController extends Controller
 
                         $father = DB::table('parent')
                                         ->join('guardian','parent.id','=','guardian.father_id')
+                                        ->select('parent.*')
                                         ->where('guardian.id',$student->guardian_id)
                                         ->first();
 
                         $mother = DB::table('parent')
                                         ->join('guardian','parent.id','=','guardian.mother_id')
+                                        ->select('parent.*')
                                         ->where('guardian.id',$student->guardian_id)
-                                        ->first();    
+                                        ->first();   
+                        
+                        $guardian = DB::table('parent')
+                                        ->join('guardian','parent.id','=','guardian.guardian_id')
+                                        ->select('parent.*')
+                                        ->where('guardian.id',$student->guardian_id)
+                                        ->first(); 
+                        //dd($mother);
 
                         $city = DB::table('city')
                                         ->join('province','city.province_no','=','province.number')
@@ -101,7 +110,7 @@ class StudentController extends Controller
 
                         $student_exist = true; 
 
-                        return view('student.index', compact('student_exist','student','ethnicity_name', 'mother_tongue_name','religion_name','father','mother','city_name', 'province_name')) ;
+                        return view('student.index', compact('student_exist','student','ethnicity_name', 'mother_tongue_name','religion_name','father','mother','guardian','city_name', 'province_name')) ;
                    
                             
                     }                                    
@@ -167,6 +176,12 @@ class StudentController extends Controller
             'mother_occupation' => 'required',
             'mother_contact' => 'required',
 
+            'guardian_first' => 'required',
+            'guardian_middle' => 'required',
+            'guardian_last' => 'required',
+            'guardian_occupation' => 'required',
+            'guardian_contact' => 'required',
+
 
         ], 
         [
@@ -197,6 +212,12 @@ class StudentController extends Controller
         'mother_last.required' => 'Required field',
         'mother_occupation.required' => 'Required field',
         'mother_contact.required' => 'Required field',
+
+        'guardian_first.required' => 'Required field',
+        'guardian_middle.required' => 'Required field',
+        'guardian_last.required' => 'Required field',
+        'guardian_occupation.required' => 'Required field',
+        'guardian_contact.required' => 'Required field',
 
         'ethnicity.required' => 'Required field',
         //'modality.required' => 'Required field',
@@ -264,17 +285,29 @@ class StudentController extends Controller
                     ]
                 );
 
-                $guardian_id = DB::table('guardian')->insertGetId(
+                $guardian_id = DB::table('parent')->insertGetId(
+                    [
+                        'first_name' => $request['guardian_first'],
+                        'middle_name' => $request['guardian_middle'],
+                        'last_name' => $request['guardian_last'],
+                        'name_extension' => $request['guardian_extension'],
+                        'occupation' => $request['guardian_occupation'],
+                        'contact_no' => $request['guardian_contact'],
+                    
+                    ]
+                );
+
+                $guardianID = DB::table('guardian')->insertGetId(
                     [
                         'mother_id' => $mother_id,
                         'father_id' => $father_id,
-                                              
+                        'guardian_id' => $guardian_id,                                              
                     ]
                 );
                 
                 $affected = DB::table('student')
                     ->where('id', $studentID)
-                    ->update(['guardian_id' => $guardian_id]);
+                    ->update(['guardian_id' => $guardianID]);
 
             }
             catch(\Illuminate\Database\QueryException $ex)

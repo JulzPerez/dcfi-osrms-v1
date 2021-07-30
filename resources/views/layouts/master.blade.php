@@ -202,6 +202,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
           @endcan
 
+          @can('isBFO')
+          <li class="nav-item">
+            <a href="{{ route('account.getPayments') }}" class="nav-link">
+            <i class="nav-icon  fas fa-file-invoice-dollar"></i>
+              <p>
+                View Payments          
+              </p>
+            </a>
+          </li>
+          @endcan
+
 
           @can('isAdmin')
           <li class="nav-item ">

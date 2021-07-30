@@ -74,10 +74,11 @@
 
                             <div class="col-md-6">
                                 <select class="form-control select2bs4" name="user_type" value="{{ old('user_type') }}"  style="width: 100%;">
-                                    <option>Registrar</option>
-                                    <option>Old Student</option>
-                                    <option>Prospective Student</option>
-                                    <option>Admin</option>                           
+                                    <option value="Registrar">Registrar</option>
+                                    <option value="BFO">BFO</option>
+                                    <option value="Old Student">Old Student</option>
+                                    <option value="Prospective Student">Prospective Student</option>
+                                    <option value="Admin">Admin</option>                           
                                 </select>
 
                                 @error('user_type')

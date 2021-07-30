@@ -93,8 +93,6 @@
                     </thead>
                     <tbody>
                         
-
-                
                             @foreach($payments as $payment)
                             <tr>
                                     <td>

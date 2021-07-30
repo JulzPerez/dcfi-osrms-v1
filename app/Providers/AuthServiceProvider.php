@@ -41,5 +41,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('isProspectiveStudent',function($user){
             return $user->user_type === 'prospective student';
         });
+
+        Gate::define('isBFO',function($user){
+            return $user->user_type === 'BFO';
+        });
     }
 }
