@@ -141,7 +141,7 @@
                   </div>
                   <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
                   
-                    @if($father == null)
+                    @if($father === null)
                         <p>There is no record for Fathers' Information</p>
                     @else
 
@@ -182,7 +182,7 @@
                     </table>
                     @endif
 
-                    @if($mother == null)
+                    @if($mother === null)
                         <p>There is no record for Mother's Information</p>
                     @else
                     <table class="table table-bordered table-condensed">
@@ -218,7 +218,7 @@
                     </table>
                    @endif
 
-                   @if($mother == null)
+                   @if($guardian === null)
                         <p>There is no record for Guardian's Information</p>
                     @else
                     <table class="table table-bordered table-condensed">
