@@ -14,12 +14,7 @@ class StudentController extends Controller
         $this->middleware('auth');
     }
 
-   /*  protected function failedValidation(Validator $validator)
-    {
-        throw (new ValidationException($validator))
-                    ->errorBag($this->errorBag)
-                    ->redirectTo($this->getRedirectUrl());
-    } */
+  
 
     /**
      * Display a listing of the resource.
@@ -493,4 +488,11 @@ class StudentController extends Controller
 
         return response()->json(['html' => $html]);
     }
+
+    public function searchIDForm()
+    {
+        return view('student.searchIDForm');
+    }
+
+
 }

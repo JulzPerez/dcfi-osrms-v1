@@ -52,10 +52,17 @@
                             </p>
                         @endif
                     </div>   
+                    
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary float-right">{{ __('Sign in') }}</button>
+
+                @if (Route::has('password.request'))
+                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                        {{ __('Reset Password?') }}
+                    </a>
+                @endif
                   
                 </div>
                 <!-- /.card-footer -->

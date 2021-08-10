@@ -23,6 +23,8 @@ Route::Resource('users', 'UserController');
 Route::Resource('student', 'StudentController');
 Route::Resource('upload', 'UploadRequirementsController');
 Route::Resource('payment', 'UploadPaymentController');
+Route::get('/searchIDForm', 'StudentController@searchIDForm')->name('searchIDForm');
+
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/enrollment/create', 'EnrollmentController@create_enrollForm')->name('enroll_create');
 Route::post('/enrollment', 'EnrollmentController@enroll')->name('enroll_store');

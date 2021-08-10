@@ -22,9 +22,11 @@
             </div>
         
             <div class="card-body">
-                <div class="row">
-                    <p class="text-green text-center"><strong >You have no exisiting record yet. Please click on 'Create' button to submit record.</strong></p>
+                <div class="alert alert-info">
+                  <h5><i class="icon fas fa-ban"></i> Hi! You have no existing record. Please click on create button to submit record in the database.</h5>
+
                 </div>
+                
             </div> <!--end card-body -->
             <div class="card-footer">
                 <a href="{{ route('student.create') }}">
@@ -32,7 +34,7 @@
                     <i class="fas fa-pencil-alt"></i> Create
                     </button>
                 </a>
-                
+                       
             </div>        
         </div>
     </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Illuminate\Support\Facades\Password;
 
 class ForgotPasswordController extends Controller
 {
@@ -19,4 +20,12 @@ class ForgotPasswordController extends Controller
     */
 
     use SendsPasswordResetEmails;
+
+    public function forgot() {
+        $credentials = request()->validate(['email' => 'required|email']);
+
+        Password::sendResetLink($credentials);
+
+        return response()->json(["msg" => 'Reset password link sent on your email id.']);
+    }
 }
