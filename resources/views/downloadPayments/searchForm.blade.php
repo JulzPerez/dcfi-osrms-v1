@@ -18,9 +18,19 @@
         <div class="col-md-6">
             <div class="card card-primary">
                 <div class="card-header">Search Form</div>
+                <div class="card-tools">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">                               
+                                <a href="{{route('getAllStudents')}}" class="btn btn-danger">View All Uploads</a>
+                            </div> 
+                        </div>  
+                    </div>
+                </div>
             <form  id="main_form"  action="{{route('getStudent')}}" method="GET">
             
                 <div class="card-body">
+                
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">

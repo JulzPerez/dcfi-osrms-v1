@@ -50,6 +50,7 @@ Route::get('/searchForm', 'GetPaymentsController@index')->name('searchForm');
 Route::get('/getStudent', 'GetPaymentsController@getStudent')->name('getStudent');
 Route::get('/getStudentPayments/{id}', 'GetPaymentsController@getStudentPayments')->name('getStudentPayments');
 Route::get('/downloadFile/{id}','GetPaymentsController@downloadFile')->name('downloadFile');
+Route::get('/getAllStudents', 'GetPaymentsController@getAllStudents')->name('getAllStudents');
 
 //for student requirements download
 Route::get('/searchFormRequirements', 'GetStudentRequirementsController@index')->name('searchFormRequirements');

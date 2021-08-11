@@ -69,4 +69,15 @@ class GetPaymentsController extends Controller
             return response()->download($file);
         }
     }
+
+    public function getAllStudents()
+    {
+        if(\Gate::allows('isBFO') )
+        {
+            $result = DB::table('student')->get();     
+        
+            return view('downloadPayments.viewSearchResult', compact('result'));
+
+        }
+    }
 }
