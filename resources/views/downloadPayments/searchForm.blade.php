@@ -17,12 +17,12 @@
     <div class="row ">
         <div class="col-md-6">
             <div class="card card-primary">
-                <div class="card-header">Search Form</div>
+                <div class="card-header">Search Student Form</div>
                 <div class="card-tools">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">                               
-                                <a href="{{route('getAllStudents')}}" class="btn btn-danger">View All Uploads</a>
+                                <a href="{{route('getAllStudents')}}" class="btn btn-danger">List All Students</a>
                             </div> 
                         </div>  
                     </div>

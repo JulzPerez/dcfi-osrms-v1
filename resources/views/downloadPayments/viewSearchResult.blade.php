@@ -56,7 +56,8 @@
                 <div class="card-footer">
                     <a href="{{route('searchForm')}}">
                         <button type="button" class="btn btn-primary">Back</button>
-                    </a>                    
+                    </a>  
+                                     
                 </div>               
                 
             </div>
