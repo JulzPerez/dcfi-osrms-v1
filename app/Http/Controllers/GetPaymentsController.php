@@ -74,8 +74,8 @@ class GetPaymentsController extends Controller
     {
         if(\Gate::allows('isBFO') )
         {
-            $result = DB::table('student')
-                        ->join('upload_payment', 'student.id','=','upload_payment.student_id')
+            $result = DB::table('upload_payment')
+                        ->join('student', 'upload_payment.student_id','=','student.id')
                         ->get();     
         
             return view('downloadPayments.viewSearchResult', compact('result'));

@@ -23,6 +23,7 @@ class GetStudentRequirementsController extends Controller
 
     public function getStudentList(Request $request)
     {      
+        //dd($request['searchBy_lastname']);
         if(\Gate::allows('isRegistrar') )
         {
             if($request['searchBy'] == 'ID')
@@ -37,7 +38,7 @@ class GetStudentRequirementsController extends Controller
                     ->where('last_name',$request['searchBy_lastname'])
                     ->get();
             }
-        
+        //dd($result);
             return view('downloadStudentRequirements.viewSearchResult', compact('result'));
 
         }
@@ -50,7 +51,7 @@ class GetStudentRequirementsController extends Controller
             $requirements = DB::table('upload_requirements')
                         ->where('student_id',$id)
                         ->get();
-        
+        //dd($requirements);
             return view('downloadStudentRequirements.viewStudentRequirements', compact('requirements'));
         }
         
