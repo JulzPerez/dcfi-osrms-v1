@@ -57,7 +57,7 @@
                 </div>
                 <div class="card-footer">
                     <a href="{{route('getAllStudents')}}">
-                        <button type="button" class="btn btn-primary">List All</button>
+                        <button type="button" class="btn btn-primary">Back to List </button>
                     </a>                     
                 </div>               
                 

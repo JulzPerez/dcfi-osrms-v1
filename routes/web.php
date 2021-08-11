@@ -57,3 +57,4 @@ Route::get('/searchFormRequirements', 'GetStudentRequirementsController@index')-
 Route::get('/getStudentList', 'GetStudentRequirementsController@getStudentList')->name('getStudentList');
 Route::get('/getStudentRequirements/{id}', 'GetStudentRequirementsController@getStudentRequirements')->name('getStudentRequirements');
 Route::get('/downloadDocument/{id}','GetStudentRequirementsController@downloadDocument')->name('downloadDocument');
+Route::get('/getAllStudentList', 'GetStudentRequirementsController@getAllStudentList')->name('getAllStudentList');

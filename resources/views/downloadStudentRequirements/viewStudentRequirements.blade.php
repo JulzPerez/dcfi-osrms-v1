@@ -56,8 +56,8 @@
 
                 </div>
                 <div class="card-footer">
-                    <a href="{{route('searchFormRequirements')}}">
-                        <button type="button" class="btn btn-primary">Back</button>
+                    <a href="{{route('getAllStudentList')}}">
+                        <button type="button" class="btn btn-primary">Back to List</button>
                     </a>                    
                 </div>               
                 

@@ -18,6 +18,15 @@
         <div class="col-md-6">
             <div class="card card-primary">
                 <div class="card-header">Search Form</div>
+                <div class="card-tools">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">                               
+                                <a href="{{route('getAllStudentList')}}" class="btn btn-danger">List All Students</a>
+                            </div> 
+                        </div>  
+                    </div>
+                </div>
             <form  id="main_form"  action="{{route('getStudentList')}}" method="GET">
             
                 <div class="card-body">
