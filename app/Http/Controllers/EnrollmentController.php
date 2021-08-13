@@ -14,13 +14,6 @@ class EnrollmentController extends Controller
         $this->middleware('auth');
     }
     
-    protected function failedValidation(Validator $validator)
-    {
-        throw (new ValidationException($validator))
-                    ->errorBag($this->errorBag)
-                    ->redirectTo($this->getRedirectUrl());
-    }
-
     public function index()
     {
         $userid = session('user_id');

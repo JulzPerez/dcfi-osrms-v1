@@ -15,14 +15,14 @@
     
     <div class="row">
         <div class="col-md-12">
-            <h3 class="">School Year:<strong> {{session('school_year_name')}} </strong>,        Semester: <strong>{{session('semester')}}</strong></h3>
+            <h5 class="float-right">School Year:<strong> {{session('school_year_name')}} </strong>, Semester: <strong>{{session('semester')}}</strong></h3>
         </div>
     </div>
 
     @if(!$student_exist)
     <div class="row mt-3">
         <div class="col-md-6">
-            <p class="text-red"><strong> You cannot enroll yet because you dont have student record! 
+            <p class="text-red"><strong> You cannot enroll yet because you don't have existing record! 
             <br> Please go to Profile and submit details!</strong></p>
         </div>
     </div>
@@ -39,7 +39,7 @@
                 
                     <div class="card-body">
                         <div class="row">
-                            <p class="text-green text-center"><strong >Your data has been submitted successfully for validation.</strong></p>
+                            <p class="text-green text-center"><strong >Enrollment is in progress. You can view</strong></p>
                         </div>
                     </div> <!--end card-body -->
                 

@@ -18,11 +18,8 @@
         @if($accounts->isEmpty())
         <br>
         <div class="callout callout-danger">
-            
             <h5 class="text-red">Info: No billing record for the student this school year {{session('school_year_name')}}.</h5>
         </div>     
-            
-        
         @else
         <div class="col-md-6">
                 <div class="card card-danger">

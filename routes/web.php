@@ -58,3 +58,6 @@ Route::get('/getStudentList', 'GetStudentRequirementsController@getStudentList')
 Route::get('/getStudentRequirements/{id}', 'GetStudentRequirementsController@getStudentRequirements')->name('getStudentRequirements');
 Route::get('/downloadDocument/{id}','GetStudentRequirementsController@downloadDocument')->name('downloadDocument');
 Route::get('/getAllStudentList', 'GetStudentRequirementsController@getAllStudentList')->name('getAllStudentList');
+
+Route::get('/SRMSAccountOnline', 'OnlineSRMSController@index')->name('SRMSAccountOnline');
+Route::post('/create_OnlineSRMSUser', 'OnlineSRMSController@OnlineSRMSUser')->name('create_OnlineSRMSUser');

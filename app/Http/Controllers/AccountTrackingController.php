@@ -20,16 +20,24 @@ class AccountTrackingController extends Controller
                     ->where('user_id', $userid)
                     ->first();
 
-        $accounts = DB::table('enrollment')
+        if($student != null)
+        {
+            $accounts = DB::table('enrollment')
                     ->join('bill','enrollment.id','=','bill.enrollment_id')
                     ->select('bill.*','bill.id as bill_id','bill.status as bill_status')
                     ->where('enrollment.student_id',$student->id)
                     ->where('enrollment.school_year_id',session('school_year_id'))
-                    ->get();   
-        //dd($accounts);  
+                    ->get();
+
+            return view('account.index',compact('accounts'));
+        }
+        else
+        {
+            return view('account.index')
+                ->withErrors('Opps! It seems like you have no record of billing enrollment for this term!');
+        }
         
         
-        return view('account.index',compact('accounts'));
     }
 
     public function billDetails($id)

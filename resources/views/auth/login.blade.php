@@ -44,11 +44,15 @@
                     <div>
                         @if (Route::has('register'))
                             <p>
-                                No account yet?   
+                               To register online, please   
                                 <a href="{{ route('register') }}">{{ __('Sign up') }}</a>
                             <br>
-                                <!-- Forgot Password? 
-                                <a href="#">{{ __('Click Here') }}</a> -->
+                                If already registered on-site, 
+                                @if (Route::has('SRMSAccountOnline'))
+                                    <a class="btn btn-link" href="{{ route('SRMSAccountOnline') }}">
+                                        {{('Activate SRMS Online') }}
+                                    </a>
+                                @endif
                             </p>
                         @endif
                     </div>   
@@ -60,9 +64,11 @@
 
                 @if (Route::has('password.request'))
                     <a class="btn btn-link" href="{{ route('password.request') }}">
-                        {{ __('Reset Password?') }}
+                        {{ __('Reset Password') }}
                     </a>
                 @endif
+
+                
                   
                 </div>
                 <!-- /.card-footer -->
