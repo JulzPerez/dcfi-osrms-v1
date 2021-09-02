@@ -134,7 +134,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="image">
         <a href="#" class="brand-link">
           <img src="/images/profile.png" class="img-circle elevation-2" alt="User Image">
-          <h5 class="text-white" style="text-align:center"> {{ucwords( Auth::user()->first_name .' '.Auth::user()->last_name ) }} </h5>
+          <h5 class="text-white" style="text-align:center"> {{ucwords(Auth::user()->first_name .' '.Auth::user()->last_name ) }} </h5>
         </a>  
       </div>
       <hr style="">

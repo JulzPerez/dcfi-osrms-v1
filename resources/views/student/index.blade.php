@@ -33,8 +33,7 @@
                     <button type="button" class="btn btn-outline-primary btn-block">
                     <i class="fas fa-pencil-alt"></i> Create
                     </button>
-                </a>
-                       
+                </a>  
             </div>        
         </div>
     </div>
