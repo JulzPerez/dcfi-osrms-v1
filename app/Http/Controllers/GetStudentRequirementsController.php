@@ -79,7 +79,7 @@ class GetStudentRequirementsController extends Controller
             /* $result = DB::table('upload_requirements')
                         ->join('student', 'upload_requirements.student_id','=','student.id')
                         ->get();  */    
-                $result = DB::table('student')->get(); 
+                $result = DB::table('student')->orderBy('last_name')->get(); 
         
             return view('downloadStudentRequirements.viewSearchResult', compact('result'));
 
