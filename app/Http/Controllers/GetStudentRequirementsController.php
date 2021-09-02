@@ -60,7 +60,7 @@ class GetStudentRequirementsController extends Controller
     public function downloadDocument($id)
     {
         $file = storage_path('app/public/student_requirements/' . $id);
-
+    
         if(!file_exists($file))
         {
             return response()->json(['msg'=>"File does not exist"]);
@@ -76,9 +76,10 @@ class GetStudentRequirementsController extends Controller
     {
         if(\Gate::allows('isRegistrar') )
         {
-            $result = DB::table('upload_requirements')
+            /* $result = DB::table('upload_requirements')
                         ->join('student', 'upload_requirements.student_id','=','student.id')
-                        ->get();     
+                        ->get();  */    
+                $result = DB::table('student')->get(); 
         
             return view('downloadStudentRequirements.viewSearchResult', compact('result'));
 
