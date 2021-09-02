@@ -76,8 +76,8 @@ class GetStudentRequirementsController extends Controller
     {
         if(\Gate::allows('isRegistrar') )
         {
-            $result = DB::table('student')
-                        ->join('upload_requirements', 'upload_requirements.student_id','=','student.id')
+            $result = DB::table('upload_requirements')
+                        ->join('student', 'upload_requirements.student_id','=','student.id')
                         ->get();     
         
             return view('downloadStudentRequirements.viewSearchResult', compact('result'));
