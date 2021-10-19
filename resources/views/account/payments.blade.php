@@ -13,7 +13,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="card card-danger">
                 <div class="card-header">
                     <h5> Bill Details</h5>
@@ -35,8 +35,8 @@
                                         <th style="width:5%">#</th>    
                                         <th style="width:25%">Amount</th>
                                         <th style="width:30%">Mode of Payment</th>
-                                        <th style="width:30%">OR No.</th> 
-                                        <th style="width:30%">Date</th>
+                                        <th style="width:20%">OR No.</th> 
+                                        <th style="width:20%">Date</th>
                                     </tr>
                                 </thead>
                             

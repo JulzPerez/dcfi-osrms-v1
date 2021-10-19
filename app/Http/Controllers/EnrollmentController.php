@@ -30,7 +30,7 @@ class EnrollmentController extends Controller
                 
                 $enrollment = DB::table('enrollment')
                     ->where('student_id', $student->id)
-                    ->where('school_year_id',$SY)
+                    ->where('school_year_id',$SY->id)
                     ->first(); 
                
                 if($enrollment != null)
