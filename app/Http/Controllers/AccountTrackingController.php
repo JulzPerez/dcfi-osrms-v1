@@ -25,31 +25,38 @@ class AccountTrackingController extends Controller
 
         if($student != null)
         {
+
             $accounts = DB::table('enrollment')
                     ->join('bill','enrollment.id','=','bill.enrollment_id')
                     ->select('bill.*','bill.id as bill_id','bill.status as bill_status')
                     ->where('enrollment.student_id',$student->id)
                     ->where('enrollment.school_year_id',$SY->id)
                     ->first();
-               
-            $bill_id = $accounts->id;
-            $billPayments = DB::table('bill')
-                    ->join('bill_payment','bill.id','=','bill_payment.bill_id')
-                    ->where('bill.id',$bill_id)
-                    ->get();
-            $total_payment = $billPayments->sum('amount');
 
-            $billDetails = DB::table('bill_fees')
-                    ->join('fees','bill_fees.fee_id','=','fees.id')
-                    ->select('bill_fees.*','fees.fee_name')
-                    ->where('bill_fees.bill_id',$bill_id)
-                    ->get();
-        
-            $total_fees = $billDetails->sum('amount');
+            if($accounts != null)
+            {
+                $bill_id = $accounts->id;
+                $billPayments = DB::table('bill')
+                        ->join('bill_payment','bill.id','=','bill_payment.bill_id')
+                        ->where('bill.id',$bill_id)
+                        ->get();
+                $total_payment = $billPayments->sum('amount');
 
-            $outstanding_balance = $total_fees-$total_payment;
+                $billDetails = DB::table('bill_fees')
+                        ->join('fees','bill_fees.fee_id','=','fees.id')
+                        ->select('bill_fees.*','fees.fee_name')
+                        ->where('bill_fees.bill_id',$bill_id)
+                        ->get();
+            
+                $total_fees = $billDetails->sum('amount');
+
+                $outstanding_balance = $total_fees-$total_payment;
            
-            return view('account.index',compact('accounts','outstanding_balance'));
+                return view('account.index',compact('accounts','outstanding_balance'));
+            }
+            else{
+                return view('account.noAccounts');
+            }
         }
         else
         {
