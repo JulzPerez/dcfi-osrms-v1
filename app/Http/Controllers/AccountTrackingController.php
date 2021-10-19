@@ -15,10 +15,13 @@ class AccountTrackingController extends Controller
     //
     public function index()
     {
-        $userid = session('user_id'); 
+        $userid = \Auth::user()->id;
         $student = DB::table('student')                
                     ->where('user_id', $userid)
                     ->first();
+        $SY = DB::table('school_year')
+                    ->where('current',1)->first();  
+        //dd($student);
 
         if($student != null)
         {
@@ -26,8 +29,19 @@ class AccountTrackingController extends Controller
                     ->join('bill','enrollment.id','=','bill.enrollment_id')
                     ->select('bill.*','bill.id as bill_id','bill.status as bill_status')
                     ->where('enrollment.student_id',$student->id)
-                    ->where('enrollment.school_year_id',session('school_year_id'))
+                    ->where('enrollment.school_year_id',$SY->SY)
                     ->get();
+                dd($accounts);
+            
+
+           /*  $billPayments = DB::table('bill')
+                    ->join('bill_payment','bill.id','=','bill_payment.bill_id')
+                    ->where('bill.id',$id)
+                    ->get();
+
+            $total_payment = $billPayments->sum('amount'); */
+
+            
 
             return view('account.index',compact('accounts'));
         }
