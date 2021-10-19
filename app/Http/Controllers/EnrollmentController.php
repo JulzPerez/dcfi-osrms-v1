@@ -24,14 +24,13 @@ class EnrollmentController extends Controller
             
             
             if($student != null)
-            {
-                
+            {                
                 
                 $enrollment = DB::table('enrollment')
                     ->where('student_id', $student->id)
                     ->where('school_year_id',session('school_year_id'))
                     ->first(); 
-                
+               
                 if($enrollment != null)
                 {
                     $enrollmentStatus = $enrollment->status;
@@ -62,6 +61,9 @@ class EnrollmentController extends Controller
                     }
                     
                 } 
+                else{
+                    return view('enrollment.enroll');
+                }
                       
             }
             else
