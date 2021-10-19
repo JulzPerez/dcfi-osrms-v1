@@ -226,7 +226,7 @@ class StudentController extends Controller
         }
         else{
 
-            $userid = session('user_id');
+            $userid = \Auth::user()->id;
             $studentID = date('Y').'-'.mt_rand(100000 ,599999);
             
             try
