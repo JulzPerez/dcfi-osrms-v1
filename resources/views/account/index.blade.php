@@ -15,7 +15,7 @@
     
     <div class="row mt-3">
         
-        @if($accounts->isEmpty())
+        @if($accounts === null)
         <br>
         <div class="callout callout-danger">
             <h5 class="text-red">Info: No billing record for the student this school year {{session('school_year_name')}}.</h5>
@@ -27,18 +27,22 @@
                         <h5> Billing  for Academic Year {{session('school_year_name')}}</h5>
                     </div>  
                     <div class="card-body">
-                    @foreach($accounts as $account)
+                   
                         <div class="callout callout-danger">
                             
                             <table class="table  table-bordered">
                                 <tbody>  
                                     <tr>
                                         <td class="text-muted" width="30%"><h6>Bill Name</h6></td>
-                                        <td class="text-olive"> {{$account->name}} </td>
+                                        <td class="text-olive"> {{$accounts->name}} </td>
                                     </tr>
                                     <tr>
                                         <td class="text-muted" width="30%">Account Status</td>
-                                        <td class="text-olive"> {{$account->status}}</td>
+                                        <td class="text-olive"> {{$accounts->status}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-muted" width="30%">Outstanding Balance</td>
+                                        <td class="text-olive"> {{number_format($outstanding_balance,2)}}</td>
                                     </tr>
 
                                    <!--  <tr>
@@ -54,10 +58,10 @@
                                     <tr>
                                         <td class="text-muted" width="30%"></td>
                                         <td class="text-olive">
-                                            <a href="{{ route('account.billDetails',$account->bill_id) }}">
+                                            <a href="{{ route('account.billDetails',$accounts->bill_id) }}">
                                                    <strong class="text-blue"> View Bill Fees </strong>
                                             </a> / 
-                                            <a href="{{ route('account.payments', $account->bill_id) }}" >
+                                            <a href="{{ route('account.payments', $accounts->bill_id) }}" >
                                             <strong class="text-blue"> View Payments </strong>
                                             </a>
 
@@ -68,7 +72,7 @@
                             </table>
                         </div> 
                         
-                    @endforeach
+                 
                     </div>
                 </div>
 
