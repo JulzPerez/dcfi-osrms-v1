@@ -26,7 +26,6 @@ class EnrollmentController extends Controller
             if($student != null)
             {
                 
-                $student_exist = true;
                 
                 $enrollment = DB::table('enrollment')
                     ->where('student_id', $student->id)
@@ -67,9 +66,9 @@ class EnrollmentController extends Controller
             }
             else
             {
-                $student_exist = false;  
+              
                
-                return view('enrollment.noStudent', compact('student_exist'));
+                return view('enrollment.noStudent');
             }         
 
         }

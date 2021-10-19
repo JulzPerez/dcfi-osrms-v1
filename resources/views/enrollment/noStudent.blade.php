@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    @if(!$student_exist)
+   
     <div class="row mt-3">
         <div class="col-md-6">
             <p class="text-red"><strong> You need to create student profile before you can enroll! 
@@ -29,7 +29,7 @@
             
         </div>
     </div>
-    @endif
+ ]
   
         
 </div>
