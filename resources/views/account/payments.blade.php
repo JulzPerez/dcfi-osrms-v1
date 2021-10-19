@@ -32,9 +32,11 @@
                             <table class="table table-hover table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th style="width:20%">#</th>    
-                                        <th style="width:30%">Amount</th>
-                                        <th style="width:30%">Mode of Payment</th>    
+                                        <th style="width:5%">#</th>    
+                                        <th style="width:25%">Amount</th>
+                                        <th style="width:30%">Mode of Payment</th>
+                                        <th style="width:30%">OR No.</th> 
+                                        <th style="width:30%">Date</th>
                                     </tr>
                                 </thead>
                             
@@ -46,6 +48,8 @@
                                             <td>{{++$count}}</td>
                                             <td> {{$billPayment->amount}}</td>   
                                             <td> {{$billPayment->method_payment}} </td>
+                                            <td> {{$billPayment->or_num}}</td> 
+                                            <td> {{$billPayment->created_at}}</td> 
                                         </tr>                            
                                         @endforeach
                                     </tbody>
