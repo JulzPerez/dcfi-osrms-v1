@@ -24,6 +24,10 @@ Route::Resource('student', 'StudentController');
 Route::Resource('upload', 'UploadRequirementsController');
 Route::Resource('payment', 'UploadPaymentController');
 Route::get('/searchIDForm', 'StudentController@searchIDForm')->name('searchIDForm');
+Route::get('/getFamilyInfo/{id}', 'StudentController@getFamilyInfo')->name('getFamilyInfo');
+Route::get('/updateFamily/{id}', 'StudentController@updateFamilyInfo')->name('updateFamily');
+Route::post('/addGuardian', 'StudentController@addGuardian')->name('addGuardian');
+
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/enrollment/create', 'EnrollmentController@create_enrollForm')->name('enroll_create');
@@ -42,6 +46,12 @@ Route::group(['prefix' => 'account'], function () {
     Route::get('/billDetails/{id}', ['as' => 'account.billDetails', 'uses' => 'AccountTrackingController@billDetails']);
     Route::get('/payments/{id}', ['as' => 'account.payments', 'uses' => 'AccountTrackingController@payments']);
     Route::get('/getPayments', ['as' => 'account.getPayments', 'uses' => 'getPaymentsController@index']);
+
+});
+
+Route::group(['prefix' => 'grade'], function () {
+    Route::get('/', ['as' => 'grade.index', 'uses' => 'GradesController@index']);
+    
 
 });
 

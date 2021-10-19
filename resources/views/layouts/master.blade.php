@@ -172,6 +172,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{route('grade.index')}}" class="nav-link">
+            <i class="nav-icon fas fa-book-reader"></i>
+              <p>
+                Grades          
+              </p>
+            </a>
+          </li>
 
           <li class="nav-item">
             <a href="/account" class="nav-link">
@@ -297,7 +305,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="/js/app.js"></script>
 
 
-@yield('scripts')
+@stack('scripts')
 
 </body>
 </html>

@@ -469,9 +469,8 @@
 </div>
 @endsection
 
-@section('scripts')
+@push('scripts')
     <script type="text/javascript">
-
       
         $(function(){
           $("#main_form").on('submit', function(e){
@@ -523,5 +522,5 @@
       
 
     </script>
-@endsection
+@endpush
 

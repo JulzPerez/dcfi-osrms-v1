@@ -61,6 +61,13 @@
               <div class="card-body">
                 <div class="tab-content" id="custom-tabs-one-tabContent">
                   <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
+                    
+                    <a href="{{ route('student.edit', $student->id ) }}">
+                        <button type="submit" class="btn btn-info btn-flat float-right pl-3 pr-3 mb-3">
+                        <i class="fas fa-edit"></i>Edit</button>
+                    </a>
+                    
+                    
                     <table class="table table-bordered table-condensed">
                         <tbody>
                             <tr>
@@ -142,8 +149,21 @@
                   </div>
                   <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
                   
+                    <!-- <a href="{{ route('getFamilyInfo', $student->id ) }}">
+                        <button type="submit" class="btn btn-info btn-flat float-right pl-3 pr-3 mb-3">
+                        <i class="fas fa-edit"></i>Edit</button>
+                    </a> -->
                     @if($father === null)
-                        <p>There is no record for Fathers' Information</p>
+                        
+                    <table class="table table-bordered table-condensed">
+                        <tr><td colspan="2" style="background-color:white;color:red">Father (No record)
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addGuardianModal" id="addFather">
+                            Add
+                        </button>
+                        </td></tr>  
+                    </table>
+
+                        
                     @else
 
                     <table class="table table-bordered table-condensed">
@@ -184,8 +204,16 @@
                     @endif
 
                     @if($mother === null)
-                        <p>There is no record for Mother's Information</p>
+                       
+                    <table class="table table-bordered table-condensed">
+                        <tr><td colspan="2" style="background-color:white;color:red">Mother (No record)
+                            <button id="btnFather" type="submit" class="btn btn-info btn-flat pl-3 pr-3">
+                                <i class="fas fa-edit"></i>Add
+                            </button>
+                        </td></tr>  
+                    </table> 
                     @else
+                   
                     <table class="table table-bordered table-condensed">
                         <tbody>
                             <br>
@@ -217,10 +245,16 @@
                             
                         </tbody>                          
                     </table>
-                   @endif
+                    @endif
 
                    @if($guardian === null)
-                        <p>There is no record for Guardian's Information</p>
+                   <table class="table table-bordered table-condensed">
+                        <tr><td colspan="2" style="background-color:white;color:red">Guardian (No record)
+                            <button id="btnFather" type="submit" class="btn btn-info btn-flat pl-3 pr-3">
+                                <i class="fas fa-edit"></i>Add
+                            </button>
+                        </td></tr>  
+                    </table> 
                     @else
                     <table class="table table-bordered table-condensed">
                         <tbody>
@@ -263,6 +297,10 @@
 
                   </div>
                   <div class="tab-pane fade" id="custom-tabs-one-messages" role="tabpanel" aria-labelledby="custom-tabs-one-messages-tab">
+                    <a href="{{ route('student.edit', $student->id ) }}">
+                        <button type="submit" class="btn btn-info btn-flat float-right pl-3 pr-3 mb-3">
+                        <i class="fas fa-edit"></i>Edit</button>
+                    </a>
                     <table class="table table-bordered table-condensed">
                         <tbody>
                             
@@ -299,10 +337,171 @@
               <!-- /.card -->
             </div>
           </div>
-    </div>
-    
-        
+    </div>           
 
     @endif
+
+
+<!-----MODAL --->
+    <div class="modal fade" id="addGuardianModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Add Guardian Form</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form  id="addGuardianForm"  action="{{route('addGuardian')}}" method="POST">
+            @csrf
+            <div class="modal-body">
+                
+               
+                    <div class="form-group">
+                        <label>First Name </label>
+                        <input  type="text" class="form-control" name="first_name" > 
+                        <span class="text-danger error-text first_name_error"></span>
+                          
+                    </div>
+                    <div class="form-group">
+                        <label>Middle Name </label>
+                        <input  type="text" class="form-control" name="middle_name" > 
+                        <span class="text-danger error-text middle_name_error"></span>
+                          
+                    </div>
+
+                    <div class="form-group">
+                        <label>Last Name </label>
+                        <input  type="text" class="form-control" name="last_name" > 
+                        <span class="text-danger error-text last_name_error"></span>
+                          
+                    </div>
+
+                    <div class="form-group">
+                        <label>Name Extension </label>
+                        <input  type="text" class="form-control" name="name_extension" > 
+                        <span class="text-danger error-text name_extension_error"></span>
+                          
+                    </div>
+
+                    <div class="form-group">
+                        <label> Occupation</label>
+                        <input  type="text" class="form-control" name="occupation" > 
+                        <span class="text-danger error-text occupation_error"></span>
+                          
+                    </div>
+                    <div class="form-group">
+                        <label>Contact No. </label>
+                        <input  type="text" class="form-control" name="contact_no" > 
+                        <span class="text-danger error-text contact_no_error"></span>
+                          
+                    </div>
+
+                    <input  type="hidden" class="form-control" name="guardian" id="guardian"> 
+
+                
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+            </form>
+          </div>
+          
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+<!-- /.modal -->
+
+
 </div>
 @endsection
+
+@push('scripts')
+    <script type="text/javascript">
+      
+        $(function(){
+          $("#edit_form").on('submit', function(e){
+              e.preventDefault();
+
+              $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+              });
+
+              $.ajax({
+                  url:$(this).attr('action'),
+                  method:$(this).attr('method'),
+                  data:new FormData(this),
+                  processData:false,
+                  dataType:'json',
+                  contentType:false,
+                  beforeSend:function(){
+                      $(document).find('span.error-text').text('');
+                  },
+                  success:function(data){
+                      if(data.status == 0){
+                          $.each(data.error, function(prefix, val){
+                              $('span.'+prefix+'_error').text(val[0]);
+                          });
+                      }else{
+                          $('#edit_form')[0].reset();
+                          alert(data.msg);
+                          window.location.href = "/student";
+                      }
+                  }
+              });
+          });
+        });
+
+        $(function(){
+
+            $('#addFather').on("click", function(e) {
+                
+                $('#guardian').val('father');
+                //console.log(request_id);
+            });
+
+            
+
+          $("#addGuardianForm").on('submit', function(e){
+              e.preventDefault();
+
+              $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+              });
+
+              $.ajax({
+                  url:$(this).attr('action'),
+                  method:$(this).attr('method'),
+                  data:new FormData(this),
+                  processData:false,
+                  dataType:'json',
+                  contentType:false,
+                  beforeSend:function(){
+                      $(document).find('span.error-text').text('');
+                  },
+                  success:function(data){
+                      if(data.status == 0){
+                          $.each(data.error, function(prefix, val){
+                              $('span.'+prefix+'_error').text(val[0]);
+                          });
+                      }else{
+                          $('#edit_form')[0].reset();
+                          alert(data.msg);
+                          window.location.href = "/student";
+                      }
+                  }
+              });
+          });
+        });
+
+           
+      
+
+    </script>
+@endpush

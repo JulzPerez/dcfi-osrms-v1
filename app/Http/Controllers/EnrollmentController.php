@@ -16,30 +16,68 @@ class EnrollmentController extends Controller
     
     public function index()
     {
-        $userid = session('user_id');
-        //$userid = \Auth::user()->id;
-        $student = Student::where('user_id',$userid)->first();    
-        
-        
-        if($student != null)
-        {
-            
-            $student_exist = true;
-            
-            $enrollment = DB::table('enrollment')
-                ->where('student_id', $student->id)
-                ->where('school_year_id',session('school_year_id'))
-                ->first(); 
-            
-            //dd($enrollment);           
-        }
-        else
-        {
-            $enrollment = null;
-            $student_exist = false;            
-        }
+        //$userid = session('user_id');
+        try{
 
-        return view('enrollment.index', compact('student_exist','enrollment'));              
+            $userid = \Auth::user()->id;
+            $student = Student::where('user_id',$userid)->first();    
+            
+            
+            if($student != null)
+            {
+                
+                $student_exist = true;
+                
+                $enrollment = DB::table('enrollment')
+                    ->where('student_id', $student->id)
+                    ->where('school_year_id',session('school_year_id'))
+                    ->first(); 
+                
+                if($enrollment != null)
+                {
+                    $enrollmentStatus = $enrollment->status;
+                    $classSectionID = $enrollment->class_section_id;
+
+                    if($enrollmentStatus == 'admitted')
+                    {
+                        $enrolledSubjects = DB::table('subject_teacher')
+                                    ->join('subject','subject_teacher.Subject_ID','=','subject.Code')
+                                    ->join('subject_group', 'subject.Subject_Group_ID','=','subject_group.ID')
+                                    ->join('schedule','subject_teacher.Schedule_ID','=','schedule.ID')
+                                    ->select('subject_teacher.*','subject.*', 'subject_group.*','schedule.*')
+                                    ->where('subject_teacher.Class_Section_ID',$classSectionID)
+                                    ->where('subject_group.Name','Learning Areas')
+                                    ->get();
+                        
+                        
+
+                        $student_exist=true;
+
+                        //dd($enrolledSubjects);
+
+                        return view('enrollment.enrolledSubjects', compact('enrolledSubjects'));
+                    }
+                    else{
+                    
+                        return view('enrollment.pendingEnrollment', compact('enrollment'));
+                    }
+                    
+                } 
+                      
+            }
+            else
+            {
+                $student_exist = false;  
+               
+                return view('enrollment.noStudent', compact('student_exist'));
+            }         
+
+        }
+        catch(\Illuminate\Database\QueryException $ex)
+        { 
+            dd($ex->getMessage()); 
+        }
+        
         
     }
 

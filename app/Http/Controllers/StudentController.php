@@ -26,7 +26,7 @@ class StudentController extends Controller
        
             if(\Gate::allows('isProspectiveStudent') || \Gate::allows('isStudent'))
             {
-                $userid = session('user_id'); 
+                $userid = \Auth::user()->id; 
                 $student = DB::table('student')                
                             ->where('user_id', $userid )
                             ->first();
@@ -41,7 +41,7 @@ class StudentController extends Controller
                     else 
                     {             
 
-                        $ethnicity_name = 
+                        //$ethnicity_name = 
                         
                         $ethnicity = DB::table('ethnicity')->where('id',$student->ethnicity_id)->first();
 
@@ -346,17 +346,22 @@ class StudentController extends Controller
     {
         if(\Gate::allows('isProspectiveStudent') || \Gate::allows('isStudent') )
         {
-            $student = Student::find($id);
+            try{
+                $student = Student::find($id);
 
-            /* $ethnicities = DB::table('ethnicity')->get();
-            $mother_tongues = DB::table('mother_tongue')->get();
-            $modalities = DB::table('modality')->get();
- */
-            //dd($eth_id);
+                $ethnicities = DB::table('ethnicity')->get();
+                $mother_tongues = DB::table('mother_tongue')->get();
+                $modalities = DB::table('modality')->get();   
+                $provinces = DB::table('province')->get();
+                $religions = DB::table('religion')->get();   
+            }
+            catch(\PDOException $exception)
+            {
+                dd($exception->getMessage());
+            }
 
-            //$stud = collect($student);       
-
-            return view('student.edit', compact('student','ethnicities','mother_tongues','modalities'));
+            return view('student.edit', compact('student','ethnicities','mother_tongues','modalities','provinces', 'religions'));
+            
         }        
     }
 
@@ -370,7 +375,7 @@ class StudentController extends Controller
     public function update(Request $request, $id)
     {
 
-        $this->validate($request, [
+        $validator = Validator::make($request->all(),[
             'first_name' => 'required|string|max:191',
             'middle_name' => 'required|string|max:191',
             'last_name' => 'required|string|max:191',
@@ -409,33 +414,44 @@ class StudentController extends Controller
             ]
         );
 
-        $stud = Student::find($id);
-        $stud->lrn = $request['lrn'];
-        $stud->first_name = $request['first_name'];
-        $stud->middle_name = $request['middle_name'];
-        $stud->last_name = $request['last_name'];
-        $stud->name_extension = $request['name_extension'];
-        $stud->contact_no = $request['contact_no'];
-        $stud->sex = $request['sex'];
-        $stud->birthday = $request['birthdate'];
-        $stud->birthplace = $request['birth_place'];
-        $stud->citizenship = $request['citizenship'];
-        $stud->no_siblings = $request['no_siblings'];
-        $stud->religion = $request['religion'];
-        $stud->birth_order = $request['birth_order']; 
-        $stud->purok = $request['purok']; 
-       
-        //$stud->municipality = $request['municipality']; 
-        //$stud->province = $request['province']; 
 
-        //$stud->father_fullname = $request['father_fullname']; 
-        //$stud->mother_fullname = $request['mother_fullname']; 
-        //$stud->father_occupation = $request['father_occupation']; 
-        //$stud->mother_occupation = $request['mother_occupation']; 
-        
-        $stud->save();
+        if(!$validator->passes()){
+            return response()->json(['status'=>0, 'error'=>$validator->errors()->toArray()]);
+        }
+        else{
 
-        return redirect('/student')->with('success', 'Record updated successfully!');
+            try
+            {
+                $stud = Student::find($id);
+                $stud->lrn = $request['lrn'];
+                $stud->first_name = $request['first_name'];
+                $stud->middle_name = $request['middle_name'];
+                $stud->last_name = $request['last_name'];
+                $stud->name_extension = $request['name_extension'];
+                $stud->contact_no = $request['contact_no'];
+                $stud->sex = $request['sex'];
+                $stud->birthday = $request['birthdate'];
+                $stud->birthplace = $request['birth_place'];
+                $stud->citizenship = $request['citizenship'];
+                $stud->no_siblings = $request['no_siblings'];
+                $stud->religion = $request['religion'];
+                $stud->birth_order = $request['birth_order']; 
+                
+                $stud->save();
+
+            }
+            catch(\PDOException $exception)
+            {
+                dd($exception->getMessage());
+            }
+
+            if( $stud ){
+                return response()->json(['status'=>1, 'msg'=>'The record has been successfully updated!']);
+            }
+            else{
+                return response()->json(['status'=>0, 'msg'=>'Something went wrong!']);
+            }
+        }
 
     }
 
@@ -492,6 +508,163 @@ class StudentController extends Controller
     public function searchIDForm()
     {
         return view('student.searchIDForm');
+    }
+
+    public function getFamilyInfo($id)
+    {
+    
+        try{
+            $father = DB::table('student')
+                            ->join('guardian', 'student.guardian_id', '=', 'guardian.id')
+                            ->join('parent', 'guardian.father_id', '=', 'parent.id')
+                            ->where('student.id',$id)
+                            ->first();
+
+            $mother = DB::table('student')
+                            ->join('guardian', 'student.guardian_id', '=', 'guardian.id')
+                            ->join('parent', 'guardian.mother_id', '=', 'parent.id')
+                            ->where('student.id',$id)
+                            ->first();
+
+            $guardian = DB::table('student')
+                            ->join('guardian', 'student.guardian_id', '=', 'guardian.id')
+                            ->join('parent', 'guardian.guardian_id', '=', 'parent.id')
+                            ->where('student.id',$id)
+                            ->first();
+
+        }
+        catch(\PDOException $exception)
+            {
+                dd($exception->getMessage());
+            }
+
+        return view('student.family', compact('father', 'mother', 'guardian','id'));
+        
+       
+    }
+
+    public function updateFamilyInfo($id)
+    {
+
+    }
+
+    public function addGuardian(Request $request)
+    {
+        $validator = Validator::make($request->all(),[
+            'first_name' => 'required|string|max:191',
+            'middle_name' => 'required|string|max:191',
+            'last_name' => 'required|string|max:191',
+            'occupation' => 'required|string|max:191',
+            'contact_no' => 'required|string',  
+        ], 
+        [
+            'first_name.required' => 'Required field',
+            'middle_name.required' => 'Required field',
+            'last_name.required' => 'Required field',
+            'occupation.required' => 'Required field',
+            'contact_no.required' => 'Required field',
+        ]
+    );
+
+        if(!$validator->passes()){
+            return response()->json(['status'=>0, 'error'=>$validator->errors()->toArray()]);
+        }
+        else{
+
+          
+            try
+            {
+                $query = DB::table('student')->insert([
+                    'id' => $studentID,
+                    'user_id' => $userid, 
+                    'LRN' => $request['lrn'],
+                    'first_name' => $request['first_name'],
+                    'middle_name' => $request['middle_name'],
+                    'last_name' => $request['last_name'],
+                    'name_extension' => $request['name_extension'],
+                    'contact_no' => $request['contact_no'],
+                    'sex' => $request['sex'],
+                    'age' => $request['age'],
+                    'birthday' => $request['birthdate'],
+                    'birthplace' => $request['birth_place'],
+                    'citizenship' => $request['citizenship'],
+                    'religion' => $request['religion'],
+                    'no_siblings' => $request['no_siblings'],
+                    'birth_order' => $request['birth_order'],
+                    'purok' => $request['purok'],           
+                    //'municipality_no' => $request['municipality'],
+                    'city_no' => $request['city'],
+    
+                    'ethnicity_id' => $request['ethnicity'],
+                    'mother_tongue_id' => $request['mother_tongue'],
+                            
+                ]);
+
+                $father_id = DB::table('parent')->insertGetId(
+                    [
+                        'first_name' => $request['father_first'],
+                        'middle_name' => $request['father_middle'],
+                        'last_name' => $request['father_last'],
+                        'name_extension' => $request['father_extension'],
+                        'occupation' => $request['father_occupation'],
+                        'contact_no' => $request['father_contact'],
+                    
+                    ]
+                );
+
+                $mother_id = DB::table('parent')->insertGetId(
+                    [
+                        'first_name' => $request['mother_first'],
+                        'middle_name' => $request['mother_middle'],
+                        'last_name' => $request['mother_last'],
+                        'name_extension' => $request['mother_extension'],
+                        'occupation' => $request['mother_occupation'],
+                        'contact_no' => $request['mother_contact'],                        
+                    ]
+                );
+
+                $guardian_id = DB::table('parent')->insertGetId(
+                    [
+                        'first_name' => $request['guardian_first'],
+                        'middle_name' => $request['guardian_middle'],
+                        'last_name' => $request['guardian_last'],
+                        'name_extension' => $request['guardian_extension'],
+                        'occupation' => $request['guardian_occupation'],
+                        'contact_no' => $request['guardian_contact'],
+                    
+                    ]
+                );
+
+                $guardianID = DB::table('guardian')->insertGetId(
+                    [
+                        'mother_id' => $mother_id,
+                        'father_id' => $father_id,
+                        'guardian_id' => $guardian_id,                                              
+                    ]
+                );
+                
+                $affected = DB::table('student')
+                    ->where('id', $studentID)
+                    ->update(['guardian_id' => $guardianID]);
+
+            }
+            catch(\Illuminate\Database\QueryException $ex)
+            { 
+                dd($ex->getMessage()); 
+            }
+            catch(\PDOException $exception)
+            {
+                dd($exception->getMessage());
+            }
+
+            if( $query ){
+                session(['student_id' => $studentID]);
+                return response()->json(['status'=>1, 'msg'=>'The record has been successfully added!']);
+            }
+            else{
+                return response()->json(['status'=>0, 'msg'=>'Something went wrong!']);
+            }
+        }       
     }
 
 
