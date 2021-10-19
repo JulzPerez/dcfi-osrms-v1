@@ -165,7 +165,7 @@
 </div>
 @endsection
 
-@section('scripts')
+@push('scripts')
     <script type="text/javascript">
         $("#department").change(function(){
 
@@ -266,4 +266,4 @@
     </script>
 
    
-@endsection
+@endpush

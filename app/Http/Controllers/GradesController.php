@@ -24,10 +24,7 @@ class GradesController extends Controller
             
             
             if($student != null)
-            {
-                
-                $student_exist = true;
-                
+            {               
                 $enrollment = DB::table('enrollment')
                     ->where('student_id', $student->id)
                     ->where('school_year_id',session('school_year_id'))
@@ -82,13 +79,15 @@ class GradesController extends Controller
                     }
                     
                 } 
+                else{
+                    return view('grades.viewGrades');
+                }
+
                       
             }
             else
             {
-                $student_exist = false;  
-               
-                return view('grades.noStudent', compact('student_exist'));
+                return view('enrollment.noStudent');
             }         
 
         }
