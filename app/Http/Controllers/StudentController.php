@@ -89,14 +89,16 @@ class StudentController extends Controller
 
                         $city = DB::table('city')
                                         ->join('province','city.province_no','=','province.number')
-                                        ->select('city.*','province.*','city.name as city_name', 'province.name as province_name')
+                                        ->select('city.*','province.*','city.name as city_name')
                                         ->where('city.number',$student->city_no)
                                         ->first();
+                            
+                            //dd($city);
 
                             if($city != null)
                             {
                                 $city_name = $city->city_name;
-                                $province_name = $city->province_name;
+                                $province_name = $city->name;
                             } 
                             else{
                                 $city_name = null;
