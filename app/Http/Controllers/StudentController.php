@@ -545,9 +545,117 @@ class StudentController extends Controller
        
     }
 
-    public function updateFamilyInfo($id)
+    public function getFatherInfo($id)
     {
+        try{
+            $father = DB::table('student')
+                            ->join('guardian', 'student.guardian_id', '=', 'guardian.id')
+                            ->join('parent', 'guardian.father_id', '=', 'parent.id')
+                            ->select('parent.*')
+                            ->where('student.id',$id)
+                            ->first();
+            //dd($father);
+        }
+        catch(\PDOException $exception)
+            {
+                dd($exception->getMessage());
+            }
 
+        return response()->json(['data'=> $father]);
+    }
+
+    public function getMotherInfo($id)
+    {
+        try{
+            $mother = DB::table('student')
+                            ->join('guardian', 'student.guardian_id', '=', 'guardian.id')
+                            ->join('parent', 'guardian.mother_id', '=', 'parent.id')
+                            ->where('student.id',$id)
+                            ->first();
+            //dd($father);
+        }
+        catch(\PDOException $exception)
+            {
+                dd($exception->getMessage());
+            }
+
+        return response()->json(['data'=> $mother]);
+    }
+
+    public function getGuardianInfo($id)
+    {
+        try{
+            $guardian = DB::table('student')
+                            ->join('guardian', 'student.guardian_id', '=', 'guardian.id')
+                            ->join('parent', 'guardian.guardian_id', '=', 'parent.id')
+                            ->where('student.id',$id)
+                            ->first();
+            //dd($father);
+        }
+        catch(\PDOException $exception)
+            {
+                dd($exception->getMessage());
+            }
+
+        return response()->json(['data'=> $guardian]);
+    }
+
+    public function updateParentInfo(Request $request)
+    {
+        //dd($request);
+        $validator = Validator::make($request->all(),[
+            'first_name' => 'required|string|max:191',
+            'middle_name' => 'required|string|max:191',
+            'last_name' => 'required|string|max:191',
+            'occupation' => 'required|string|max:191',
+            'contact_no' => 'required|string',  
+        ], 
+        [
+            'first_name.required' => 'Required field',
+            'middle_name.required' => 'Required field',
+            'last_name.required' => 'Required field',
+            'occupation.required' => 'Required field',
+            'contact_no.required' => 'Required field',
+        ]
+        );
+
+        if(!$validator->passes()){
+            return response()->json(['status'=>0, 'error'=>$validator->errors()->toArray()]);
+        }
+        else{
+
+          
+            try
+            {
+                
+                $query = DB::table('parent')->where('id',$request['parent_id'])
+                ->update(
+                [
+                    'first_name' => $request['first_name'],
+                    'middle_name' => $request['middle_name'],
+                    'last_name' => $request['last_name'],
+                    'name_extension' => $request['name_extension'],
+                    'occupation' => $request['occupation'],
+                    'contact_no' => $request['contact_no'],
+                
+                ]
+                );                
+               
+            }
+            catch(\Illuminate\Database\Exception $ex)
+            { 
+                dd($ex->getMessage()); 
+            }
+
+            if( $query ){
+               
+                return response()->json(['status'=>1, 'msg'=>'The record has been successfully updated!']);
+            }
+            else{
+                return response()->json(['status'=>0, 'msg'=>'Something went wrong!']);
+            }
+        }
+        
     }
 
     public function addGuardian(Request $request)
@@ -566,7 +674,7 @@ class StudentController extends Controller
             'occupation.required' => 'Required field',
             'contact_no.required' => 'Required field',
         ]
-    );
+        );
 
         if(!$validator->passes()){
             return response()->json(['status'=>0, 'error'=>$validator->errors()->toArray()]);

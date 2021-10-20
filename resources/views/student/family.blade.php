@@ -38,62 +38,48 @@
                         <tr>                                
                             <td style="width: 30%; background-color:white">First Name</td>
                             <td>
-                                @if(!empty($father))
-                                <input name="father_fname" style="width:100%">{{$father->first_name}}</input>
-                                @else
-                                <input name="father_fname" style="width:100%"></input>
-                                @endif
+                                
+                                <input name="father_fname" style="width:100%" value="{{$father->first_name}}">
+                              
                             </td>                        
                         </tr>
                         <tr>                                
                             <td style="width: 30%; background-color:white">Middle Name</td>
-                            <td>
-                                @if(! empty($father))
-                                    <input name="father_mname" style="width:100%"> {{$father->middle_name}}</input>
-                                @else
-                                <input name="father_mname" style="width:100%"></input>
-                                @endif
+                            <td>                            
+                                <input name="father_mname" style="width:100%" value="{{$father->middle_name}}"></input>
+                               
                             </td>                        
                         </tr>
                         <tr>                                
                             <td style="width: 30%;background-color:white">Last Name</td>
                             <td>
-                            @if(! empty($father))
-                            <input name="father_lname" style="width:100%">{{$father->last_name}}</input>
-                            @else
-                                <input name="father_lname" style="width:100%"></input>
-                            @endif
+                            
+                            <input name="father_lname" style="width:100%" value="{{$father->last_name}}">
+                           
                             </td>                        
                         </tr>
                         <tr><td colspan="2" style="background-color:grey;color:white">Mother</td></tr>                    
                         <tr>                                
                             <td style="width: 30%; background-color:white">First Name</td>
                             <td>
-                                @if(! empty($mother))
-                                <input name="mother_fname" style="width:100%">{{$mother->first_name}}</input>
-                                @else
-                                <input name="mother_fname" style="width:100%"></input>
-                                @endif
-                                </td>                        
+    
+                                <input name="mother_fname" style="width:100%" value="{{$mother->first_name}}">
+                                                   
                         </tr>
                         <tr>                                
                             <td style="width: 30%">Middle Name</td>
                             <td>
-                            @if(! empty($mother))
-                            <input name="mother_mname" style="width:100%">{{$mother->middle_name}}</input>
-                            @else
-                                <input name="mother_mname" style="width:100%"></input>
-                            @endif
+                           
+                            <input name="mother_mname" style="width:100%" value="{{$mother->middle_name}}">
+                           
                             </td>                        
                         </tr>
                         <tr>                                
                             <td style="width: 30%">Last Name</td>
                             <td>
-                            @if(! empty($mother))
-                            <input name="mother_lname" style="width:100%">{{$mother->last_name}}</input>
-                            @else
-                                <input name="mother_lname" style="width:100%"></input>
-                            @endif
+                            
+                            <input name="mother_lname" style="width:100%" value="{{$mother->last_name}}">
+                          
 
                             </td>                        
                         </tr>
@@ -102,32 +88,25 @@
                             <td style="width: 30%">First Name</td>
                             <td>
                         
-                            @if(! empty($guardian))
-                            <input name="guardian_fname" style="width:100%">{{$guardian->first_name}}</input>
-                            @else
-                                <input name="guardian_fname" style="width:100%"></input>
-                            @endif
+                            <input name="guardian_fname" style="width:100%" value="{{$guardian->first_name}}">
+                            
                             
                             </td>                        
                         </tr>
                         <tr>                                
                             <td style="width: 30%">Middle Name</td>
                             <td>
-                            @if(! empty($guardian))
-                            <input name="guardian_mname" style="width:100%">{{$guardian->middle_name}} </input>
-                            @else
-                                <input name="guardian_mname" style="width:100%"></input>
-                            @endif
+                            
+                            <input name="guardian_mname" style="width:100%" value="{{$guardian->middle_name}}">
+                           
                        </td>                        
                         </tr>
                         <tr>                                
                             <td style="width: 30%">Last Name</td>
                             <td>
-                            @if(! empty($guardian))
-                            <input name="guardian_lname" style="width:100%"> {{$guardian->last_name}}</input>
-                            @else
-                                <input name="guardian_lname" style="width:100%"></input>
-                            @endif
+                           
+                            <input name="guardian_lname" style="width:100%" value="{{$guardian->last_name}}">
+                          
                             </td>                        
                         </tr>
                     </table>

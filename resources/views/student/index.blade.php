@@ -67,7 +67,8 @@
                         <i class="fas fa-edit"></i>Edit</button>
                     </a>
                     
-                    
+                    <input type="hidden" value="{{$student->id}}" id="student_id">
+
                     <table class="table table-bordered table-condensed">
                         <tbody>
                             <tr>
@@ -149,18 +150,20 @@
                   </div>
                   <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
                   
-                    <a href="{{ route('getFamilyInfo', $student->id ) }}">
-                        <button type="submit" class="btn btn-info btn-flat float-right pl-3 pr-3 mb-3">
-                        <i class="fas fa-edit"></i>Edit</button>
-                    </a>
+                   
+
                     @if($father === null)
                         
                     <table class="table table-bordered table-condensed">
-                        <tr><td colspan="2" style="background-color:white;color:red">Father (No record)
-                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addGuardianModal" id="addFather">
-                            Add
-                        </button>
-                        </td></tr>  
+                            <tr>
+                                <div class="btn-group">
+                                    <h5 class="text-red">Father's Info</h5>
+                                    <button id="btnFather" type="submit" class="btn btn-default btn-flat pl-3 pr-3">
+                                        <i class="fas fa-edit"></i>Add
+                                    </button>
+                                </div> 
+                            </tr>
+                          
                     </table>
 
                         
@@ -169,8 +172,14 @@
                     <table class="table table-bordered table-condensed">
                         <tbody>
                             <br>
+                            <input type="hidden" name="father_id" value="{{$father->id}}" id="father_id">
                             <tr>
-                                <h5 class="text-red">Father's Info</h5>
+                                <div class="btn-group">
+                                    <h5 class="text-red">Father's Info</h5>
+                                    <button id="btnFather" type="button" class="btn btn-default btn-flat pl-3 pr-3" data-toggle="modal" data-target="#editGuardianModal">
+                                        <i class="fas fa-edit"></i>Edit
+                                    </button>
+                                </div> 
                             </tr>
                             <tr>
                                 <td class="text-muted" width="30%">First Name</td>
@@ -206,19 +215,29 @@
                     @if($mother === null)
                        
                     <table class="table table-bordered table-condensed">
-                        <tr><td colspan="2" style="background-color:white;color:red">Mother (No record)
-                            <button id="btnFather" type="submit" class="btn btn-info btn-flat pl-3 pr-3">
-                                <i class="fas fa-edit"></i>Add
-                            </button>
-                        </td></tr>  
-                    </table> 
+                            <tr>
+                                <div class="btn-group">
+                                    <h5 class="text-red">Mother's Info</h5>
+                                    <button id="btnMother" type="submit" class="btn btn-default btn-flat pl-3 pr-3">
+                                        <i class="fas fa-edit"></i>Add
+                                    </button>
+                                </div> 
+                            </tr>
+                          
+                    </table>
                     @else
                    
                     <table class="table table-bordered table-condensed">
                         <tbody>
                             <br>
+                            <input type="hidden" name="mother_id" value="{{$mother->id}}" id="mother_id">
                              <tr>
-                                <h5 class="text-red">Mother's Info</h5>                               
+                                <div class="btn-group">
+                                    <h5 class="text-red">Mother's Info</h5>
+                                    <button id="btnMother" type="submit" class="btn btn-default btn-flat pl-3 pr-3" data-toggle="modal" data-target="#editGuardianModal">
+                                        <i class="fas fa-edit"></i>Edit
+                                    </button>
+                                </div>                             
                                 
                             </tr>
                             <tr>
@@ -249,18 +268,30 @@
 
                    @if($guardian === null)
                    <table class="table table-bordered table-condensed">
-                        <tr><td colspan="2" style="background-color:white;color:red">Guardian (No record)
-                            <button id="btnFather" type="submit" class="btn btn-info btn-flat pl-3 pr-3">
-                                <i class="fas fa-edit"></i>Add
-                            </button>
-                        </td></tr>  
+                            <tr>
+                                <div class="btn-group">
+                                    <h5 class="text-red">Guardian's Info</h5>
+                                    <button id="btnGuardian" type="submit" class="btn btn-default btn-flat pl-3 pr-3">
+                                        <i class="fas fa-edit"></i>Add
+                                    </button>
+                                </div> 
+                            </tr>
+                          
                     </table> 
                     @else
                     <table class="table table-bordered table-condensed">
                         <tbody>
                             <br>
+                            <input type="hidden" name="guardian_id" value="{{$guardian->id}}" id="guardian_id">
                              <tr>
-                                <h5 class="text-red">Guardian's Info</h5>                               
+                                 
+                                <div class="btn-group">
+                                    <h5 class="text-red">Guardian's Info</h5>
+                                    <button id="btnGuardian" type="submit" class="btn btn-default btn-flat pl-3 pr-3" data-toggle="modal" data-target="#editGuardianModal">
+                                        <i class="fas fa-edit"></i>Edit
+                                    </button>
+                                </div> 
+                                                             
                                 
                             </tr>
                             <tr>
@@ -414,6 +445,75 @@
       </div>
 <!-- /.modal -->
 
+<!-----MODAL --->
+<div class="modal fade" id="editGuardianModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Edit Parent/Guardian Form</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form  id="editGuardianForm"  method="POST" action="{{route('updateParentInfo')}}">
+            @csrf
+            <div class="modal-body">
+            <input type="hidden" name="parent_id" id="parent_id">
+           
+                    <div class="form-group">
+                        <label>First Name </label>
+                        <input  type="text" class="form-control" name="first_name" id="first_name" > 
+                        <span class="text-danger error-text first_name_error"></span>
+                          
+                    </div>
+                    <div class="form-group">
+                        <label>Middle Name </label>
+                        <input  type="text" class="form-control" name="middle_name" value="" id="middle_name"> 
+                        <span class="text-danger error-text middle_name_error"></span>
+                          
+                    </div>
+
+                    <div class="form-group">
+                        <label>Last Name </label>
+                        <input  type="text" class="form-control" name="last_name" value="" id="last_name" > 
+                        <span class="text-danger error-text last_name_error"></span>
+                          
+                    </div>
+
+                    <div class="form-group">
+                        <label>Name Extension </label>
+                        <input  type="text" class="form-control" name="name_extension" value="" id="name_extension"> 
+                        <span class="text-danger error-text name_extension_error"></span>
+                          
+                    </div>
+
+                    <div class="form-group">
+                        <label> Occupation</label>
+                        <input  type="text" class="form-control" name="occupation" value="" id="occupation"> 
+                        <span class="text-danger error-text occupation_error"></span>
+                          
+                    </div>
+                    <div class="form-group">
+                        <label>Contact No. </label>
+                        <input  type="text" class="form-control" name="contact_no" value="" id="contact_no"> 
+                        <span class="text-danger error-text contact_no_error"></span>
+                          
+                    </div>
+                
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+            </form>
+          </div>
+          
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+<!-- /.modal -->
+
 
 </div>
 @endsection
@@ -447,8 +547,10 @@
                               $('span.'+prefix+'_error').text(val[0]);
                           });
                       }else{
-                          $('#edit_form')[0].reset();
-                          alert(data.msg);
+                            
+                            alert(data.msg);
+                            $('#edit_form')[0].reset();
+                          
                           window.location.href = "/student";
                       }
                   }
@@ -457,14 +559,109 @@
         });
 
         $(function(){
+          $("#editGuardianForm").on('submit', function(e){
+              e.preventDefault();
 
-            $('#addFather').on("click", function(e) {
-                
-                $('#guardian').val('father');
-                //console.log(request_id);
-            });
+              $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+              });
 
-            
+              $.ajax({
+                  url:$(this).attr('action'),
+                  method:$(this).attr('method'),
+                  data:new FormData(this),
+                  processData:false,
+                  dataType:'json',
+                  contentType:false,
+                  beforeSend:function(){
+                      $(document).find('span.error-text').text('');
+                  },
+                  success:function(data){
+                      if(data.status == 0){
+                          $.each(data.error, function(prefix, val){
+                              $('span.'+prefix+'_error').text(val[0]);
+                          });
+                      }else{
+                          $('#editGuardianForm')[0].reset();
+                          alert(data.msg);
+                          window.location.href = "/student";
+                      }
+                  }
+              });
+          });
+        });
+
+
+        $(function(){
+                $("#btnFather").click(function(){
+                    $.ajax({
+                        url: "/getFatherInfo/"+$("#student_id").val(),
+                        method: 'GET',
+                        success: function(data) {
+                            var father = data.data;
+
+                            $('#first_name').val(father['first_name']);
+                            $('#middle_name').val(father['middle_name']);
+                            $('#last_name').val(father['last_name']);
+                            $('#name_extension').val(father['name_extension']);
+                            $('#occupation').val(father['occupation']);
+                            $('#contact_no').val(father['contact_no']);
+                            
+                            var father_id = $('#father_id').val();
+                            $('#parent_id').val(father_id);
+                        }
+                    });
+                });
+          });
+
+          $(function(){
+                $("#btnMother").click(function(){
+                    $.ajax({
+                        url: "/getMotherInfo/"+$("#student_id").val(),
+                        method: 'GET',
+                        success: function(data) {
+                            var father = data.data;
+
+                            $('#first_name').val(father['first_name']);
+                            $('#middle_name').val(father['middle_name']);
+                            $('#last_name').val(father['last_name']);
+                            $('#name_extension').val(father['name_extension']);
+                            $('#occupation').val(father['occupation']);
+                            $('#contact_no').val(father['contact_no']);
+                            
+                            var mother_id = $('#mother_id').val();
+                            $('#parent_id').val(mother_id);
+                        }
+                    });
+                });
+          });
+
+          $(function(){
+                $("#btnGuardian").click(function(){
+                    $.ajax({
+                        url: "/getGuardianInfo/"+$("#student_id").val(),
+                        method: 'GET',
+                        success: function(data) {
+                            var father = data.data;
+
+                            $('#first_name').val(father['first_name']);
+                            $('#middle_name').val(father['middle_name']);
+                            $('#last_name').val(father['last_name']);
+                            $('#name_extension').val(father['name_extension']);
+                            $('#occupation').val(father['occupation']);
+                            $('#contact_no').val(father['contact_no']);
+                            
+                            var guardian_id = $('#guardian_id').val();
+                            $('#parent_id').val(guardian_id);
+                        }
+                    });
+                });
+          });
+
+
+        $(function(){           
 
           $("#addGuardianForm").on('submit', function(e){
               e.preventDefault();
@@ -498,9 +695,7 @@
                   }
               });
           });
-        });
-
-           
+        });           
       
 
     </script>

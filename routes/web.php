@@ -24,7 +24,10 @@ Route::Resource('student', 'StudentController');
 Route::Resource('upload', 'UploadRequirementsController');
 Route::Resource('payment', 'UploadPaymentController');
 Route::get('/searchIDForm', 'StudentController@searchIDForm')->name('searchIDForm');
-Route::get('/getFamilyInfo/{id}', 'StudentController@getFamilyInfo')->name('getFamilyInfo');
+Route::get('/getFatherInfo/{id}', 'StudentController@getFatherInfo')->name('getFatherInfo');
+Route::get('/getMotherInfo/{id}', 'StudentController@getMotherInfo')->name('getMotherInfo');
+Route::get('/getGuardianInfo/{id}', 'StudentController@getGuardianInfo')->name('getGuardianInfo');
+Route::post('/updateParentInfo', 'StudentController@updateParentInfo')->name('updateParentInfo');
 Route::get('/updateFamily/{id}', 'StudentController@updateFamilyInfo')->name('updateFamily');
 Route::post('/addGuardian', 'StudentController@addGuardian')->name('addGuardian');
 

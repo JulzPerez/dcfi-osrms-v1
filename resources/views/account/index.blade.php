@@ -60,7 +60,7 @@
                                         <td class="text-olive">
                                             <a href="{{ route('account.billDetails',$accounts->bill_id) }}">
                                                    <strong class="text-blue"> View Bill Fees </strong>
-                                            </a> / 
+                                            </a> | 
                                             <a href="{{ route('account.payments', $accounts->bill_id) }}" >
                                             <strong class="text-blue"> View Payments </strong>
                                             </a>
