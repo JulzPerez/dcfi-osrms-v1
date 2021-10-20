@@ -149,10 +149,10 @@
                   </div>
                   <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
                   
-                    <!-- <a href="{{ route('getFamilyInfo', $student->id ) }}">
+                    <a href="{{ route('getFamilyInfo', $student->id ) }}">
                         <button type="submit" class="btn btn-info btn-flat float-right pl-3 pr-3 mb-3">
                         <i class="fas fa-edit"></i>Edit</button>
-                    </a> -->
+                    </a>
                     @if($father === null)
                         
                     <table class="table table-bordered table-condensed">

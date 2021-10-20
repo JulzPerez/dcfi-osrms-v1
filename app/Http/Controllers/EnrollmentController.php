@@ -48,22 +48,19 @@ class EnrollmentController extends Controller
                                     ->where('subject_teacher.Class_Section_ID',$classSectionID)
                                     ->where('subject_group.Name','Learning Areas')
                                     ->get();
-                        
-                        
-
-                        $student_exist=true;
-
-                        //dd($enrolledSubjects);
+                      
 
                         return view('enrollment.enrolledSubjects', compact('enrolledSubjects'));
                     }
-                    else{
+                    else
+                    {
                     
                         return view('enrollment.pendingEnrollment', compact('enrollment'));
                     }
                     
                 } 
-                else{
+                else
+                {
                     return view('enrollment.enroll');
                 }
                       
@@ -71,7 +68,6 @@ class EnrollmentController extends Controller
             else
             {
               
-               
                 return view('enrollment.noStudent');
             }         
 
@@ -80,7 +76,6 @@ class EnrollmentController extends Controller
         { 
             dd($ex->getMessage()); 
         }
-        
         
     }
 
@@ -92,7 +87,7 @@ class EnrollmentController extends Controller
 
         $enrollment = DB::table('enrollment')->insert([
             'student_id' => $student_id,  
-            'school_year_id' => session('school_year_id'),
+            'school_year_id' => $request['school_year_id'],
             'level_id' => $request['level'],
             'strand_id' => $request['strand'],
             'category' => $request['category'],
@@ -119,7 +114,8 @@ class EnrollmentController extends Controller
         }
         else
         {
-            $SY = session('school_year_name');   
+            $SY = DB::table('school_year')
+                    ->where('current',1)->first();           
     
             $departments = DB::table('department')
                     ->get();
