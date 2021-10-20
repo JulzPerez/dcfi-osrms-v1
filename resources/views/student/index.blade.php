@@ -51,7 +51,7 @@
                     <a class="nav-link" id="custom-tabs-one-family-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Family Info</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-one-contact-tab" data-toggle="pill" href="#custom-tabs-one-messages" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false">Contact Info / Address</a>
+                    <a class="nav-link" id="custom-tabs-one-contact-tab" data-toggle="pill" href="#custom-tabs-one-messages" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false">Address</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" id="custom-tabs-one-settings-tab" data-toggle="pill" href="#custom-tabs-one-settings" role="tab" aria-controls="custom-tabs-one-settings" aria-selected="false">Educational Background</a>
@@ -110,7 +110,7 @@
                             
                             <tr>
                                 <td class="text-muted">Religion</td>
-                                <td class="text-olive">{{ ucwords($religion_name)}}</td>
+                                <td class="text-olive">{{ ucwords($student->religion)}}</td>
                             </tr>
                             <tr>
                                 <td class="text-muted">Citizenship</td>
@@ -290,8 +290,7 @@
                                     <button id="btnGuardian" type="submit" class="btn btn-default btn-flat pl-3 pr-3" data-toggle="modal" data-target="#editGuardianModal">
                                         <i class="fas fa-edit"></i>Edit
                                     </button>
-                                </div> 
-                                                             
+                                </div>                                                              
                                 
                             </tr>
                             <tr>

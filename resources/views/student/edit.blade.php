@@ -159,13 +159,65 @@
                         <div class="col-md-3">
                           <div class="form-group">
                             <label>Religion</label>
-                            <input  type="text" class="form-control"  name="religion" value="{{ $student->religion }}">
-                              
+                            <!-- <input  type="text" class="form-control"  name="religion" value="{{ $student->religion }}"> -->
+                            <select class="form-control" name="religion" >
+                                <option {{ old('religion') == $student->religion ? "selected" : "" }} value="{{$student->religion}}" selected>{{$student->religion}}</option>
+                                @foreach($religions as $religion)
+                                    <option> {{$religion->Name}} </option>
+                                @endforeach                                 
+                            </select> 
+
                             <span class="text-danger error-text religion_error"></span>                           
                           </div>
                         </div>
                         
-                      </div>       
+                      </div>  
+                      
+                      <div class="row">
+                        <div class="col-md-3">
+                          <div class="form-group">
+                              <label>Purok/Street/Barangay</label>
+                              <input  type="text" class="form-control"  name="purok" value="{{ $student->purok }}">
+                              
+                              <span class="text-danger error-text purok_error"></span>
+
+                          </div>
+                        </div>
+                        
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label>Province <strong class="text-red">*</strong></label>
+                              <select class="form-control " name="province" id="province" style="width: 100%;">
+                                    <option value="{{$province->province_no}}">{{$province->province_name}}</option> 
+                                   
+                                      @foreach($province_list as $pl)
+                                          <option {{$pl->number}}> {{$pl->name}} </option>
+                                      @endforeach                                 
+                                  </select> 
+                                   
+                              </select>
+
+                              <span class="text-danger error-text province_error"></span>
+                            
+                          </div>
+                        </div>
+
+                        <div class="col-md-3">
+                          <div class="form-group">
+                              <label>City/Municipality </label>
+                              
+                              <select class="form-control " name="city" id="city"  style="width: 100%;">           
+                      
+                              </select>
+                              
+                              <span class="text-danger error-text city_error"></span>
+
+                          </div>
+                        </div>
+
+                       
+                        
+                      </div>
 
                       
                         

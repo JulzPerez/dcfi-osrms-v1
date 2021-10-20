@@ -354,15 +354,23 @@ class StudentController extends Controller
                 $ethnicities = DB::table('ethnicity')->get();
                 $mother_tongues = DB::table('mother_tongue')->get();
                 $modalities = DB::table('modality')->get();   
-                $provinces = DB::table('province')->get();
+                $province = DB::table('province')
+                                ->join('city','province.number','=','city.province_no')
+                                ->select('city.name as city_name','city.number as city_no', 'province.name as province_name','province.number as province_no')
+                                ->where('city.number', $student->city_no)
+                                ->first();
+                $province_list = DB::table('province')->get();
+
+                //dd($province);
+
                 $religions = DB::table('religion')->get();   
             }
             catch(\PDOException $exception)
             {
                 dd($exception->getMessage());
             }
-
-            return view('student.edit', compact('student','ethnicities','mother_tongues','modalities','provinces', 'religions'));
+            //dd($religions);
+            return view('student.edit', compact('student','ethnicities','mother_tongues','modalities','province', 'religions','province_list'));
             
         }        
     }
@@ -390,7 +398,7 @@ class StudentController extends Controller
             'no_siblings' => 'required|string|max:191',
             'religion' => 'required|string|max:191',
             'birth_order' => 'required|string|max:191',
-            //'purok.required' => 'Required field',
+            'purok.required' => 'Required field',
             //'municipality' => 'required|string|max:191', 
             //'province' => 'required|string|max:191',           
             
@@ -408,7 +416,7 @@ class StudentController extends Controller
             'no_siblings.required' => 'Required field',
             'religion.required' => 'Required field',
             'birth_order.required' => 'Required field',
-            //'purok.required' => 'Required field',
+            'purok.required' => 'Required field',
             
             //'municipality.required' => 'Required field', 
             //'province.required' => 'Required field',
@@ -438,6 +446,8 @@ class StudentController extends Controller
                 $stud->no_siblings = $request['no_siblings'];
                 $stud->religion = $request['religion'];
                 $stud->birth_order = $request['birth_order']; 
+
+                $stud->purok = $request['purok'];
                 
                 $stud->save();
 
