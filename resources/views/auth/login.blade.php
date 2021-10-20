@@ -43,8 +43,8 @@
                     <div>
                         @if (Route::has('register'))
                             <p>
-                               To register online, please   
-                                <a href="{{ route('register') }}">{{ __('Sign up') }}</a>
+                               <!-- To register online, please   
+                                <a href="{{ route('register') }}">{{ __('Sign up') }}</a> -->
                             <br>
                                 If already registered on-site, 
                                 @if (Route::has('SRMSAccountOnline'))
