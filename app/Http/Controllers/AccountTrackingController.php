@@ -58,10 +58,9 @@ class AccountTrackingController extends Controller
                 return view('account.noAccounts',compact('SY'));
             }
         }
-        else
-        {
-            return view('account.index')
-                ->withErrors('Opps! It seems like you have no record of billing enrollment for this term!');
+        else{
+              
+            return view('enrollment.noStudent');
         }
         
         
