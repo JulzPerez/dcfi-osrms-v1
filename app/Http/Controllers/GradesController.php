@@ -24,16 +24,13 @@ class GradesController extends Controller
 
             $SY = DB::table('school_year')
                     ->where('current',1)->first();
-            
-            
+        
             if($student != null)
             {               
                 $enrollment = DB::table('enrollment')
                     ->where('student_id', $student->id)
                     ->where('school_year_id',$SY->id)
                     ->first(); 
-
-                //dd($enrollment);
                 
                 if($enrollment != null)
                 {
@@ -78,12 +75,12 @@ class GradesController extends Controller
                     }
                     else{
                     
-                        return view('grades.viewGrades','SY');
+                        return view('grades.viewGrades',compact('SY'));
                     }
                     
                 } 
                 else{
-                    return view('grades.viewGrades','SY');
+                    return view('grades.viewGrades',compact('SY'));
                 }
 
                       

@@ -55,7 +55,7 @@ class AccountTrackingController extends Controller
                 return view('account.index',compact('accounts','outstanding_balance','SY'));
             }
             else{
-                return view('account.noAccounts','SY');
+                return view('account.noAccounts',compact('SY'));
             }
         }
         else
