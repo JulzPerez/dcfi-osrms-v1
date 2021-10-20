@@ -20,7 +20,7 @@ class AccountTrackingController extends Controller
                     ->where('user_id', $userid)
                     ->first();
         $SY = DB::table('school_year')
-                    ->select('id')->where('current',1)->first();  
+                    ->where('current',1)->first();  
         //dd($student);
 
         if($student != null)
@@ -52,10 +52,10 @@ class AccountTrackingController extends Controller
 
                 $outstanding_balance = $total_fees-$total_payment;
            
-                return view('account.index',compact('accounts','outstanding_balance'));
+                return view('account.index',compact('accounts','outstanding_balance','SY'));
             }
             else{
-                return view('account.noAccounts');
+                return view('account.noAccounts','SY');
             }
         }
         else

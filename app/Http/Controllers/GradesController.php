@@ -21,13 +21,16 @@ class GradesController extends Controller
 
             $userid = \Auth::user()->id;
             $student = Student::where('user_id',$userid)->first();    
+
+            $SY = DB::table('school_year')
+                    ->where('current',1)->first();
             
             
             if($student != null)
             {               
                 $enrollment = DB::table('enrollment')
                     ->where('student_id', $student->id)
-                    ->where('school_year_id',session('school_year_id'))
+                    ->where('school_year_id',$SY->id)
                     ->first(); 
 
                 //dd($enrollment);
@@ -71,23 +74,23 @@ class GradesController extends Controller
 
                         //dd($SHS_academics);
 
-                        return view('grades.index', compact('academics','non_academics','characters'));
+                        return view('grades.index', compact('academics','non_academics','characters','SY'));
                     }
                     else{
                     
-                        return view('grades.viewGrades');
+                        return view('grades.viewGrades','SY');
                     }
                     
                 } 
                 else{
-                    return view('grades.viewGrades');
+                    return view('grades.viewGrades','SY');
                 }
 
                       
             }
             else
             {
-                return view('enrollment.noStudent');
+                return view('enrollment.noStudent','SY');
             }         
 
         }

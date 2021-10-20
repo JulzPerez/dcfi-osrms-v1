@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-md-12">
             
-            <h5 class="float-right">School Year:<strong> {{session('school_year_name')}} </strong>, Semester: <strong>{{session('semester')}}</strong></h3>
+        <h5 class="float-right">School Year:<strong> {{ $SY->SY }} </strong>, Semester: <strong>{{$SY->semester}}</strong></h3>
         </div>
     </div>
 

@@ -18,13 +18,13 @@
         @if($accounts === null)
         <br>
         <div class="callout callout-danger">
-            <h5 class="text-red">Info: No billing record for the student this school year {{session('school_year_name')}}.</h5>
+            <h5 class="text-red">Info: No billing record for the student this school year {{$SY->SY}}.</h5>
         </div>     
         @else
         <div class="col-md-6">
                 <div class="card card-danger">
                     <div class="card-header">
-                        <h5> Billing  for Academic Year {{session('school_year_name')}}</h5>
+                        <h5> Billing  for Academic Year {{$SY->SY}}</h5>
                     </div>  
                     <div class="card-body">
                    
