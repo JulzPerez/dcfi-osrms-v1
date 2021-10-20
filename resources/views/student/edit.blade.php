@@ -188,10 +188,11 @@
                           <div class="form-group">
                             <label>Province <strong class="text-red">*</strong></label>
                               <select class="form-control " name="province" id="province" style="width: 100%;">
-                                    <option value="{{$province->province_no}}">{{$province->province_name}}</option> 
+                              
+                                    <option value="{{$province->province_no}}" @if(old('province') == '{{$province->province_no}}') selected @endif>{{$province->province_name}}</option>
                                    
                                       @foreach($province_list as $pl)
-                                          <option {{$pl->number}}> {{$pl->name}} </option>
+                                          <option value="{{$pl->number}}"> {{$pl->name}} </option>
                                       @endforeach                                 
                                   </select> 
                                    
@@ -204,14 +205,20 @@
 
                         <div class="col-md-3">
                           <div class="form-group">
-                              <label>City/Municipality </label>
-                              
-                              <select class="form-control " name="city" id="city"  style="width: 100%;">           
-                      
+                            <label>Province <strong class="text-red">*</strong></label>
+                              <select class="form-control " name="city" id="city" style="width: 100%;">
+                                    <!-- <option value="{{$province->province_no}}">{{$province->province_name}}</option>  -->
+                                    <option value="{{$province->city_no}}" @if(old('city') == '{{$province->city}}') selected @endif>{{$province->city_name}}</option>
+                                   
+                                      @foreach($province_list as $pl)
+                                          <option {{$pl->number}}> {{$pl->name}} </option>
+                                      @endforeach                                 
+                                  </select> 
+                                   
                               </select>
-                              
-                              <span class="text-danger error-text city_error"></span>
 
+                              <span class="text-danger error-text province_error"></span>
+                            
                           </div>
                         </div>
 

@@ -361,7 +361,7 @@ class StudentController extends Controller
                                 ->first();
                 $province_list = DB::table('province')->get();
 
-                //dd($province);
+                //dd($province_list);
 
                 $religions = DB::table('religion')->get();   
             }
@@ -446,8 +446,10 @@ class StudentController extends Controller
                 $stud->no_siblings = $request['no_siblings'];
                 $stud->religion = $request['religion'];
                 $stud->birth_order = $request['birth_order']; 
+                $stud->birth_order = $request['birth_order']; 
 
                 $stud->purok = $request['purok'];
+                $stud->city_no = $request['city'];
                 
                 $stud->save();
 
@@ -480,6 +482,7 @@ class StudentController extends Controller
 
     public function getLocalityByProvince(Request $request)
     {
+        //dd($request);
         $html = '';
 
         $html .= '<option value=""> --Select here--</option>';
