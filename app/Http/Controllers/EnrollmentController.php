@@ -50,18 +50,18 @@ class EnrollmentController extends Controller
                                     ->get();
                       
 
-                        return view('enrollment.enrolledSubjects', compact('enrolledSubjects'));
+                        return view('enrollment.enrolledSubjects', compact('enrolledSubjects','SY'));
                     }
                     else
                     {
                     
-                        return view('enrollment.pendingEnrollment', compact('enrollment'));
+                        return view('enrollment.pendingEnrollment', compact('enrollment','SY'));
                     }
                     
                 } 
                 else
                 {
-                    return view('enrollment.enroll');
+                    return view('enrollment.enroll','SY');
                 }
                       
             }
