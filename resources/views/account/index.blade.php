@@ -78,8 +78,27 @@
 
 
             
-        @endif
+       
         </div>
+        <div class="col-md-6">
+            <div class="alert alert-info alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h5><i class="icon fas fa-info"></i> BANK ACCOUNT</h5>
+                    <ol start="1">
+                      
+                        <br>
+                        <p>Bank Name: BPI <br>
+                        Account Name: DANSALAN COLLEGE FOUNDATION INC <br>
+                        Account Number: 9351-0048-59 </p>
+                        <br>
+                        <p>Bank Name: LANDBANK <br>
+                        Account Name: DANSALAN COLLEGE <br>
+                        Account Number: 0321-2010-40</p>
+                        
+                    </ol>
+            </div>
+        </div>
+        @endif
     </div>
                 
 </div>
