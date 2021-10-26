@@ -37,8 +37,8 @@ class OnlineSRMSController extends Controller
         {
             $student_userID = $student->user_id;
 
-            if($student_userID == null)
-            {
+           /*  if($student_userID == null)
+            { */
                 $fname = $student->first_name;
                 $lname = $student->last_name;
 
@@ -63,11 +63,11 @@ class OnlineSRMSController extends Controller
                     return redirect()->intended('/');                    
                 }
 
-            }
+           /*  }
             else
             {
                 return redirect()->back()->withErrors('You already have an account! Enter credentials to login! ');
-            }
+            } */
                 
         }
 
