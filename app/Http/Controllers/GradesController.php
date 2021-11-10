@@ -70,8 +70,15 @@ class GradesController extends Controller
                         }); */
 
                         //dd($SHS_academics);
+                        if($enrolledSubjects[0]->Level_ID == 13 || $enrolledSubjects[0]->Level_ID == 14)
+                        {
+                            return view('grades.SHSgrades', compact('academics','characters','SY'));
+                        }
+                        else{
+                            return view('grades.index', compact('academics','non_academics','characters','SY'));
+                        }
 
-                        return view('grades.index', compact('academics','non_academics','characters','SY'));
+                        
                     }
                     else{
                     
