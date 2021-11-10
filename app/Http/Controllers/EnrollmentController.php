@@ -49,7 +49,7 @@ class EnrollmentController extends Controller
                                     ->where('subject_group.Name','Learning Areas')
                                     ->get();
                       
-
+                        //dd($enrolledSubjects);
                         return view('enrollment.enrolledSubjects', compact('enrolledSubjects','SY'));
                     }
                     else

@@ -31,8 +31,8 @@
                                     <th style="width:5%">#</th>
                                     <th style="width:15%"> Code</th>   
                                     <th style="width:50%"> Description</th> 
-                                    <th style="width:10%"> Days</th>   
-                                    <th style="width:20%"> Time</th>
+                                    <th style="width:10%"> Days/Time</th>   
+            
                                                 
                                 </tr>
                             </thead>
@@ -43,12 +43,8 @@
                                         <td>{{++$count}}</td>
                                         <td>{{ucwords($enrolledSubject->Code)}}</td>
                                         <td>{{ucwords($enrolledSubject->Description)}}</td>
-                                        <td>{{ucwords($enrolledSubject->Shorthand)}}</td>   
-                                        @if($enrolledSubject->Shorthand != 'TBA')
-                                        <td>{{$enrolledSubject->Time_from}}-{{$enrolledSubject->Time_To}}</td> 
-                                        @else
-                                        <td></td>
-                                        @endif 
+                                       
+                                        <td>{{ucwords($enrolledSubject->Schedule_All)}}</td>
                                         
                                     </tr>                            
                                     @endforeach
