@@ -24,7 +24,7 @@
             <div class="card">
                 <div class="card-body">
                         <h3> Learning Areas/Class Schedule </h3>
-                        <table class="table table-hover table-bordered table-striped">
+                        <table class="table table-hover table-bordered table-striped text-nowrap">
                             <thead>
                                 <tr colspan="3"></td>
                                 <tr>
