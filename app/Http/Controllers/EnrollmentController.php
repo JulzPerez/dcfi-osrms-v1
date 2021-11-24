@@ -53,8 +53,7 @@ class EnrollmentController extends Controller
                         return view('enrollment.enrolledSubjects', compact('enrolledSubjects','SY'));
                     }
                     else
-                    {
-                    
+                    {                    
                         return view('enrollment.pendingEnrollment', compact('enrollment','SY'));
                     }
                     
@@ -62,12 +61,10 @@ class EnrollmentController extends Controller
                 else
                 {
                     return view('enrollment.enroll','SY');
-                }
-                      
+                }                      
             }
             else
-            {
-              
+            {              
                 return view('enrollment.noStudent');
             }         
 

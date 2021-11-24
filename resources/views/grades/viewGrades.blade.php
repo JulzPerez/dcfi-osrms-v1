@@ -17,6 +17,8 @@
         <div class="col-md-12">
         <h5 class="float-right">School Year:<strong> {{ $SY->SY }} </strong>, Semester: <strong>{{$SY->semester}}</strong></h3>
         </div>
+        <p style="color:red">You can only view grades if you have been officially registered.</p>
+        <p style="color:red">Please coordinate with the registrar for registration details.</p> 
     </div>
 
   

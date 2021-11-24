@@ -19,16 +19,7 @@
         </div>
     </div>
 
-    @if(!$student_exist)
-    <div class="row mt-3">
-        <div class="col-md-6">
-            <p class="text-red"><strong> You cannot enroll yet because you don't have existing record! 
-            <br> Please go to Profile and submit details!</strong></p>
-        </div>
-    </div>
-    
-    @else
-
+  
         @if($enrollment != null) 
             @if($enrollment->status === 'admitted')
                 <p>test ..... </p>
@@ -43,7 +34,7 @@
                     
                         <div class="card-body">
                             <div class="row">
-                                <p class="text-green text-center"><strong >Enrollment is in progress. You can view</strong></p>
+                                <p class="text-green text-center"><strong >Enrollment is in progress.</strong></p>
                             </div>
                         </div> <!--end card-body -->
                     
@@ -117,7 +108,5 @@
         </div>
         @endif
 
-    @endif
-        
 </div>
 @endsection
