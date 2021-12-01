@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    @if($academics[0]->Locking === null)
+    @if($academics[0]->Locking === 0)
         <div class="row">
             <div class="container">
                 <p style="color:red"> Viewing of grades is not yet allowed. </p>

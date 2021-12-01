@@ -20,10 +20,6 @@
         <p style="color:red">You can only view grades if you have been officially registered.</p>
         <p style="color:red">Please coordinate with the registrar for registration details.</p> 
     </div>
-
   
-
-
-        
 </div>
 @endsection
