@@ -36,6 +36,7 @@ class GradesController extends Controller
                 {
                     $enrollmentStatus = $enrollment->status;
                     $classSectionID = $enrollment->class_section_id;
+                    $gradeLockIndicator = $enrollment->Grade_Indicator; // grade locking indicator from enrollment table. Set by registrar
 
                     if($enrollmentStatus == 'admitted')
                     {
@@ -72,10 +73,10 @@ class GradesController extends Controller
                         //dd($SHS_academics);
                         if($enrolledSubjects[0]->Level_ID == 13 || $enrolledSubjects[0]->Level_ID == 14)
                         {
-                            return view('grades.SHSgrades', compact('academics','characters','SY'));
+                            return view('grades.SHSgrades', compact('academics','characters','SY','gradeLockIndicator'));
                         }
                         else{
-                            return view('grades.index', compact('academics','non_academics','characters','SY'));
+                            return view('grades.index', compact('academics','non_academics','characters','SY','gradeLockIndicator'));
                         }
 
                         
