@@ -19,6 +19,7 @@ import 'admin-lte/plugins/bootstrap4-dualListbox/jquery.bootstrap-duallistbox.mi
 import 'admin-lte/plugins/bs-custom-file-input/bs-custom-file-input.min.js';
 import 'admin-lte/plugins/inputmask/jquery.inputmask.min.js'
 import 'admin-lte/dist/js/adminlte.min.js';
+import 'admin-lte/plugins/datatables/jquery.dataTables.js';
 /* 
 $(function () {
 
@@ -53,7 +54,21 @@ $(function () {
 
 }) */
 
+$(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+    });
 
+    //Date range picker
+    $('#daterange').daterangepicker()
+  });
+      
 
 window.Vue = require('vue');
 

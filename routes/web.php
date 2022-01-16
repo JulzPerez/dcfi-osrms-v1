@@ -62,7 +62,7 @@ Route::group(['prefix' => 'grade'], function () {
 Route::get('/searchForm', 'GetPaymentsController@index')->name('searchForm');
 Route::get('/getStudent', 'GetPaymentsController@getStudent')->name('getStudent');
 Route::get('/getStudentPayments/{id}', 'GetPaymentsController@getStudentPayments')->name('getStudentPayments');
-Route::get('/downloadFile/{id}','GetPaymentsController@downloadFile')->name('downloadFile');
+//Route::get('/downloadFile/{id}','GetPaymentsController@downloadFile')->name('downloadFile');
 Route::get('/getAllStudents', 'GetPaymentsController@getAllStudents')->name('getAllStudents');
 
 //for student requirements download
@@ -74,3 +74,6 @@ Route::get('/getAllStudentList', 'GetStudentRequirementsController@getAllStudent
 
 Route::get('/SRMSAccountOnline', 'OnlineSRMSController@index')->name('SRMSAccountOnline');
 Route::post('/create_OnlineSRMSUser', 'OnlineSRMSController@OnlineSRMSUser')->name('create_OnlineSRMSUser');
+
+//external download
+Route::get('/downloadFile/{id}','ExternalDownloadController@downloadFile')->name('downloadFile');
