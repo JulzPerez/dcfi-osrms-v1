@@ -43,8 +43,9 @@ class PaymentUploadNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+            ->error()
             ->subject('Payment Upload Notification')
-            ->from(\Auth::user()->email, 'Sender')
+            ->from('dcfi-srms@dcfi.edu.ph', 'Sender')
             ->greeting($this->details['greeting'])
             ->line($this->details['body'])
             ->action($this->details['actionText'], $this->details['actionURL']);

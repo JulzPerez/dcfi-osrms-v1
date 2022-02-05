@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use Notifiable;
+    private $registrarEmailAddress = 'julietoperez@gmail.com';
 
     /**
      * The attributes that are mass assignable.
@@ -36,4 +37,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function routeNotificationForMail($notification)
+    {
+        // Return email address only...
+        return $this->registrarEmailAddress;
+
+    }
 }
