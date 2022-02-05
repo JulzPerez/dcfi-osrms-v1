@@ -77,3 +77,6 @@ Route::post('/create_OnlineSRMSUser', 'OnlineSRMSController@OnlineSRMSUser')->na
 
 //external download
 Route::get('/downloadFile/{id}','ExternalDownloadController@downloadFile')->name('downloadFile');
+
+//notification
+Route::get('send', 'NotificationController@index');

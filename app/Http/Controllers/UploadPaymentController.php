@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Student;
 use App\UploadPayment;
+use App\User;
+use Notification;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\Notifications\PaymentUploadNotification;
 
 class UploadPaymentController extends Controller
 {
@@ -83,6 +86,7 @@ class UploadPaymentController extends Controller
                             ->first();
             $student_id = $student->id;
             
+            
                 $file = $request->file('file');
 
                 if($file != null)
@@ -101,6 +105,18 @@ class UploadPaymentController extends Controller
                 'proof' => $filename
             ]); 
 
+            //notify admin on payment
+
+            //$user = User::first();
+            $details = [
+                'greeting' => 'Greetings!',
+                'body' => 'This is to notify you of an upload of payment initiated by ' . \Auth::user()->first_name." ".\Auth::user()->last_name,
+                'thanks' => 'Thanks!',
+                'actionText' => 'Download Proof of Payment Here!',
+                'actionURL' => url('https://srms.dcfi.edu.ph/downloadFile/'.$filename)               
+            ]; 
+            //dd(\Auth::user());     
+            Notification::send(\Auth::user(), new PaymentUploadNotification($details));
         }
             
         return redirect('/payment')->with('success', 'Payment uploaded successfully!');
