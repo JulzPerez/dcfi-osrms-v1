@@ -45,7 +45,7 @@ class PaymentUploadNotification extends Notification
         return (new MailMessage)
             ->error()
             ->subject('Payment Upload Notification')
-            ->from('dcfi-srms@dcfi.edu.ph', 'Sender')
+            ->from('dcfi-srms@dcfi.edu.ph', 'Upload Payment Notification')
             ->greeting($this->details['greeting'])
             ->line($this->details['body'])
             ->action($this->details['actionText'], $this->details['actionURL']);
