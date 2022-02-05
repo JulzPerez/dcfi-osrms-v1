@@ -110,7 +110,7 @@ class UploadPaymentController extends Controller
             //$user = User::first();
             $details = [
                 'greeting' => 'Greetings!',
-                'body' => 'This is to notify you of an upload of payment initiated by ' . \Auth::user()->first_name." ".\Auth::user()->last_name,
+                'body' => 'This is to notify you of an upload of proof of payment initiated by ' . \Auth::user()->first_name." ".\Auth::user()->last_name.".",
                 'thanks' => 'Thanks!',
                 'actionText' => 'Download Proof of Payment Here!',
                 'actionURL' => url('https://srms.dcfi.edu.ph/downloadFile/'.$filename)               
