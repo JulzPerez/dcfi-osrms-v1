@@ -93,10 +93,21 @@ class UploadRequirementsController extends Controller
                 'attachment' => $filename
             ]); 
 
-            return redirect('/upload')->with('success', 'File uploaded successfully!');
-            }
+            //notify admin on upload of requirements
 
-        
+            //$user = User::first();
+            $details = [
+                'greeting' => 'Greetings!',
+                'body' => 'Kindly verify the documents uploaded by ' . \Auth::user()->first_name." ".\Auth::user()->last_name.".",
+                'thanks' => 'Thank You!',
+                'actionText' => 'DOWNLOAD FILE!',
+                'actionURL' => url('https://srms.dcfi.edu.ph/downloadDocument/'.$filename)               
+            ]; 
+            //dd(\Auth::user());     
+            Notification::send(\Auth::user(), new UploadDocsNotification($details));
+
+            return redirect('/upload')->with('success', 'File uploaded successfully!');
+            }        
         }
 
     /**

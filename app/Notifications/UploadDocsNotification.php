@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class PaymentUploadNotification extends Notification
+class UploadDocsNotification extends Notification
 {
     use Queueable;
     private $details;
@@ -19,7 +19,6 @@ class PaymentUploadNotification extends Notification
      */
     public function __construct($details)
     {
-        //
         $this->details = $details;
     }
 

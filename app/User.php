@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use Notifiable;
-    private $registrarEmailAddress = 'registrar@dcfi.edu.ph';
+    private $registrarEmailAddress = 'julietoperez@gmail.com';
 
     /**
      * The attributes that are mass assignable.
