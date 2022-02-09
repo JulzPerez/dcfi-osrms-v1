@@ -8,6 +8,8 @@ use App\Student;
 use App\UploadRequirements;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Notification;
+use App\Notifications\UploadDocsNotification;
 
 
 class UploadRequirementsController extends Controller
