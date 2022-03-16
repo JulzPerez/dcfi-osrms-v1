@@ -38,7 +38,7 @@ class GradesController extends Controller
                     $classSectionID = $enrollment->class_section_id;
                     $gradeLockIndicator = $enrollment->Grade_Indicator; // grade locking indicator from enrollment table. Set by registrar
 
-                    if($enrollmentStatus == 'admitted')
+                    if($enrollmentStatus == 'enrolled')
                     {
                         $enrolledSubjects = DB::table('subject_teacher')
                                     ->join('subject','subject_teacher.Subject_ID','=','subject.Code')
