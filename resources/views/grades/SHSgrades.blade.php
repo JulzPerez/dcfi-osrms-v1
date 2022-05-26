@@ -14,10 +14,20 @@
     <br>
     
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12">   
+            <!--< div class="form-group">   -->       
+                <h5 class="float-right">School Year:<strong> {{ $SY->SY }} </strong></h5>
+        
             
-        <h5 class="float-right">School Year:<strong> {{ $SY->SY }} </strong></h3>
+                    <select class="select2" data-placeholder="Select a State">
+                    <!-- <option></option> -->
+                    <option>2nd Semester</option>
+                    <!-- <option>2nd</option> -->
+            
+                    </select>
+            <!-- </div> -->
         </div>
+        
     </div>
 
     @if($academics[0]->Locking === 0 AND $gradeLockIndicator === 0)
@@ -39,8 +49,7 @@
                                         <th style="width:5%">#</th>
                                         <th style="width:15%"> Code</th>   
                                         <th style="width:30%"> Description</th> 
-                                        <th style="width:10%"> 1st Grading</th>   
-                                        <th style="width:10%"> 2nd Grading</th>
+                                       
                                         <th style="width:10%"> 3rd Grading</th>   
                                         <th style="width:10%"> 4th Grading</th>
                                         
@@ -58,8 +67,7 @@
                                             <td>{{ucwords($academic->Description)}}</td>
                                             <td>{{$academic->first_grading}}</td>
                                             <td>{{$academic->second_grading}}</td>
-                                            <td>{{$academic->third_grading}}</td>
-                                            <td>{{$academic->fourth_grading}}</td>
+                                            
                                         
                                             <td>{{$academic->fourth_grading}}</td>
                                         
@@ -129,3 +137,51 @@
         
 </div>
 @endsection
+
+@push('scripts')
+    <script type="text/javascript">
+        $("#department").change(function(){
+
+            var dept_id = $(this).val();
+
+            $.ajax({
+                url: "{{ route('getGradeLevel') }}?dept_id=" + dept_id,
+                method: 'GET',
+                success: function(data) {
+                    $('#level').html(data.html);
+                }
+            });
+           
+            if(dept_id === '4')
+            {
+                document.getElementById("displayTrack").style.display = "block";
+
+                $.ajax({
+                url: "{{ route('getTrack') }}",
+                method: 'GET',
+                success: function(data) {
+                    $('#track').html(data.html);
+                }
+                });
+
+                $('#track_strand_flag').val('on');
+            }
+            else{
+                document.getElementById("displayTrack").style.display = "none";
+                document.getElementById("displayStrand").style.display = "none";
+                $('#track_strand_flag').val('off');
+            } 
+                      
+            $.ajax({
+                url: "{{ route('getModality') }}",
+                method: 'GET',
+                success: function(data) {
+                    $('#modality').html(data.html);
+                }
+            });
+        });
+
+           </script>
+
+   
+@endpush

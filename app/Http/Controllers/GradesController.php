@@ -24,13 +24,15 @@ class GradesController extends Controller
 
             $SY = DB::table('school_year')
                     ->where('current',1)->first();
+            //dd($SY->semester);
         
             if($student != null)
             {               
                 $enrollment = DB::table('enrollment')
                     ->where('student_id', $student->id)
                     ->where('school_year_id',$SY->id)
-                    ->first(); 
+                    ->where('semester', $SY->semester)
+                    ->first();                   
                 
                 if($enrollment != null)
                 {
