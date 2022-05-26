@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-md-12">
             
-        <h5 class="float-right">School Year:<strong> {{ $SY->SY }} </strong>, Semester: <strong>{{$SY->semester}}</strong></h3>
+        <h5 class="float-right">School Year:<strong> {{ $SY->SY }} </strong></h3>
         </div>
     </div>
 
@@ -39,8 +39,10 @@
                                         <th style="width:5%">#</th>
                                         <th style="width:15%"> Code</th>   
                                         <th style="width:30%"> Description</th> 
-                                        <th style="width:10%"> 1st Quarter</th>   
-                                        <th style="width:10%"> 2nd Quarter</th>
+                                        <th style="width:10%"> 1st Grading</th>   
+                                        <th style="width:10%"> 2nd Grading</th>
+                                        <th style="width:10%"> 3rd Grading</th>   
+                                        <th style="width:10%"> 4th Grading</th>
                                         
                                         <th style="width:10%"> Final</th>
                                                     
@@ -56,8 +58,10 @@
                                             <td>{{ucwords($academic->Description)}}</td>
                                             <td>{{$academic->first_grading}}</td>
                                             <td>{{$academic->second_grading}}</td>
+                                            <td>{{$academic->third_grading}}</td>
+                                            <td>{{$academic->fourth_grading}}</td>
                                         
-                                            <td>{{$academic->final_grading}}</td>
+                                            <td>{{$academic->fourth_grading}}</td>
                                         
                                             
                                         </tr>                            
@@ -84,8 +88,10 @@
                                         <th style="width:5%">#</th>
                                         <th style="width:15%"> Code</th>   
                                         <th style="width:30%"> Description</th> 
-                                        <th style="width:10%"> 1st Quarter </th>   
-                                        <th style="width:10%"> 2nd Quarter</th>
+                                        <th style="width:10%"> 1st Grading </th>   
+                                        <th style="width:10%"> 2nd Grading</th>
+                                        <th style="width:10%"> 3rd Grading </th>   
+                                        <th style="width:10%"> 4th Grading</th>
                                         
                                         <th style="width:10%"> Final</th>
                                                     
@@ -101,8 +107,10 @@
                                             <td>{{ucwords($character->Description)}}</td>
                                             <td>{{$character->first_grading}}</td>
                                             <td>{{$character->second_grading}}</td>
+                                            <td>{{$character->third_grading}}</td>
+                                            <td>{{$character->fourth_grading}}</td>
                                             
-                                            <td>{{$character->final_grading}}</td>
+                                            <td>{{$character->fourth_grading}}</td>
                                         
                                             
                                         </tr>                            
